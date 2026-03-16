@@ -1,0 +1,9 @@
+module GradeLevelOptions
+  DATA = {
+    "Elementary": ["K", "1st Grade", "2nd Grade", "3rd Grade", "4th Grade", "5th Grade"],
+    "Middle School": ["6th Grade", "7th Grade", "8th Grade"],
+    "High School": ["9th Grade", "10th Grade", "11th Grade", "12th Grade"],
+    "Higher Education": ["College - Freshman", "College - Sophomore", "College - Junior", "College - Senior", "Graduate School"]
+  }
+  OPTIONS = DATA.values.flatten.sort
+end

@@ -1,0 +1,289 @@
+{
+    "title": "Net Worth Calculator: Basic (Template)",
+    "description": "<p>What are you actually worth? Net worth is one of the most important numbers in personal finance because it tells you the full picture of your financial health by combining everything you own with everything you owe. In this project, you will build a personal net worth calculator in Google Sheets that transforms raw financial data into meaningful insights about wealth and financial stability.</p><p><br></p><p>You will start by entering career and income information, then catalog your assets (what you own) and liabilities (what you owe). From there, you will write formulas that calculate key financial metrics including net worth, ownership ratios, and debt-to-income ratios. These calculations are the same ones used by banks when deciding whether to approve loans and by financial advisors when helping clients plan for the future.</p><p><br></p><p>By the end of this project, you will have a functional financial tool and a deeper understanding of how wealth is measured. More importantly, you will practice the kind of analytical thinking that helps people make informed decisions about money throughout their lives.</p>",
+    "status": "active",
+    "version": 1,
+    "tags": [],
+    "resource_attachments": [],
+    "resources": [
+      {
+        "title": "Long Video #1",
+        "description": "",
+        "kind": "video",
+        "target": "https://www.youtube.com/embed/kxI78srw-FU",
+        "order": 0,
+        "transcript": "",
+        "transcript_summary": "",
+        "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+      }
+    ],
+    "resource_file_links": [],
+    "sections": [
+      {
+        "title": "Project Setup",
+        "order": 0,
+        "description": "<p>This section establishes the foundation for your net worth calculator. Proper file organization and naming conventions are professional habits that make your work easier to find, share, and understand. Taking time to set up your project correctly now will save time and confusion later.</p>",
+        "is_reusable": false,
+        "from_reusable_section": false,
+        "resource_attachments": [],
+        "resources": [],
+        "resource_file_links": [],
+        "objectives": [
+          {
+            "title": "File Setup",
+            "description": "<ol><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Watch the task video(s).</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Rename '<strong>sheet1</strong>' to '<strong>networth</strong>'.</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span><span style=\"color: rgb(230, 0, 0);\">If you don't earn all points for this task, rewatch the task video(s) and double-check the sheet name. </span></li><li class=\"ql-indent-1\" data-list=\"ordered\"><span class=\"ql-ui\"></span>If you can't pass this task, open the <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Resources File</a> and watch the '<a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">File Recovery</a>' video to learn how to reset your file without losing your work.</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span><span style=\"color: rgb(230, 0, 0);\">Do not continue until you have earn all points on this task.</span></li></ol>",
+            "order": 0,
+            "evaluation_type": "platform",
+            "points": 5,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "File Name",
+            "description": "<p>Rename your file using this naming convention:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Last, First | Assignment Name | Period</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>&lt;last name&gt;, &lt;first name&gt; | &lt;assignment name&gt; | &lt;period or block&gt;</li></ol><p><br></p><p><strong>Example</strong>:</p><p><span style=\"color: rgb(230, 0, 0);\">Benrud, Todd | Net Worth | Period #5</span></p><p><br></p><p><br></p>",
+            "order": 1,
+            "evaluation_type": "platform",
+            "points": 5,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          }
+        ]
+      },
+      {
+        "title": "Data Entry",
+        "order": 1,
+        "description": "<p>This section focuses on the <strong>Research</strong> and <strong>Data Entry</strong> that will power your calculator. </p><ol><li data-list=\"ordered\"><span class=\"ql-ui\"></span>You'll use the Internet and AI to better understand your Late 20's Vision, how much it costs, and what type of career you will need to support it. </li><li data-list=\"ordered\"><span class=\"ql-ui\"></span>You'll use personal judgement supported by research to populate relevant Assets, Liabilities, and the associated values.  </li></ol><p><br></p><p>Accurate data entry is essential because every calculation in later sections depends on the information you enter here.</p>",
+        "is_reusable": false,
+        "from_reusable_section": false,
+        "resource_attachments": [],
+        "resources": [],
+        "resource_file_links": [],
+        "objectives": [
+          {
+            "title": "Assets & Liabilities",
+            "description": "<p>Perform research on your Late 20's Vision for your life. Your goal is to understand what type of Assets and Liabilities you'd have if you achieve your vision in your Late 20's. Use <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Prompt# 001</a> in the Resources Document or develop your own using the <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">C/T/F framework</a>.</p><p><br></p><ol><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Add at least <strong>SEVEN</strong> Assets with associated values into range <span style=\"color: rgb(255, 153, 0);\">B12:C26</span>.</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Add at least <strong>FOUR</strong> Liabilities with associated costs into range <span style=\"color: rgb(255, 153, 0);\">E12:F26</span>.</li></ol><p><br></p><p><span style=\"color: rgb(230, 0, 0);\">This task is graded for completion only. Your teacher will evaluate the quality of your response during final grading.</span></p>",
+            "order": 0,
+            "evaluation_type": "platform",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Career Snapshot",
+            "description": "<p>Perform research on your Late 20's Vision for your life. Your goal is to understand what it will realistically cost, and what careers / income will be required to support it. Use <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Prompt# 002</a> in the Resources Document or develop your own using the <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">C/T/F framework</a>.</p><p><br></p><p>Enter the following data into the cell range <span style=\"color: rgb(255, 153, 0);\">C2:C7</span> based on the labels in column <strong style=\"color: rgb(255, 153, 0);\">B</strong>:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Age</strong> (<span style=\"color: rgb(255, 153, 0);\">C2</span>): Enter your current age as a whole number.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Career</strong> (<span style=\"color: rgb(255, 153, 0);\">C3</span>): Enter a job title you are interested in pursuing or currently hold.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Education Level</strong> (<span style=\"color: rgb(255, 153, 0);\">C4</span>): Enter your highest completed education level (for example: \"High School\" or \"Some College\").</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Years Working</strong> (<span style=\"color: rgb(255, 153, 0);\">C5</span>): Enter the number of years you have been working, or enter 0 if you have not started working yet.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Annual Income</strong> (<span style=\"color: rgb(255, 153, 0);\">C6</span>): Enter your expected or current annual salary before taxes. If you are unsure, research the average salary for the career you entered.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Location</strong> (<span style=\"color: rgb(255, 153, 0);\">C7</span>): Enter the City, State or City, Country you plan to live in.</li></ol>",
+            "order": 1,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          }
+        ]
+      },
+      {
+        "title": "Formulas and Functions",
+        "order": 2,
+        "description": "<p>This section transforms your raw data into meaningful financial metrics. You will write formulas that calculate totals, ratios, and scores that reveal the true picture of your financial health. These are the same calculations used by financial professionals to evaluate wealth and financial stability.</p>",
+        "is_reusable": false,
+        "from_reusable_section": false,
+        "resource_attachments": [],
+        "resources": [],
+        "resource_file_links": [],
+        "objectives": [
+          {
+            "title": "SUM Functions",
+            "description": "<p>Locate cell <span style=\"color: rgb(255, 153, 0);\">C27 </span>and <span style=\"color: rgb(255, 153, 0);\">F27</span>. Then use <span style=\"color: rgb(0, 102, 204);\">SUM()</span> functions to return the correct values.</p><p><br></p><p><strong>EXAMPLE:</strong></p><p>SUM(value1)</p><p>SUM(A1:A10)</p>",
+            "order": 0,
+            "evaluation_type": "platform",
+            "points": 10,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Net Worth",
+            "description": "<p>Use AI and a simple CTF prompt to get help writing a relative cell reference formula that returns your Net Worth in cell <span style=\"color: rgb(255, 153, 0);\">F2</span>. The formula must consist of two cell references and a single operator.</p>",
+            "order": 1,
+            "evaluation_type": "platform",
+            "points": 10,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Take Home",
+            "description": "<p>Locate cell <span style=\"color: rgb(255, 153, 0);\">C8</span>. Then write an <span style=\"color: rgb(0, 102, 204);\">IF()</span> function that calculates your Annual Take Home Pay based on your Annual Income in cell <span style=\"color: rgb(255, 153, 0);\">C6</span>. This will be a nested function, meaning one function will be part of an argument of another function. </p><p><br></p><p>Your take home pay depends on your income level:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>If you earn less than $50,000, you keep 85% of your salary</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>If you earn between $50,000 and $150,000, you keep 75% of your salary</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>If you earn more than $150,000, you keep 65% of your salary</li></ol><p><br></p><p>Build your formula in<span style=\"color: rgb(230, 0, 0);\"> two parts</span>. First, use <span style=\"color: rgb(0, 102, 204);\">IF()</span> to determine which percentage applies to your income. Then multiply your Annual Income by that percentage.</p><p><br></p><p><strong>EXAMPLE:</strong></p><p>=IF(A1&lt;[VALUE1], [PERCENT1], IF(A1&lt;[VALUE2], [PERCENT2], [PERCENT3]))*A1</p>",
+            "order": 2,
+            "evaluation_type": "platform",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "AI Help #1",
+            "description": "<p>Use AI to learn how to write the formulas in cells <span style=\"color: rgb(255, 153, 0);\">C9 </span>and <span style=\"color: rgb(255, 153, 0);\">F8 </span>and <span style=\"color: rgb(255, 153, 0);\">F9</span>. Use <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Prompt #003</a> or write a <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">C/T/F Prompt</a>. Include a screenshot or .XLSX version of your Google Sheet.</p>",
+            "order": 3,
+            "evaluation_type": "platform",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "AI Help #2",
+            "description": "<p>Use AI to learn how to write the formulas in cell range <span style=\"color: rgb(255, 153, 0);\">F3:F5</span>. Use <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Prompt #003</a> or write a <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">C/T/F Prompt</a>. Include a screenshot or .XLSX version of your Google Sheet.</p><p><br></p><p>Cell <span style=\"color: rgb(255, 153, 0);\">F3</span>:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Start with 1 (representing 100%), then subtract the ratio of what you owe to what you own.</li></ol><p>Cell <span style=\"color: rgb(255, 153, 0);\">F4</span>:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Divide what you owe by what you earn in a year.</li></ol><p>Cell <span style=\"color: rgb(255, 153, 0);\">F5</span>:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Divide your net worth by your annual income.</li></ol><p><br></p><p><strong>EXAMPLES</strong>:</p><p>=1-([TOTAL LIABILITIES]/[TOTAL ASSETS])</p><p>=[TOTAL LIABILITIES]/[ANNUAL INCOME]</p><p>=[NET WORTH]/[ANNUAL INCOME]</p>",
+            "order": 4,
+            "evaluation_type": "platform",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "AI Advisor",
+            "description": "<p>Use AI and Prompt #004 to act as a Financial Advisor. Select two financial calculations to add to cell range <span style=\"color: rgb(255, 153, 0);\">E6:F7</span>. Each calculation must use at least one relative cell reference and one operator.</p>",
+            "order": 5,
+            "evaluation_type": "platform",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          }
+        ]
+      },
+      {
+        "title": "Reflections",
+        "order": 3,
+        "description": "<p>Reflection is where you step back and think about what you learned. These questions ask you to connect your research, your spreadsheet data, and your use of AI tools to your understanding of personal finance. Write honestly and specifically about your experience completing this project.</p><p>Your reflections are checked for completion (word count) automatically. During final grading, your teacher will also evaluate the quality and depth of your responses using the criteria in the Teacher Graded section.</p>",
+        "is_reusable": false,
+        "from_reusable_section": false,
+        "resource_attachments": [],
+        "resources": [],
+        "resource_file_links": [],
+        "objectives": [
+          {
+            "title": "Reflection #1",
+            "description": "<p><strong>Reflection #1 Question</strong>: <span style=\"color: rgb(230, 0, 0);\">Minimum word count of 50</span></p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>What did you learn about how your career choice and location affect your potential income and cost of living? Use at least one specific example from your research or spreadsheet to support your answer.</li></ol><p><br></p><p><span style=\"color: rgb(230, 0, 0);\">This task is graded for completion only. Your teacher will evaluate the quality of your response during final grading.</span></p>",
+            "order": 0,
+            "evaluation_type": "platform",
+            "points": 5,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Reflection #2",
+            "description": "<p><strong>Reflection #2 Question</strong>: <span style=\"color: rgb(230, 0, 0);\">Minimum word count of 50</span></p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>What did you learn about analyzing your financial health beyond just looking at income or net worth? How do ratios like Real Ownership Ratio, Debt-to-Income Ratio, or Net Worth Score help you understand your financial situation in ways that a single number cannot?</li></ol><p><br></p><p><span style=\"color: rgb(230, 0, 0);\">This task is graded for completion only. Your teacher will evaluate the quality of your response during final grading.</span></p>",
+            "order": 1,
+            "evaluation_type": "platform",
+            "points": 5,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Reflection #3",
+            "description": "<p><strong>Reflection #3 Question</strong>: <span style=\"color: rgb(230, 0, 0);\">Minimum word count of 50</span></p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Describe one specific moment where AI helped you understand something you were stuck on. What did you ask, what did the AI suggest, and how did you decide whether to follow its guidance?</li></ol><p><br></p><p><span style=\"color: rgb(230, 0, 0);\">This task is graded for completion only. Your teacher will evaluate the quality of your response during final grading.</span></p>",
+            "order": 2,
+            "evaluation_type": "platform",
+            "points": 5,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          }
+        ]
+      },
+      {
+        "title": "Teacher Graded",
+        "order": 4,
+        "description": "<p>This section contains tasks that will be evaluated by your teacher during final grading. AI will pre-score your work to provide preliminary feedback, but your teacher will review and finalize all scores. Focus on demonstrating thoughtful research, realistic data choices, and genuine reflection on your learning.</p>",
+        "is_reusable": false,
+        "from_reusable_section": false,
+        "resource_attachments": [],
+        "resources": [],
+        "resource_file_links": [],
+        "objectives": [
+          {
+            "title": "Data Quality",
+            "description": "<p>Your teacher will evaluate the quality and realism of your Assets and Liabilities entries. This evaluation considers whether your choices reflect thoughtful research about your Late 20s Vision and whether the values are realistic for someone in your projected situation.</p>",
+            "order": 0,
+            "evaluation_type": "ai_assistant",
+            "points": 25,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai_assistant",
+                "order": 0,
+                "points": 25,
+                "data": {
+                  "user_prompt": "`Grading Criteria`\n\n1) The student has listed assets that are appropriate and realistic for someone in their late 20s with the career and location they specified. Assets should include a reasonable mix of liquid assets (checking, savings, emergency fund), retirement accounts, and tangible property. The values should be plausible given the student's stated income level, not wildly inflated or deflated.\n\n2) The student has listed liabilities that are realistic for someone in their late 20s. Common liabilities might include student loans, auto loans, mortgage or rent deposits, and credit card balances. The amounts should be proportional to the assets and income level shown in the spreadsheet.\n\n3) The overall financial picture tells a coherent story. If the student shows a $350,000 home, there should likely be a corresponding mortgage. If they show a vehicle asset, there may be an auto loan. The relationship between assets and liabilities should make logical sense for someone building wealth in their late 20s.\n\n4) The student demonstrates evidence of research rather than arbitrary numbers. Values should reflect real-world costs for the location specified. A home in San Francisco should cost more than a home in rural Kansas. Retirement account balances should be achievable for someone who has been working the number of years indicated."
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "Career Quality",
+            "description": "<p>Your teacher will evaluate the depth and quality of your reflection on how career choice and location affect income and cost of living.</p>",
+            "order": 1,
+            "evaluation_type": "ai_assistant",
+            "points": 25,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai_assistant",
+                "order": 0,
+                "points": 25,
+                "data": {
+                  "user_prompt": "`Grading Criteria`\n\n1) The student clearly explains what they learned about the relationship between career choice and potential income. The response should demonstrate genuine insight rather than surface-level observations. Simply stating that some careers pay more than others is insufficient; the student should connect this to their own research or spreadsheet data.\n\n2) The student clearly explains what they learned about how location affects cost of living or income potential. The response should reference specific findings, such as how the same career pays differently in different cities or how housing costs vary by region.\n\n3) The student includes at least one specific example from their research or spreadsheet to support their claims. This might reference a specific salary figure, cost comparison, or ratio from their calculator. Generic statements without supporting evidence do not meet this requirement.\n\n4) The response demonstrates personal reflection and connection to the student's own Late 20s Vision rather than abstract or hypothetical observations. The student should explain how this learning affects their thinking about their own future."
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "Reflection Quality",
+            "description": "<p>Your teacher will evaluate the depth and quality of your three reflections. Each reflection is assessed for genuine insight, specific examples, and evidence of thoughtful learning.</p>",
+            "order": 2,
+            "evaluation_type": "ai_assistant",
+            "points": 40,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai_assistant",
+                "order": 0,
+                "points": 40,
+                "data": {
+                  "user_prompt": "`Grading Criteria`\n\n1) In Reflection #1, the student clearly explains what they learned about how career choice and location affect income and cost of living. The response includes at least one specific example from their research or spreadsheet, such as a salary figure, cost comparison, or data point. The student demonstrates personal connection to their own Late 20s Vision rather than abstract observations.\n\n2) In Reflection #2, the student demonstrates understanding that financial health involves more than just income or net worth. The response accurately explains what at least one financial ratio measures, why it matters, and how it connects to practical decision-making. The student shows genuine learning rather than simply restating definitions.\n\n3) In Reflection #3, the student describes a specific moment where AI helped them understand something they were stuck on. The response explains what they asked, what the AI suggested, and how they evaluated whether to follow the guidance. The student demonstrates critical thinking about AI as a tool that requires verification rather than an infallible answer source."
+                },
+                "failure_message": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

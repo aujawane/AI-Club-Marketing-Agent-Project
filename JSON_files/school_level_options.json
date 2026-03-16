@@ -1,0 +1,9 @@
+module SchoolLevelOptions
+  DATA = {
+    "Elementary School": "Elementary School",
+    "Middle School": "Middle School",
+    "High School": "High School",
+    "College/University": "College/University"
+  }
+  OPTIONS = DATA.values
+end

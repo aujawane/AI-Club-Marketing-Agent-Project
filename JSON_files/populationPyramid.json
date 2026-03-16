@@ -1,0 +1,426 @@
+{
+    "title": "Population Pyramids: Full",
+    "description": "<p>In this project, you will analyze a population data table to produce a population pyramid and explore the demographic story it tells. Population pyramids reveal a country's past through the effects of war, policy, and migration, while forecasting its future growth, stability, or decline.</p><p><br></p><p>You will examine demographic data, create hand-drawn sketches, and use AI feedback to refine your work. Then you will collaborate with AI to create an infographic that communicates the population's story visually. Your analysis will include calculating dependency ratios, identifying the Demographic Transition Model stage, recommending a business investment, and predicting future challenges based on the data.</p><p><br></p><p>By the end of this project, you will enhance your Applied AI skills, and understand that a population pyramid is not just a chart but a narrative of human experience with predictive power for those who learn to read it. </p>",
+    "status": "active",
+    "version": 5,
+    "tags": [],
+    "resource_attachments": [],
+    "resources": [
+      {
+        "title": "Population pyramids",
+        "description": "",
+        "kind": "video",
+        "target": "https://www.youtube.com/embed/RLmKfXwWQtE",
+        "order": 0,
+        "transcript": "",
+        "transcript_summary": "",
+        "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+      },
+      {
+        "title": "Stages of DTM",
+        "description": "",
+        "kind": "video",
+        "target": "https://www.youtube.com/embed/l1_KBTk5FhQ",
+        "order": 1,
+        "transcript": "",
+        "transcript_summary": "",
+        "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+      }
+    ],
+    "resource_file_links": [
+      {
+        "resource_file": {
+          "provider_slug": "google/sheets",
+          "order": 0,
+          "title": "Population Data Tables"
+        }
+      },
+      {
+        "resource_file": {
+          "provider_slug": "google/docs",
+          "order": 0,
+          "title": "Resources File"
+        }
+      }
+    ],
+    "sections": [
+      {
+        "title": "Project Setup",
+        "order": 0,
+        "description": "<p>I this section, you will set up your slideshow, select your population data, and rename your file using the correct naming convention. Completing these tasks correctly ensures the platform can evaluate your work.</p><p><br></p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>United States - 2010</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Cambodia - 1980</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Mexico - 1980</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Ethiopia - 1985</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Rwanda - 1995</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>United Arab Emirates - 2010</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Nigeria - 2015</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Brazil - 2010</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>South Africa - 2011</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Japan - 2015</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>China - 2010</li></ol>",
+        "is_reusable": false,
+        "from_reusable_section": false,
+        "resource_attachments": [],
+        "resources": [],
+        "resource_file_links": [],
+        "objectives": [
+          {
+            "title": "Slides",
+            "description": "<p>Ensure your project has the following slides. Add the titles below to each slide. <span style=\"color: rgb(230, 0, 0);\">Watch the task video for step-by-step instructions</span>. </p><ol><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Slide 1: Student Name &amp; Email Address</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Slide 2: Data Table</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Slide 3: Sketch</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Slide 4: Infographics</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Slide 5: Analysis</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Slide 6: Reflection</li></ol>",
+            "order": 0,
+            "evaluation_type": "platform",
+            "points": 10,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "video01.01",
+                "description": "",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/N-Nj6Qf8sGU",
+                "order": 0,
+                "transcript": "{:error=>\"Failed after 2 retries: 500 Internal Server Error\"}",
+                "transcript_summary": "I'm sorry, but there seems to be a misunderstanding as no transcript has been provided for me to summarize. Could you please provide the transcript that you want summarized?",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Data",
+            "description": "<p><span style=\"color: rgb(230, 0, 0);\">Watch the task video(s) for step-by-step instructions for this task</span>.</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Slide 1</strong>: If you haven't already, select a country from the Options below.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Then add the country name and year of data.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Slide 2</strong>: Copy/Paste your data table into slide #2. <span style=\"color: rgb(230, 0, 0);\">Watch the task video</span>.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Open the <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Population Data Tables</a> Google Sheet.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Make a copy of it (File&gt;Make a Copy).</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Select cell <strong>B2</strong> on the dashboard tab, and change it to one of the countries / years listed in the Project Setup description.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Select cell range <strong>B2:D24</strong>, and copy it. Then navigate to <strong>Slide #2</strong>.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Delete the YELLOW text box, paste your unlinked table, and position it. </li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Slide 1</strong>: Use <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Prompt #000</a> along with your <strong>country-year data</strong> to help you develop a title for your slide deck.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Ensure your First name, Last name, and Email address.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Hyperlink (link) your email address.</li></ol><p><br></p><p><strong>OPTIONS</strong>:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>United States - 2010</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Cambodia - 1980</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Mexico - 1980</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Ethiopia - 1985</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Rwanda - 1995</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>United Arab Emirates - 2010</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Nigeria - 2015</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Brazil - 2010</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>South Africa - 2011</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Japan – 2015</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>China – 2010</li></ol><p><br></p>",
+            "order": 1,
+            "evaluation_type": "platform",
+            "points": 5,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video 01.02",
+                "description": "",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/MAGu5nY9Fjc",
+                "order": 0,
+                "transcript": "{:error=>\"Failed after 2 retries: 500 Internal Server Error\"}",
+                "transcript_summary": "",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+              }
+            ],
+            "resource_file_links": [
+              {
+                "resource_file": {
+                  "provider_slug": "google/docs",
+                  "order": 0,
+                  "title": "Resources File"
+                }
+              },
+              {
+                "resource_file": {
+                  "provider_slug": "google/sheets",
+                  "order": 0,
+                  "title": "Population Data Tables"
+                }
+              }
+            ],
+            "evaluations": []
+          },
+          {
+            "title": "File Name",
+            "description": "<p>Rename your file using this naming convention:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Last, First | Assignment Name | Period</li></ol><p><br></p><p><strong>Pattern</strong>:</p><p>&lt;last name&gt;, &lt;first name&gt; | &lt;assignment name&gt; | &lt;period or block&gt;</p><p><strong>Example</strong>:</p><p><span style=\"color: rgb(230, 0, 0);\">Benrud, Todd | Population Pyramid | Period #5</span></p>",
+            "order": 2,
+            "evaluation_type": "platform",
+            "points": 5,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video1.3",
+                "description": "",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/CXJa4eHhs0w",
+                "order": 0,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          }
+        ]
+      },
+      {
+        "title": "Data & Sketch",
+        "order": 1,
+        "description": "<p>Analyze your population data and translate it into visual form. You will calculate reproductive stage percentages, write a historical context statement, and create two hand-drawn sketches. AI feedback will help you refine your sketch and identify what the pyramid's shape reveals.</p>",
+        "is_reusable": false,
+        "from_reusable_section": false,
+        "resource_attachments": [],
+        "resources": [],
+        "resource_file_links": [],
+        "objectives": [
+          {
+            "title": "Data Analysis",
+            "description": "<p><span style=\"color: rgb(230, 0, 0);\">SLIDE#02</span>: Use <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Prompt #002</a> to analyze a screenshot of your population data table. Then update the <strong>Reproductive Stage</strong> section. This <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Population Pyramid NotebookLM</a> is also a resource. </p><ol><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Calculate and display reproductive stage percentages as a bulleted list:</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Pre-Reproductive: 0-14 (___%)</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Reproductive: 15-44 (___%)</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Post-Reproductive: 45+ (___%)</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Write a Historical/Geographic Context statement (<strong>50-100 words</strong>) explaining why this population snapshot looks the way it does. Focus on what happened in this country's past that created the pattern you see in the data.</li></ol>",
+            "order": 0,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video02.01",
+                "description": "",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/TWO0Up4yMCg",
+                "order": 0,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+              },
+              {
+                "title": "Video02.01b",
+                "description": "",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/6_ngRIaaUjE",
+                "order": 1,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Sketch V1",
+            "description": "<p><span style=\"color: rgb(230, 0, 0);\">SLIDE#03</span>: On paper, draw a basic wireframe sketch of the population pyramid based on your data table in slide #2. <span style=\"color: rgb(230, 0, 0);\">Watch the task video(s) for step-by-step instructions</span>.</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Take a picture of your sketch, then use the <a style=\"color: rgb(0, 102, 204);\" rel=\"noopener noreferrer\" href=\"https://squoosh.app/\">squoosh.app</a><span style=\"color: rgb(230, 0, 0);\"> or a similar app to reduce the image file size below </span><strong style=\"color: rgb(230, 0, 0);\">1 MB</strong><span style=\"color: rgb(230, 0, 0);\">.</span></li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span><span style=\"color: rgb(230, 0, 0);\">Failure to complete this step will result in zeros for all teacher-graded tasks. </span></li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Insert the optimized image into the slide.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Crop and resize the image to fit in the <strong>Hand Drawn V1 text box area</strong> (delete the text box).</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Use <a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Prompt #003</a> to give you feedback on your first Population Pyramid Sketch.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>You must upload a screenshot of your data table and image of your sketch.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Summarize the AI Feedback you received and enter it into the AI Feedback section. </li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Minimum of 25 words. </li></ol>",
+            "order": 1,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video 02.02",
+                "description": "",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/ZqzkgPWNsf0",
+                "order": 0,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Sketch V2",
+            "description": "<p><span style=\"color: rgb(230, 0, 0);\">SLIDE#03</span>: Review the AI Feedback and update your Sketch. This will be your V2 sketch. <span style=\"color: rgb(230, 0, 0);\">Watch the task video(s) for step-by-step instructions</span>.</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Update your sketch to improve it.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Take a picture of your V2 sketch, then use the <a style=\"color: rgb(0, 102, 204);\" rel=\"noopener noreferrer\" href=\"https://squoosh.app/\">squoosh.app</a><span style=\"color: rgb(230, 0, 0);\"> or a similar app to reduce the image file size below </span><strong style=\"color: rgb(230, 0, 0);\">1 MB</strong><span style=\"color: rgb(230, 0, 0);\">.</span></li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span><span style=\"color: rgb(230, 0, 0);\">Failure to complete this step will result in zeros for all teacher-graded tasks. </span></li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Insert the optimized image into the slide.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Crop and resize the image to fit in the <strong>Hand Drawn V2 text box area</strong> (delete the text box).</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>In the <strong>Shape Analysis</strong> area, write one sentence (10-30 words), identify the most noticeable feature of your data and what it reveals about the population.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>In the <strong>AI Reflection</strong> area, write 3-5 sentences (30-100 words) reflecting on how AI has helped you so far on this project. Focus on its ability to see and understand images.</li></ol>",
+            "order": 2,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video 02.03",
+                "description": "",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/Xp3bQe-O170",
+                "order": 0,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+              },
+              {
+                "title": "Video 02.03b",
+                "description": "",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/ITxhSf1dkOI",
+                "order": 1,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          }
+        ]
+      },
+      {
+        "title": "Infographics",
+        "order": 2,
+        "description": "<p>Collaborate with AI to create population pyramid infographics. You will use CTF prompts to generate two versions, calculate dependency ratios, and complete a Demographic Profile that identifies shape, growth type, and DTM stage with supporting evidence.</p>",
+        "is_reusable": false,
+        "from_reusable_section": false,
+        "resource_attachments": [],
+        "resources": [],
+        "resource_file_links": [],
+        "objectives": [
+          {
+            "title": "Infographic V1",
+            "description": "<p><span style=\"color: rgb(230, 0, 0);\">SLIDE#04</span>: Create V1 of an AI generated Infographic. <span style=\"color: rgb(230, 0, 0);\">Watch the task video(s) for step-by-step instructions</span>.</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Use <a style=\"background-color: transparent; color: rgb(0, 0, 0);\" rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Prompt #004</a><span style=\"background-color: transparent; color: rgb(0, 0, 0);\"> to create your V1 Population Pyramid Infographic. Use any AI tool you want. </span></li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Include the Data Table and your Sketch as context.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Use <a style=\"color: rgb(0, 102, 204);\" rel=\"noopener noreferrer\" href=\"https://squoosh.app/\">squoosh.app</a><span style=\"color: rgb(230, 0, 0);\"> or a similar app to reduce the image file size below </span><strong style=\"color: rgb(230, 0, 0);\">1 MB</strong><span style=\"color: rgb(230, 0, 0);\">.</span></li><li class=\"ql-indent-2\" data-list=\"bullet\"><span class=\"ql-ui\"></span><span style=\"color: rgb(230, 0, 0);\">Failure to complete this step will result in zeros for all teacher-graded tasks. </span></li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Insert the Infographic in '<strong>AI Created V1</strong>' space. Crop and scale to fit into the space.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Use <a style=\"color: rgb(0, 0, 0); background-color: transparent;\" rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Prompt #005</a><span style=\"color: rgb(0, 0, 0); background-color: transparent;\"> to calculate '</span><strong style=\"color: rgb(0, 0, 0); background-color: transparent;\">Dependency Ratios</strong><span style=\"color: rgb(0, 0, 0); background-color: transparent;\">' based on your population data table.</span></li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Insert the data in the proper format into the '<strong>Dependency Ratios</strong>' space.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Include the Data Table as context.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Must display your work in the required format.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>(XX%+XX%)/XX%</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span><span style=\"color: rgb(0, 0, 0); background-color: transparent;\">XX Dependents per 100 workers</span></li></ol>",
+            "order": 0,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video 03.01",
+                "description": "",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/c7hBLLZ-bB4",
+                "order": 0,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Infographic V2",
+            "description": "<p><span style=\"color: rgb(230, 0, 0);\">SLIDE#04</span>: Create V2 of an AI generated Infographic. <span style=\"color: rgb(230, 0, 0);\">Watch the task video(s) for step-by-step instructions</span>.</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Use <a style=\"background-color: transparent; color: rgb(0, 0, 0);\" rel=\"noopener noreferrer\" href=\"#resource-link-removed\">Prompt #004</a><span style=\"background-color: transparent; color: rgb(0, 0, 0);\"> to create your </span><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">V2</strong><span style=\"background-color: transparent; color: rgb(0, 0, 0);\"> Population Pyramid Infographic in </span><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\"><a rel=\"noopener noreferrer\" href=\"#resource-link-removed\">NoteBookLM</a></strong><span style=\"background-color: transparent; color: rgb(0, 0, 0);\">.</span></li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>#resource-link-removed\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Include the Data Table, your Sketch as context, and the prompt as sources.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Use <a style=\"color: rgb(0, 102, 204);\" rel=\"noopener noreferrer\" href=\"https://squoosh.app/\">squoosh.app</a><span style=\"color: rgb(230, 0, 0);\"> or a similar app to reduce the image file size below </span><strong style=\"color: rgb(230, 0, 0);\">1 MB</strong><span style=\"color: rgb(230, 0, 0);\">.</span></li><li class=\"ql-indent-2\" data-list=\"bullet\"><span class=\"ql-ui\"></span><span style=\"color: rgb(230, 0, 0);\">Failure to complete this step will result in zeros for all teacher-graded tasks. </span></li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Insert the Infographic in '<strong>AI Created V2</strong>' space. Crop and scale to fit into the space.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span><span style=\"color: rgb(230, 0, 0);\">Do not crop out the NotebookLM logo/watermark</span>. Typically in the bottom Right.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Write your own CTF prompt to research and answer the items in '<strong>Demographic Profile</strong>' section.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Evidence must be between <strong>20-40</strong> words.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>In the <strong>Reflection</strong> area, write 3-5 sentences (30-100 words) reflecting on how AI has helped you learn how to calculate <strong>Dependency Ratios</strong> and <strong>Analyze Demographic</strong> Profile.</li></ol>",
+            "order": 1,
+            "evaluation_type": "platform",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video 03.02",
+                "description": "",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/SjQqeFDs6uQ",
+                "order": 0,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          }
+        ]
+      },
+      {
+        "title": "Analysis & Reflection",
+        "order": 3,
+        "description": "<p>Apply your analysis to real-world predictions. You will recommend a business opportunity, identify a future challenge, and propose a policy that connects both. Your reflection will address what you learned about population analysis, AI collaboration, and on-demand feedback.</p>",
+        "is_reusable": false,
+        "from_reusable_section": false,
+        "resource_attachments": [],
+        "resources": [],
+        "resource_file_links": [],
+        "objectives": [
+          {
+            "title": "Analysis",
+            "description": "<p><span style=\"color: rgb(230, 0, 0);\">SLIDE#05</span>: Watch the task video to understand the content, formatting, and word count requirements.</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Business Opportunities</strong>: Recommend one business or industry that would succeed based on your population data, and explain which demographic trend creates the demand.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Future Challenge</strong>: Identify one challenge this country will face in the next 20-30 years and cite the specific data (cohort size, percentage, or ratio) that predicts it.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Policy Recommendation</strong>: Propose one government policy and explain how it connects to both your business opportunity and your future challenge.</li><li class=\"ql-indent-1\" data-list=\"bullet\"><span class=\"ql-ui\"></span>Format the <strong>Policy Recommendation </strong>section as three bullet points; Policy, Business Connection, and Challenges Connection.</li></ol>",
+            "order": 0,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video 04.01",
+                "description": "",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/pNeFBpUOq1o",
+                "order": 0,
+                "transcript": "{:error=>\"Failed after 2 retries: 500 Internal Server Error\"}",
+                "transcript_summary": "",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Reflection",
+            "description": "<p><span style=\"color: rgb(230, 0, 0);\">SLIDE#06</span>: <strong>AI Feedback</strong>: Download your slides as a PDF or take screenshots. Use AI to get feedback the quality, accuracy and appropriateness of Slides #2 and #4. <span style=\"color: rgb(230, 0, 0);\">You can use Prompt #006 as a guide</span>. </p><ol><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Summarize the feedback.</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Summarize the updates you made.</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span>Format as a bulleted list (six list items). </li></ol><p><br></p><p><strong>Reflection</strong>: Reflect on your experience with this project.</p><ol><li data-list=\"ordered\"><span class=\"ql-ui\"></span><strong>Content:</strong> What did you learn about using data tables and population pyramids to analyze and predict a country's future?</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span><strong>AI Collaboration:</strong> How did working with AI help you complete this project (sketches, infographics, calculations, or feedback)?</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span><strong>On-Demand Feedback:</strong> How did getting immediate feedback from GradeFlow help you improve your work before final submission?</li></ol><p><br></p>",
+            "order": 1,
+            "evaluation_type": "platform",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video 04.02",
+                "description": "",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/PCt0XbYDXgI",
+                "order": 0,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with; This video is a tutorial on how to ......"
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          }
+        ]
+      },
+      {
+        "title": "Teacher Graded",
+        "order": 4,
+        "description": "<p>This section evaluates the accuracy of your calculations, the quality of your visual work and revisions, and the depth of your analysis and reflection. Your teacher will assess whether you demonstrated genuine understanding of demographic concepts, improved your work through iteration, and used your population data to support real-world predictions.</p>",
+        "is_reusable": false,
+        "from_reusable_section": false,
+        "resource_attachments": [],
+        "resources": [],
+        "resource_file_links": [],
+        "objectives": [
+          {
+            "title": "Data Accuracy",
+            "description": "<p>Your Reproductive Stage percentages and Historical Context (Slide 2) will be evaluated alongside your Dependency Ratio calculation (Slide 4). These elements require mathematical precision and research that connects to your specific country and time period.</p><p><br></p><p>Strong work will show percentage calculations that total 100% using the correct age groupings from your data table, a dependency ratio with accurate arithmetic and a properly converted result, and a historical context statement that names at least two real events or policies that shaped this specific population and explains how those factors created the pattern visible in your pyramid.</p>",
+            "order": 0,
+            "evaluation_type": "ai_assistant",
+            "points": 35,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai_assistant",
+                "order": 0,
+                "points": 35,
+                "data": {
+                  "user_prompt": "`Grading Criteria`\n\n1) The Reproductive Stage percentages are mathematically accurate based on the population data table. Pre-Reproductive (0-14), Reproductive (15-44), and Post-Reproductive (45+) percentages must be calculated correctly by summing the appropriate age cohorts and dividing by total population. The three percentages must sum to approximately 100%. Calculations that contain arithmetic errors or percentages that do not align with the data table indicate the student did not verify their work.\n\n2) The Historical Context identifies at least two specific factors that are historically accurate for the selected country and time period. For example, Cambodia 1980 should reference the Khmer Rouge genocide, Rwanda 1995 should reference the genocide, and Japan 2015 should reference low birth rates and aging population policies. Generic statements that could apply to any country, such as \"birth rates changed over time,\" do not demonstrate research into this specific population's history.\n\n3) The Historical Context logically explains why the population pyramid has its current shape. The factors identified should connect to visible patterns in the data, such as missing cohorts from war casualties, bulges from baby booms, or narrow bases from fertility decline. Context that describes accurate history but does not connect to the pyramid's shape demonstrates incomplete analytical thinking.\n\n4) The Dependency Ratio calculation on Slide 4 is mathematically accurate. The formula (Pre-Reproductive % + Post-Reproductive %) / Reproductive % must use the correct percentages from Slide 2, and the arithmetic must be performed correctly. The result stated as \"X dependents per 100 workers\" must accurately reflect the calculated ratio multiplied by 100. Errors in either the formula application or the final conversion indicate the student does not understand how dependency ratios measure economic burden."
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "Analysis & Reflection",
+            "description": "<p>Your predictive analysis (Slide 5) and reflection (Slide 6) will be evaluated for reasoning quality and genuine engagement with learning. On Slide 5, your business recommendation, future challenge, and policy must form a connected argument grounded in your demographic data. On Slide 6, your AI Feedback section must document specific feedback you received and specific revisions you made, formatted as six bullet points. Your Reflection must address three prompts: what you learned about population analysis, how AI collaboration supported your work, and how on-demand feedback from GradeFlow shaped your revision process.</p><p><br></p><p>Strong work will show logical connections between all three elements on Slide 5, specific data citations supporting your predictions, a clear feedback-revision record on Slide 6, and honest reflection that names concrete examples from your own project experience.</p>",
+            "order": 1,
+            "evaluation_type": "ai_assistant",
+            "points": 45,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai_assistant",
+                "order": 0,
+                "points": 45,
+                "data": {
+                  "user_prompt": "`Grading Criteria`\n\n1) The Business Opportunity section identifies a specific industry and explains which demographic cohort creates demand for it. Strong responses connect the recommendation to reproductive stage percentages or cohort sizes from the data table and explain when demand will peak as that cohort ages. The Future Challenge section identifies a specific problem this country will face in 20-30 years and cites numerical evidence such as dependency ratio, cohort percentages, or reproductive stage data that predicts it. Strong responses explain the mechanism by which the demographic pattern creates the problem. Generic recommendations or challenges without data support do not demonstrate analytical use of population data.\n\n2) The three Policy Recommendation bullet points on Slide 5 function as a unified argument. The Policy bullet names a specific and realistic government action. The Business Connection bullet explicitly references the student's stated Business Opportunity and describes a clear mechanism by which the policy supports that industry. The Challenges Connection bullet explicitly references the student's stated Future Challenge and describes how the policy mitigates that problem. Bullets that reference different topics than the ones the student identified, or that provide only vague statements without explaining specific mechanisms, do not demonstrate coherent analysis.\n\n3) The AI Feedback section on Slide 6 contains six bullet points documenting a feedback-revision cycle. The first three bullets should summarize specific feedback received from AI about sketches, infographics, calculations, or analysis. The second three bullets should describe specific updates made in response. Vague summaries like \"the AI gave helpful suggestions\" or \"I made improvements\" do not demonstrate engagement with the revision process.\n\n4) The Reflection section on Slide 6 addresses all three prompts with specific examples from the student's own project. The Content reflection identifies something concrete the student now understands about population pyramids, dependency ratios, or demographic analysis. The AI Collaboration reflection describes particular moments when AI assistance changed the student's approach, referencing specific interactions from Slides 3 or 4. The On-Demand Feedback reflection evaluates how GradeFlow's immediate feedback influenced the revision process with at least one specific instance. Generic statements that could apply to any project do not demonstrate genuine reflection.\n\n5) The analysis on Slide 5 and the reflection on Slide 6 together demonstrate that the student integrated demographic data into real-world predictions and reflected honestly on their learning process. All elements on Slide 5 should stem from the same demographic patterns rather than appearing as unrelated responses. The reflection on Slide 6 should show evidence that the student engaged meaningfully with AI tools and platform feedback throughout the project rather than treating them as isolated tasks."
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "Hand-Drawn Pyramid",
+            "description": "<p>Your hand-drawn pyramid must include all of the following:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Y-Axis:</strong> Age cohorts in standard 4-to-5-year groupings (0-4, 5-9, 10-14, etc.) with the youngest at the base and the oldest at the top.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>X-Axis:</strong> \"% of Population\" with 0% at the center, increasing outward in both directions. The scale must be consistent on both sides.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Title:</strong> Country name and year of data.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Male and Female Sides:</strong> Males on the left, females on the right.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Reproductive Stage Labels:</strong> Use brackets or clear visual markers to label Pre-Reproductive (0-14), Reproductive (15-44), and Post-Reproductive (45+).</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span><strong>Data Accuracy:</strong> Bar lengths should reasonably reflect the percentages in your data table. Your sketch does not need to be perfectly precise, but the proportions should be close enough that a viewer could identify the correct pyramid shape (expansive, stationary, or constrictive).</li></ol><p><br></p><p>Before submitting, compare your sketch against your data table. If the visual does not match the numbers, revise it.</p>",
+            "order": 2,
+            "evaluation_type": "ai_assistant",
+            "points": 35,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai_assistant",
+                "order": 0,
+                "points": 35,
+                "data": {
+                  "user_prompt": "`Grading Criteria`\n\n1) The Y-axis of the hand-drawn pyramid displays age cohorts in standard groupings, starting with the youngest ages (such as 0-4) at the base and increasing upward to the oldest age group at the top. Age labels should be clearly visible and follow the correct sequence without skipping or misordering any cohorts. Missing age groups or reversed ordering indicates the student did not follow standard pyramid conventions.\n\n2) The X-axis represents the percentage of the population with zero at the center and values increasing outward in both directions. The scale should be consistent on both sides and labeled clearly enough that a viewer can estimate the percentage for any given bar. An unlabeled or asymmetric axis makes the pyramid unreadable as a data visualization.\n\n3) The title of the hand-drawn pyramid includes both the country name and the year of the data being represented. A pyramid missing either the country or the  year cannot be properly contextualized or compared to other demographic data.\n\n4) Males are graphed on the left side of the center axis, and females are graphed on the right side, following standard population pyramid conventions. Reversed or unlabeled sides indicate the student did not apply standard formatting.\n\n5) The three reproductive stages are labeled with brackets or other clear visual indicators showing Pre-Reproductive (ages 0-14), Reproductive (ages 15-44), and Post-Reproductive (ages 45 and older). Missing or incorrectly placed stage labels indicate incomplete work, as these groupings are essential for calculating dependency ratios and interpreting growth patterns.\n\n6) The bar lengths in the hand-drawn sketch reasonably reflect the actual data percentages from the student's data table. The largest cohorts should have the longest bars, the smallest cohorts should have the shortest bars, and the overall shape should match the demographic pattern in the data. A hand-drawn pyramid does not require exact precision, but significant discrepancies between the sketch and the underlying data indicate the student did not accurately translate numbers into visual form."
+                },
+                "failure_message": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

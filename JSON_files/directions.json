@@ -1,0 +1,462 @@
+{
+    "title": "Absolute & Relative Location: FINAL",
+    "description": "<p>In this project, you will use latitude and longitude with Google Maps to identify a country. Then you'll review the questions in the Google Doc template before updating it. You'll learn how latitude and longitude coordinates pinpoint a country’s absolute location and how its neighbors and landmarks illustrate relative location. For each of ten coordinate pairs, you will:</p><ol><li data-list=\"ordered\"><span class=\"ql-ui\"></span><strong>Find the country</strong> where the lines intersect and enter its name.</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span><strong>List</strong> the countries or bodies of water in a specific direction (north, south, east, west, etc.).</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span><strong>Identify and describe</strong> a famous physical or cultural place in the region within the target country, using at least two specific, verifiable details.</li><li data-list=\"ordered\"><span class=\"ql-ui\"></span><strong>Provide map evidence</strong> by pasting a Google Maps URL or inserting a map screenshot, as directed in each table.</li></ol><p><br></p><p><span style=\"color: rgb(230, 0, 0);\">All of your answers should reflect the Five Themes of Geography. Do </span><strong style=\"color: rgb(230, 0, 0);\">not</strong><span style=\"color: rgb(230, 0, 0);\"> alter any of the coordinate or question rows in the template.</span></p>",
+    "status": "active",
+    "version": 5,
+    "tags": [],
+    "resource_attachments": [],
+    "resources": [
+      {
+        "title": "Video",
+        "description": "<p>Video</p>",
+        "kind": "video",
+        "target": "https://www.youtube.com/embed/9RUew_S4bzU",
+        "order": 0,
+        "transcript": "",
+        "transcript_summary": "",
+        "transcript_prompt": ""
+      }
+    ],
+    "resource_file_links": [],
+    "sections": [
+      {
+        "title": "Absolute & Relative Locations",
+        "order": 0,
+        "description": "<p>You’ll start by plotting each site’s absolute location using its latitude and longitude coordinates. Next, you’ll describe its relative location by naming which countries or bodies of water lie to the north, south, east, west, and in the diagonal (NE, NW, SE, SW) directions. Then you’ll pick one physical feature (for example, a mountain range or a wetland ecosystem) or one cultural landmark (like a historic monument or major city) in that area, and support each choice with at least two clear, verifiable facts. Finally, you’ll embed a Google Maps URL or screenshot to prove your location work and sharpen your GIS and spatial-reasoning skills.</p><p><br></p><p><strong>For each task, you must do the following.</strong></p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Enter the correct country name.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>List neighboring countries or bodies of water in the direction specified.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Describe a famous place in the region of the country, with two clear facts.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Add the required map link or screenshot for that country.</li></ol>",
+        "is_reusable": false,
+        "from_reusable_section": false,
+        "resource_attachments": [],
+        "resources": [],
+        "resource_file_links": [],
+        "objectives": [
+          {
+            "title": "Table#01",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#01</strong>: Locate the Latitude and Longitude coordinates in <strong>Row 1</strong> to find the absolute location in Google Maps. Next, enter the country name in <strong>Row 2</strong>, then answer the questions in <strong>Rows 3</strong>, <strong>5</strong>, and <strong>7</strong> in the blank row directly below the question.</p>",
+            "order": 0,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video",
+                "description": "<p>Video</p>",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/VOriFzQmm3Q",
+                "order": 0,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": ""
+              },
+              {
+                "title": "AI Resource FIle Video",
+                "description": "<p>Video</p>",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/WD0-Htrbchs",
+                "order": 1,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": ""
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Table#02",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#02</strong>: Locate the Latitude and Longitude coordinates in <strong>Row 1</strong> to find the absolute location in Google Maps. Next, enter the country name in <strong>Row 2</strong>, then answer the questions in <strong>Rows 3</strong>, <strong>5</strong>, and <strong>7</strong> in the blank row directly below the question.</p>",
+            "order": 1,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video",
+                "description": "<p>Video</p>",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/RGapIlA83E4",
+                "order": 0,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": ""
+              },
+              {
+                "title": "AI Resource FIle Video",
+                "description": "<p>Video</p>",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/WD0-Htrbchs",
+                "order": 1,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": ""
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Table#03",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#03</strong>: Locate the Latitude and Longitude coordinates in <strong>Row 1</strong> to find the absolute location in Google Maps. Next, enter the country name in <strong>Row 2</strong>, then answer the questions in <strong>Rows 3</strong>, <strong>5</strong>, and <strong>7</strong> in the blank row directly below the question.</p>",
+            "order": 2,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video",
+                "description": "<p>Video</p>",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/VOriFzQmm3Q",
+                "order": 0,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": ""
+              },
+              {
+                "title": "AI Resource FIle Video",
+                "description": "<p>Video</p>",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/WD0-Htrbchs",
+                "order": 1,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": ""
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Table#04",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#04</strong>: Locate the Latitude and Longitude coordinates in <strong>Row 1</strong> to find the absolute location in Google Maps. Next, enter the country name in <strong>Row 2</strong>, then answer the questions in <strong>Rows 3</strong>, <strong>5</strong>, and <strong>7</strong> in the blank row directly below the question.</p>",
+            "order": 3,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video",
+                "description": "<p>Video</p>",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/RGapIlA83E4",
+                "order": 0,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": ""
+              },
+              {
+                "title": "AI Resource FIle Video",
+                "description": "<p>Video</p>",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/WD0-Htrbchs",
+                "order": 1,
+                "transcript": "",
+                "transcript_summary": "",
+                "transcript_prompt": ""
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Table#05",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#05</strong>: Locate the Latitude and Longitude coordinates in <strong>Row 1</strong> to find the absolute location in Google Maps. Next, enter the country name in <strong>Row 2</strong>, then answer the questions in <strong>Rows 3</strong>, <strong>5</strong>, and <strong>7</strong> in the blank row directly below the question.</p>",
+            "order": 4,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [
+              {
+                "title": "Video",
+                "description": "<p>Video</p>",
+                "kind": "video",
+                "target": "https://www.youtube.com/embed/RGapIlA83E4",
+                "order": 0,
+                "transcript": "All right. So, I'm at the second task.\nAnd you'll notice that table one is now\nmissing, right? So, you might think it's\nbroken, but it's not. It's over here.\nIt's under completed. And so, the reason\nwe do this is so that you only see the\ntask that you have left to do. If you\nwant to see all tasks, go to all. If you\nwant to see completed and then\nincomplete. So, these are the ones that\nyou're working on. So, as you complete a\ntask, they'll fall off the list so you\ncan see your progress. So, this one is\ntable two. So, I'm going to open up the\nmenu. I'm going to go to table two and\nI'm going to repeat that same process.\nI'm going to go ahead and I'm going to\nlook for 60 north\nby\n60 east.\nAnd I'm going to find this location.\nZoom out. Where is it at? Oh, that's in\nRussia, right? So then I'll go ahead and\nI'll type here Russia.\nAnd then what countries or bodies of\nwater are to the south? I'm going to\nhave to list them. There's more than\none. Russia's a massive country. So what\ncountries are to the south? Um and then\nhere, instead of um inserting a URL,\nwe're going to be inserting an image. So\nwe'd want to take a screenshot of this.\nUm on a Mac, it's command shift4. I\ndon't know what it is on a Chromebook or\num what it is on a on a Windows. You\nhave to figure that out.\nAnd then I'm going to come over here.\nI'm going to insert the image.\nNow, um the AI that we use can't tell if\nthis is the right country, but your\nteacher can. And the AI that we use to\num parse text and understand text\ndoesn't know um country, but your\nteacher does. Doesn't know like if this\nis in the east coast or west coast,\nright? It's just checking for number of\nwords. So right now I have all of the\npoints for task one, but down here your\nteacher is going to review task one. And\nso when your teacher reads this, they're\ngoing to know that, oh, the Great Wall\nof China is not in America and it's\ndefinitely not in the east coast of\nAmerica. So therefore, you won't get\nthese points, right?\nAlso, if you're not putting in the right\nlinks or the right images, your teacher\nis going to be reviewing those. Okay? So\nthese tasks 1 through 10, you know,\ntable number one through table number\n10. Our AI is checking, you know,\nobjective things like is this word the\nright country? Are these countries, the\nones to the south, did they put\ninformation in? But the teacher is\nevaluating the subjective stuff like is\nthis um a physical place in the western\npart of Russia, right? Is this image a\nGoogle map of Russia? So, make sure that\nyou're not just completing this for\npoints, but you're completing it well\nbecause your teacher is going to be\nreviewing this. So, when I evaluate now,\nI'll get some of the points. But you'll\nnotice that I'm not going to get the um\ncountry name and I'm not going to get\nthe 25 words. But if I just take this\nhere and I paste it in, I'm gonna get\nthe 25 words, but when the teacher\ngrades it, I'm gonna get a zero because\nit's not accurate, right? So, go ahead\nand keep walking through all of these\ntables, table 1 through 10, and filling\nit out the same way. Find the G um the\ncoordinates in Google Maps. Identify\nwhat the country is. update the country\nin row two, the formal spelling, and\nthen you're going to read the\ninstructions in row three and row five\nand answer those in four and six. And\nsometimes seven will be asking you for a\nURL with a link, and sometimes it'll be\nasking you for an image. So you want to\ngo ahead and uh work through those\nappropriately.",
+                "transcript_summary": "This video is a tutorial on how to complete a series of tasks using a table system. The tasks involve using Google Maps to find specific coordinates, identifying the country at those coordinates, and noting down any countries or bodies of water to the south. The tutorial also requires taking screenshots and inserting them into the table, as well as inserting URLs when necessary. The video emphasizes the importance of accuracy and thoroughness in completing the tasks, as the teacher will be reviewing the work, not just for completion, but for correct and relevant information. The tutorial also explains how completed tasks move to a different section of the table, which helps track progress.",
+                "transcript_prompt": "Review the transcript, then summarize it for high school students. Start with: This video is a tutorial on how to ....."
+              }
+            ],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Table#06",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#06</strong>: Locate the Latitude and Longitude coordinates in <strong>Row 1</strong> to find the absolute location in Google Maps. Next, enter the country name in <strong>Row 2</strong>, then answer the questions in <strong>Rows 3</strong>, <strong>5</strong>, and <strong>7</strong> in the blank row directly below the question.</p>",
+            "order": 5,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Table#07",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#07</strong>: Locate the Latitude and Longitude coordinates in <strong>Row 1</strong> to find the absolute location in Google Maps. Next, enter the country name in <strong>Row 2</strong>, then answer the questions in <strong>Rows 3</strong>, <strong>5</strong>, and <strong>7</strong> in the blank row directly below the question.</p>",
+            "order": 6,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Table#08",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#08</strong>: Locate the Latitude and Longitude coordinates in <strong>Row 1</strong> to find the absolute location in Google Maps. Next, enter the country name in <strong>Row 2</strong>, then answer the questions in <strong>Rows 3</strong>, <strong>5</strong>, and <strong>7</strong> in the blank row directly below the question.</p>",
+            "order": 7,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Table#09",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#09</strong>: Locate the Latitude and Longitude coordinates in <strong>Row 1</strong> to find the absolute location in Google Maps. Next, enter the country name in <strong>Row 2</strong>, then answer the questions in <strong>Rows 3</strong>, <strong>5</strong>, and <strong>7</strong> in the blank row directly below the question.</p>",
+            "order": 8,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          },
+          {
+            "title": "Table#10",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#10</strong>: Locate the Latitude and Longitude coordinates in <strong>Row 1</strong> to find the absolute location in Google Maps. Next, enter the country name in <strong>Row 2</strong>, then answer the questions in <strong>Rows 3</strong>, <strong>5</strong>, and <strong>7</strong> in the blank row directly below the question.</p>",
+            "order": 9,
+            "evaluation_type": "platform",
+            "points": 15,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": []
+          }
+        ]
+      },
+      {
+        "title": "Physical & Cultural Place: Teacher Graded",
+        "order": 1,
+        "description": "<p>Your teacher will evaluate the Physical/Human place descriptions you wrote in <strong>Row 6</strong> and the image/URL you input into <strong>Row 8 </strong>of each table.</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Matches the country specified in <strong>Row 2</strong>.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Directly answers the question in <strong>Row 5</strong>.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Includes at least two specific, verifiable facts about the place.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Description is well written, with no spelling or grammar errors.</li><li data-list=\"bullet\"><span class=\"ql-ui\"></span>Image or URL matches the country in <strong>Row 2</strong>.</li></ol><p><br></p><p><strong style=\"color: rgb(230, 0, 0);\">These are Teacher-Graded tasks, so you will not receive scoring and feedback until after you submit your work to your teacher.</strong></p>",
+        "is_reusable": false,
+        "from_reusable_section": false,
+        "resource_attachments": [],
+        "resources": [],
+        "resource_file_links": [],
+        "objectives": [
+          {
+            "title": "T#1 Teacher Graded",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#01</strong>: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable facts. Finally, proofread your response for spelling, grammar, and writing errors.</p><p><br></p><p><strong style=\"color: rgb(230, 0, 0);\">This is a Teacher-Graded Task. You will not receive scoring and feedback until after you submit your work to your teacher.</strong></p>",
+            "order": 0,
+            "evaluation_type": "ai",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai",
+                "order": 0,
+                "points": 20,
+                "data": {
+                  "user_prompt": "{{country}} = United States of America\n{{target-table}} = {{Table#01}} \n\nParse the JSON from the Google Docs API. Find all `table` objects within the `body.content` array. Then, isolate the table where the text in the first row, second column matches the string {{target-table}}. Only consider the data in the isolated table when you use the ‘Grading Criteria’ to score the student_submission.\n\n‘Grading Criteria’ \n1) Read the country in Row 2 exactly as written (case-insensitive). Read the place named in Row 6. Using real-world geographic knowledge, ask yourself: “Is [place] inside [country]?”. Treat synonyms or official variants (e.g. “United States” vs “United States of America”) as the same country. If no, return a criterion score of 0. If yes, return a criterion score of 5.\n2) Read the region in Row 5 and store it as {{region}}. Using world geography, decide whether the place from Row 6 lies within the region of the country from Row 2. Regions are general cardinal directions or named areas (e.g. “East Coast”). Use common definitions: the US East Coast is any coastal area on the Atlantic Ocean. If yes, return a criterion score of 5. If no, return a criterion score of 0 to 4 depending on proximity. \n3) Does Row 6 include at least two distinct, verifiable facts about the place? If no, return a criterion score of 0. If yes, return a criterion score of 5.\n4) Evaluate only spelling, grammar, and clarity in Row 6. Ignore factual accuracy. "
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "T#2 Teacher Graded",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#02</strong>: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable facts. Finally, proofread your response for spelling, grammar, and writing errors.</p><p><br></p><p><strong style=\"color: rgb(230, 0, 0);\">This is a Teacher-Graded Task. You will not receive scoring and feedback until after you submit your work to your teacher.</strong></p>",
+            "order": 1,
+            "evaluation_type": "ai",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai",
+                "order": 0,
+                "points": 20,
+                "data": {
+                  "user_prompt": "{{country}} = Russia\n{{target-table}} = {{Table#02}}\n\nParse the JSON from the Google Docs API. Find all `table` objects within the `body.content` array. Then, isolate the table where the text in the first row, second column matches the string {{target-table}}. Only consider the data in the isolated table when you use the ‘Grading Criteria’ to score the student_submission.\n\n‘Grading Criteria’ \n1) Read the country in Row 2 exactly as written (case-insensitive). Read the place named in Row 6. Using real-world geographic knowledge, ask yourself: “Is [place] inside [country]?”. Treat synonyms or official variants (e.g. “United States” vs “United States of America”) as the same country. If no, return a criterion score of 0. If yes, return a criterion score of 5.\n2) Read the region in Row 5 and store it as {{region}}. Using world geography, decide whether the place from Row 6 lies within the region of the country from Row 2. Regions are general cardinal directions or named areas (e.g. “East Coast”). Use common definitions: the US East Coast is any coastal area on the Atlantic Ocean. If yes, return a criterion score of 5. If no, return a criterion score of 0 to 4 depending on proximity. \n3) Does Row 6 include at least two distinct, verifiable facts about the place? If no, return a criterion score of 0. If yes, return a criterion score of 5.\n4) Evaluate only spelling, grammar, and clarity in Row 6. Ignore factual accuracy. "
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "T#3 Teacher Graded",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#03</strong>: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable facts. Finally, proofread your response for spelling, grammar, and writing errors.</p><p><br></p><p><strong style=\"color: rgb(230, 0, 0);\">This is a Teacher-Graded Task. You will not receive scoring and feedback until after you submit your work to your teacher.</strong></p>",
+            "order": 2,
+            "evaluation_type": "ai",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai",
+                "order": 0,
+                "points": 20,
+                "data": {
+                  "user_prompt": "{{country}} = Brazil\n{{target-table}} = {{Table#03}}\n\nParse the JSON from the Google Docs API. Find all `table` objects within the `body.content` array. Then, isolate the table where the text in the first row, second column matches the string {{target-table}}. Only consider the data in the isolated table when you use the ‘Grading Criteria’ to score the student_submission.\n\n‘Grading Criteria’ \n1) Read the country in Row 2 exactly as written (case-insensitive). Read the place named in Row 6. Using real-world geographic knowledge, ask yourself: “Is [place] inside [country]?”. Treat synonyms or official variants (e.g. “United States” vs “United States of America”) as the same country. If no, return a criterion score of 0. If yes, return a criterion score of 5.\n2) Read the region in Row 5 and store it as {{region}}. Using world geography, decide whether the place from Row 6 lies within the region of the country from Row 2. Regions are general cardinal directions or named areas (e.g. “East Coast”). Use common definitions: the US East Coast is any coastal area on the Atlantic Ocean. If yes, return a criterion score of 5. If no, return a criterion score of 0 to 4 depending on proximity. \n3) Does Row 6 include at least two distinct, verifiable facts about the place? If no, return a criterion score of 0. If yes, return a criterion score of 5.\n4) Evaluate only spelling, grammar, and clarity in Row 6. Ignore factual accuracy. "
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "T#4 Teacher Graded",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#04</strong>: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable facts. Finally, proofread your response for spelling, grammar, and writing errors.</p><p><br></p><p><strong style=\"color: rgb(230, 0, 0);\">This is a Teacher-Graded Task. You will not receive scoring and feedback until after you submit your work to your teacher.</strong></p>",
+            "order": 3,
+            "evaluation_type": "ai",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai",
+                "order": 0,
+                "points": 20,
+                "data": {
+                  "user_prompt": "{{country}} = Algeria\n{{target-table}} = {{Table#04}}\n\nParse the JSON from the Google Docs API. Find all `table` objects within the `body.content` array. Then, isolate the table where the text in the first row, second column matches the string {{target-table}}. Only consider the data in the isolated table when you use the ‘Grading Criteria’ to score the student_submission.\n\n‘Grading Criteria’ \n1) Read the country in Row 2 exactly as written (case-insensitive). Read the place named in Row 6. Using real-world geographic knowledge, ask yourself: “Is [place] inside [country]?”. Treat synonyms or official variants (e.g. “United States” vs “United States of America”) as the same country. If no, return a criterion score of 0. If yes, return a criterion score of 5.\n2) Read the region in Row 5 and store it as {{region}}. Using world geography, decide whether the place from Row 6 lies within the region of the country from Row 2. Regions are general cardinal directions or named areas (e.g. “East Coast”). Use common definitions: the US East Coast is any coastal area on the Atlantic Ocean. If yes, return a criterion score of 5. If no, return a criterion score of 0 to 4 depending on proximity. \n3) Does Row 6 include at least two distinct, verifiable facts about the place? If no, return a criterion score of 0. If yes, return a criterion score of 5.\n4) Evaluate only spelling, grammar, and clarity in Row 6. Ignore factual accuracy. "
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "T#5 Teacher Graded",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#05</strong>: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable facts. Finally, proofread your response for spelling, grammar, and writing errors.</p><p><br></p><p><strong style=\"color: rgb(230, 0, 0);\">This is a Teacher-Graded Task. You will not receive scoring and feedback until after you submit your work to your teacher.</strong></p>",
+            "order": 4,
+            "evaluation_type": "ai",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai",
+                "order": 0,
+                "points": 20,
+                "data": {
+                  "user_prompt": "{{country}} = Australia\n{{target-table}} = {{Table#05}}\n\nParse the JSON from the Google Docs API. Find all `table` objects within the `body.content` array. Then, isolate the table where the text in the first row, second column matches the string {{target-table}}. Only consider the data in the isolated table when you use the ‘Grading Criteria’ to score the student_submission.\n\n‘Grading Criteria’ \n1) Read the country in Row 2 exactly as written (case-insensitive). Read the place named in Row 6. Using real-world geographic knowledge, ask yourself: “Is [place] inside [country]?”. Treat synonyms or official variants (e.g. “United States” vs “United States of America”) as the same country. If no, return a criterion score of 0. If yes, return a criterion score of 5.\n2) Read the region in Row 5 and store it as {{region}}. Using world geography, decide whether the place from Row 6 lies within the region of the country from Row 2. Regions are general cardinal directions or named areas (e.g. “East Coast”). Use common definitions: the US East Coast is any coastal area on the Atlantic Ocean. If yes, return a criterion score of 5. If no, return a criterion score of 0 to 4 depending on proximity. \n3) Does Row 6 include at least two distinct, verifiable facts about the place? If no, return a criterion score of 0. If yes, return a criterion score of 5.\n4) Evaluate only spelling, grammar, and clarity in Row 6. Ignore factual accuracy. "
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "T#6 Teacher Graded",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#06</strong>: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable facts. Finally, proofread your response for spelling, grammar, and writing errors.</p><p><br></p><p><strong style=\"color: rgb(230, 0, 0);\">This is a Teacher-Graded Task. You will not receive scoring and feedback until after you submit your work to your teacher.</strong></p>",
+            "order": 5,
+            "evaluation_type": "ai",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai",
+                "order": 0,
+                "points": 20,
+                "data": {
+                  "user_prompt": "{{country}} = South Africa\n{{target-table}} = {{Table#06}}\n\nParse the JSON from the Google Docs API. Find all `table` objects within the `body.content` array. Then, isolate the table where the text in the first row, second column matches the string {{target-table}}. Only consider the data in the isolated table when you use the ‘Grading Criteria’ to score the student_submission.\n\n‘Grading Criteria’ \n1) Read the country in Row 2 exactly as written (case-insensitive). Read the place named in Row 6. Using real-world geographic knowledge, ask yourself: “Is [place] inside [country]?”. Treat synonyms or official variants (e.g. “United States” vs “United States of America”) as the same country. If no, return a criterion score of 0. If yes, return a criterion score of 5.\n2) Read the region in Row 5 and store it as {{region}}. Using world geography, decide whether the place from Row 6 lies within the region of the country from Row 2. Regions are general cardinal directions or named areas (e.g. “East Coast”). Use common definitions: the US East Coast is any coastal area on the Atlantic Ocean. If yes, return a criterion score of 5. If no, return a criterion score of 0 to 4 depending on proximity. \n3) Does Row 6 include at least two distinct, verifiable facts about the place? If no, return a criterion score of 0. If yes, return a criterion score of 5.\n4) Evaluate only spelling, grammar, and clarity in Row 6. Ignore factual accuracy. "
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "T#7 Teacher Graded",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#07</strong>: Ensure that the place you describe is located in the country listed in <strong>Row 2</strong> and directly answers the question in <strong>Row 5</strong>. Your description should include at least two specific, verifiable facts. Finally, proofread your response for spelling, grammar, and writing errors.</p><p><br></p><p><strong style=\"color: rgb(230, 0, 0);\">This is a Teacher-Graded Task. You will not receive scoring and feedback until after you submit your work to your teacher.</strong></p>",
+            "order": 6,
+            "evaluation_type": "ai",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai",
+                "order": 0,
+                "points": 20,
+                "data": {
+                  "user_prompt": "{{country}} = Uganda\n{{target-table}} = {{Table#07}}\n\nParse the JSON from the Google Docs API. Find all `table` objects within the `body.content` array. Then, isolate the table where the text in the first row, second column matches the string {{target-table}}. Only consider the data in the isolated table when you use the ‘Grading Criteria’ to score the student_submission.\n\n‘Grading Criteria’ \n1) Read the country in Row 2 exactly as written (case-insensitive). Read the place named in Row 6. Using real-world geographic knowledge, ask yourself: “Is [place] inside [country]?”. Treat synonyms or official variants (e.g. “United States” vs “United States of America”) as the same country. If no, return a criterion score of 0. If yes, return a criterion score of 5.\n2) Read the region in Row 5 and store it as {{region}}. Using world geography, decide whether the place from Row 6 lies within the region of the country from Row 2. Regions are general cardinal directions or named areas (e.g. “East Coast”). Use common definitions: the US East Coast is any coastal area on the Atlantic Ocean. If yes, return a criterion score of 5. If no, return a criterion score of 0 to 4 depending on proximity. \n3) Does Row 6 include at least two distinct, verifiable facts about the place? If no, return a criterion score of 0. If yes, return a criterion score of 5.\n4) Evaluate only spelling, grammar, and clarity in Row 6. Ignore factual accuracy. "
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "T#8 Teacher Graded",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#08</strong>: Ensure that the place you describe is located in the country listed in <strong>Row 2</strong> and directly answers the question in <strong>Row 5</strong>. Your description should include at least two specific, verifiable facts. Finally, proofread your response for spelling, grammar, and writing errors.</p><p><br></p><p><strong style=\"color: rgb(230, 0, 0);\">This is a Teacher-Graded Task. You will not receive scoring and feedback until after you submit your work to your teacher.</strong></p>",
+            "order": 7,
+            "evaluation_type": "ai",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai",
+                "order": 0,
+                "points": 20,
+                "data": {
+                  "user_prompt": "{{country}} = Paraguay\n{{target-table}} = {{Table#08}}\n\nParse the JSON from the Google Docs API. Find all `table` objects within the `body.content` array. Then, isolate the table where the text in the first row, second column matches the string {{target-table}}. Only consider the data in the isolated table when you use the ‘Grading Criteria’ to score the student_submission.\n\n‘Grading Criteria’ \n1) Read the country in Row 2 exactly as written (case-insensitive). Read the place named in Row 6. Using real-world geographic knowledge, ask yourself: “Is [place] inside [country]?”. Treat synonyms or official variants (e.g. “United States” vs “United States of America”) as the same country. If no, return a criterion score of 0. If yes, return a criterion score of 5.\n2) Read the region in Row 5 and store it as {{region}}. Using world geography, decide whether the place from Row 6 lies within the region of the country from Row 2. Regions are general cardinal directions or named areas (e.g. “East Coast”). Use common definitions: the US East Coast is any coastal area on the Atlantic Ocean. If yes, return a criterion score of 5. If no, return a criterion score of 0 to 4 depending on proximity. \n3) Does Row 6 include at least two distinct, verifiable facts about the place? If no, return a criterion score of 0. If yes, return a criterion score of 5.\n4) Evaluate only spelling, grammar, and clarity in Row 6. Ignore factual accuracy. "
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "T#9 Teacher Graded",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#09</strong>: Ensure that the place you describe is located in the country listed in <strong>Row 2</strong> and directly answers the question in <strong>Row 5</strong>. Your description should include at least two specific, verifiable facts. Finally, proofread your response for spelling, grammar, and writing errors.</p><p><br></p><p><strong style=\"color: rgb(230, 0, 0);\">This is a Teacher-Graded Task. You will not receive scoring and feedback until after you submit your work to your teacher.</strong></p>",
+            "order": 8,
+            "evaluation_type": "ai",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai",
+                "order": 0,
+                "points": 20,
+                "data": {
+                  "user_prompt": "{{country}} = Mexico\n{{target-table}} = {{Table#09}}\n\nParse the JSON from the Google Docs API. Find all `table` objects within the `body.content` array. Then, isolate the table where the text in the first row, second column matches the string {{target-table}}. Only consider the data in the isolated table when you use the ‘Grading Criteria’ to score the student_submission.\n\n‘Grading Criteria’ \n1) Read the country in Row 2 exactly as written (case-insensitive). Read the place named in Row 6. Using real-world geographic knowledge, ask yourself: “Is [place] inside [country]?”. Treat synonyms or official variants (e.g. “United States” vs “United States of America”) as the same country. If no, return a criterion score of 0. If yes, return a criterion score of 5.\n2) Read the region in Row 5 and store it as {{region}}. Using world geography, decide whether the place from Row 6 lies within the region of the country from Row 2. Regions are general cardinal directions or named areas (e.g. “East Coast”). Use common definitions: the US East Coast is any coastal area on the Atlantic Ocean. If yes, return a criterion score of 5. If no, return a criterion score of 0 to 4 depending on proximity. \n3) Does Row 6 include at least two distinct, verifiable facts about the place? If no, return a criterion score of 0. If yes, return a criterion score of 5.\n4) Evaluate only spelling, grammar, and clarity in Row 6. Ignore factual accuracy. "
+                },
+                "failure_message": null
+              }
+            ]
+          },
+          {
+            "title": "T#10 Teacher Graded",
+            "description": "<p><strong style=\"color: rgb(230, 0, 0);\">Table#10</strong>: Ensure that the place you describe is located in the country listed in <strong>Row 2</strong> and directly answers the question in <strong>Row 5</strong>. Your description should include at least two specific, verifiable facts. Finally, proofread your response for spelling, grammar, and writing errors.</p><p><br></p><p><strong style=\"color: rgb(230, 0, 0);\">This is a Teacher-Graded Task. You will not receive scoring and feedback until after you submit your work to your teacher.</strong></p>",
+            "order": 9,
+            "evaluation_type": "ai",
+            "points": 20,
+            "resource_attachments": [],
+            "resources": [],
+            "resource_file_links": [],
+            "evaluations": [
+              {
+                "evaluation_type": "ai",
+                "order": 0,
+                "points": 20,
+                "data": {
+                  "user_prompt": "{{country}} = India\n{{target-table}} = {{Table#10}}\n\nParse the JSON from the Google Docs API. Find all `table` objects within the `body.content` array. Then, isolate the table where the text in the first row, second column matches the string {{target-table}}. Only consider the data in table {{target-table}} when you use the ‘Grading Criteria’ to score the student_submission.\n\n‘Grading Criteria’\n1) Read the country in Row 2 exactly as written (case-insensitive), remember it as {{country2}}. Read Row 6, locate the name of the famous place, then remember it as {{famous-place}}. Using real-world geographic knowledge, ask yourself: “Is {{famous-place}} inside {{country2}}?”. Treat synonyms or official variants (e.g. “United States” vs “USA” vs \"United States of America\") as the same country. If your answer is no, return a criterion score of 0. If your answer is yes, return a criterion score of 5.\n\n2) Read the instruction in Row 5, then locate the regional requirement and store it as {{region}}. Using world geography, decide whether {{famous-place}} lies within the {{region}} region of {{country2}}. Regions are general cardinal directions or named areas (e.g. “East Coast”, \"central\", \"Northern\"). Use common definitions: the US East Coast is any coastal area on the Atlantic Ocean within the United States. If yes, return a criterion score of 5. If no, return a criterion score of 0 to 4 depending on proximity. 0 is far away, 4 is near but not within the {{region}} region of {{country2}}.\n\n3) Does Row 6 include at least two distinct, verifiable facts about the place? If no, return a criterion score of 0. If yes, return a criterion score of 5.\n\n4) Evaluate only spelling, grammar, and clarity in Row 6. Ignore factual accuracy. "
+                },
+                "failure_message": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
