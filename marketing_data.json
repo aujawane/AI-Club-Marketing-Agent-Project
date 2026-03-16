@@ -1,0 +1,791 @@
+{
+  "export_date": "2026-03-16T09:39:40.302745",
+  "total_projects": 6,
+  "projects": [
+    {
+      "project_name": "Population Pyramids: Full",
+      "tagline": "In this project, you will analyze a population data table to produce a population pyramid and explore the demographic story it tells. Population pyram...",
+      "full_description": "In this project, you will analyze a population data table to produce a population pyramid and explore the demographic story it tells. Population pyramids reveal a country's past through the effects of war, policy, and migration, while forecasting its future growth, stability, or decline.You will examine demographic data, create hand-drawn sketches, and use AI feedback to refine your work. Then you will collaborate with AI to create an infographic that communicates the population's story visually. Your analysis will include calculating dependency ratios, identifying the Demographic Transition Model stage, recommending a business investment, and predicting future challenges based on the data.By the end of this project, you will enhance your Applied AI skills, and understand that a population pyramid is not just a chart but a narrative of human experience with predictive power for those who learn to read it.",
+      "what_students_learn": [
+        "SLIDE#03: On paper, draw a basic wireframe sketch of the population pyramid based on your data table in slide #2",
+        "SLIDE#03: Review the AI Feedback and update your Sketch",
+        "SLIDE#04: Create V1 of an AI generated Infographic",
+        "SLIDE#04: Create V2 of an AI generated Infographic",
+        "SLIDE#05: Watch the task video to understand the content, formatting, and word count requirements"
+      ],
+      "skills_gained": [
+        "AI",
+        "CTF",
+        "Infographic",
+        "Population pyramid",
+        "Prompt",
+        "Reflection",
+        "Research",
+        "Slideshow"
+      ],
+      "tools_and_platforms": [
+        "AI",
+        "Doc",
+        "Google",
+        "GradeFlow",
+        "NotebookLM",
+        "Slides",
+        "YouTube"
+      ],
+      "number_of_tasks": 13,
+      "total_points": 250,
+      "sections": [
+        {
+          "name": "Project Setup",
+          "description": "I this section, you will set up your slideshow, select your population data, and rename your file using the correct naming convention. Completing these tasks correctly ensures the platform can evaluate your work.United States - 2010Cambodia - 1980Mexico - 1980Ethiopia - 1985Rwanda - 1995United Arab Emirates - 2010Nigeria - 2015Brazil - 2010South Africa - 2011Japan - 2015China - 2010",
+          "tasks_count": 3,
+          "tasks": [
+            {
+              "title": "Slides",
+              "description": "Ensure your project has the following slides. Add the titles below to each slide. Watch the task video for step-by-step instructions. Slide 1: Student Name & Email AddressSlide 2: Data TableSlide 3: S...",
+              "points": 10
+            },
+            {
+              "title": "Data",
+              "description": "Watch the task video(s) for step-by-step instructions for this task.Slide 1: If you haven't already, select a country from the Options below.Then add the country name and year of data.Slide 2: Copy/Pa...",
+              "points": 5
+            },
+            {
+              "title": "File Name",
+              "description": "Rename your file using this naming convention:Last, First | Assignment Name | PeriodPattern:<last name>, <first name> | <assignment name> | <period or block>Example:Benrud, Todd | Population Pyramid |...",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "name": "Data & Sketch",
+          "description": "Analyze your population data and translate it into visual form. You will calculate reproductive stage percentages, write a historical context statement, and create two hand-drawn sketches. AI feedback will help you refine your sketch and identify what the pyramid's shape reveals.",
+          "tasks_count": 3,
+          "tasks": [
+            {
+              "title": "Data Analysis",
+              "description": "SLIDE#02: Use Prompt #002 to analyze a screenshot of your population data table. Then update the Reproductive Stage section. This Population Pyramid NotebookLM is also a resource. Calculate and displa...",
+              "points": 15
+            },
+            {
+              "title": "Sketch V1",
+              "description": "SLIDE#03: On paper, draw a basic wireframe sketch of the population pyramid based on your data table in slide #2. Watch the task video(s) for step-by-step instructions.Take a picture of your sketch, t...",
+              "points": 15
+            },
+            {
+              "title": "Sketch V2",
+              "description": "SLIDE#03: Review the AI Feedback and update your Sketch. This will be your V2 sketch. Watch the task video(s) for step-by-step instructions.Update your sketch to improve it.Take a picture of your V2 s...",
+              "points": 15
+            }
+          ]
+        },
+        {
+          "name": "Infographics",
+          "description": "Collaborate with AI to create population pyramid infographics. You will use CTF prompts to generate two versions, calculate dependency ratios, and complete a Demographic Profile that identifies shape, growth type, and DTM stage with supporting evidence.",
+          "tasks_count": 2,
+          "tasks": [
+            {
+              "title": "Infographic V1",
+              "description": "SLIDE#04: Create V1 of an AI generated Infographic. Watch the task video(s) for step-by-step instructions.Use Prompt #004 to create your V1 Population Pyramid Infographic. Use any AI tool you want. In...",
+              "points": 15
+            },
+            {
+              "title": "Infographic V2",
+              "description": "SLIDE#04: Create V2 of an AI generated Infographic. Watch the task video(s) for step-by-step instructions.Use Prompt #004 to create your V2 Population Pyramid Infographic in NoteBookLM.#resource-link-...",
+              "points": 20
+            }
+          ]
+        },
+        {
+          "name": "Analysis & Reflection",
+          "description": "Apply your analysis to real-world predictions. You will recommend a business opportunity, identify a future challenge, and propose a policy that connects both. Your reflection will address what you learned about population analysis, AI collaboration, and on-demand feedback.",
+          "tasks_count": 2,
+          "tasks": [
+            {
+              "title": "Analysis",
+              "description": "SLIDE#05: Watch the task video to understand the content, formatting, and word count requirements.Business Opportunities: Recommend one business or industry that would succeed based on your population...",
+              "points": 15
+            },
+            {
+              "title": "Reflection",
+              "description": "SLIDE#06: AI Feedback: Download your slides as a PDF or take screenshots. Use AI to get feedback the quality, accuracy and appropriateness of Slides #2 and #4. You can use Prompt #006 as a guide. Summ...",
+              "points": 20
+            }
+          ]
+        },
+        {
+          "name": "Teacher Graded",
+          "description": "This section evaluates the accuracy of your calculations, the quality of your visual work and revisions, and the depth of your analysis and reflection. Your teacher will assess whether you demonstrated genuine understanding of demographic concepts, improved your work through iteration, and used your population data to support real-world predictions.",
+          "tasks_count": 3,
+          "tasks": [
+            {
+              "title": "Data Accuracy",
+              "description": "Your Reproductive Stage percentages and Historical Context (Slide 2) will be evaluated alongside your Dependency Ratio calculation (Slide 4). These elements require mathematical precision and research...",
+              "points": 35
+            },
+            {
+              "title": "Analysis & Reflection",
+              "description": "Your predictive analysis (Slide 5) and reflection (Slide 6) will be evaluated for reasoning quality and genuine engagement with learning. On Slide 5, your business recommendation, future challenge, an...",
+              "points": 45
+            },
+            {
+              "title": "Hand-Drawn Pyramid",
+              "description": "Your hand-drawn pyramid must include all of the following:Y-Axis: Age cohorts in standard 4-to-5-year groupings (0-4, 5-9, 10-14, etc.) with the youngest at the base and the oldest at the top.X-Axis: ...",
+              "points": 35
+            }
+          ]
+        }
+      ],
+      "videos": [
+        {
+          "title": "Population pyramids",
+          "url": "https://www.youtube.com/embed/RLmKfXwWQtE"
+        },
+        {
+          "title": "Stages of DTM",
+          "url": "https://www.youtube.com/embed/l1_KBTk5FhQ"
+        }
+      ],
+      "source": "populationPyramid.json"
+    },
+    {
+      "project_name": "Net Worth Calculator: Basic (Template)",
+      "tagline": "What are you actually worth? Net worth is one of the most important numbers in personal finance because it tells you the full picture of your financia...",
+      "full_description": "What are you actually worth? Net worth is one of the most important numbers in personal finance because it tells you the full picture of your financial health by combining everything you own with everything you owe. In this project, you will build a personal net worth calculator in Google Sheets that transforms raw financial data into meaningful insights about wealth and financial stability.You will start by entering career and income information, then catalog your assets (what you own) and liabilities (what you owe). From there, you will write formulas that calculate key financial metrics including net worth, ownership ratios, and debt-to-income ratios. These calculations are the same ones used by banks when deciding whether to approve loans and by financial advisors when helping clients plan for the future.By the end of this project, you will have a functional financial tool and a deeper understanding of how wealth is measured. More importantly, you will practice the kind of analytical thinking that helps people make informed decisions about money throughout their lives.",
+      "what_students_learn": [
+        "Watch the task video(s)",
+        "Perform research on your Late 20's Vision for your life",
+        "Use AI to learn how to write the formulas in cells C9 and F8 and F9",
+        "Use AI to learn how to write the formulas in cell range F3:F5",
+        "Reflection #1 Question: Minimum word count of 50What did you learn about how your career choice and location affect your potential income and cost of living? Use at least one specific example from your research or spreadsheet to support your answer"
+      ],
+      "skills_gained": [
+        "AI",
+        "Assets",
+        "CTF",
+        "Calculator",
+        "Data entry",
+        "Formulas",
+        "Google Sheets",
+        "Liabilities",
+        "Net worth",
+        "Prompt",
+        "Reflection",
+        "Research",
+        "Spreadsheet"
+      ],
+      "tools_and_platforms": [
+        "AI",
+        "Doc",
+        "Google",
+        "Google Sheets",
+        "Spreadsheet",
+        "YouTube"
+      ],
+      "number_of_tasks": 16,
+      "total_points": 250,
+      "sections": [
+        {
+          "name": "Project Setup",
+          "description": "This section establishes the foundation for your net worth calculator. Proper file organization and naming conventions are professional habits that make your work easier to find, share, and understand. Taking time to set up your project correctly now will save time and confusion later.",
+          "tasks_count": 2,
+          "tasks": [
+            {
+              "title": "File Setup",
+              "description": "Watch the task video(s).Rename 'sheet1' to 'networth'.If you don't earn all points for this task, rewatch the task video(s) and double-check the sheet name. If you can't pass this task, open the Resou...",
+              "points": 5
+            },
+            {
+              "title": "File Name",
+              "description": "Rename your file using this naming convention:Last, First | Assignment Name | Period<last name>, <first name> | <assignment name> | <period or block>Example:Benrud, Todd | Net Worth | Period #5",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "name": "Data Entry",
+          "description": "This section focuses on the Research and Data Entry that will power your calculator. You'll use the Internet and AI to better understand your Late 20's Vision, how much it costs, and what type of career you will need to support it. You'll use personal judgement supported by research to populate relevant Assets, Liabilities, and the associated values. Accurate data entry is essential because every calculation in later sections depends on the information you enter here.",
+          "tasks_count": 2,
+          "tasks": [
+            {
+              "title": "Assets & Liabilities",
+              "description": "Perform research on your Late 20's Vision for your life. Your goal is to understand what type of Assets and Liabilities you'd have if you achieve your vision in your Late 20's. Use Prompt# 001 in the ...",
+              "points": 20
+            },
+            {
+              "title": "Career Snapshot",
+              "description": "Perform research on your Late 20's Vision for your life. Your goal is to understand what it will realistically cost, and what careers / income will be required to support it. Use Prompt# 002 in the Re...",
+              "points": 15
+            }
+          ]
+        },
+        {
+          "name": "Formulas and Functions",
+          "description": "This section transforms your raw data into meaningful financial metrics. You will write formulas that calculate totals, ratios, and scores that reveal the true picture of your financial health. These are the same calculations used by financial professionals to evaluate wealth and financial stability.",
+          "tasks_count": 6,
+          "tasks": [
+            {
+              "title": "SUM Functions",
+              "description": "Locate cell C27 and F27. Then use SUM() functions to return the correct values.EXAMPLE:SUM(value1)SUM(A1:A10)",
+              "points": 10
+            },
+            {
+              "title": "Net Worth",
+              "description": "Use AI and a simple CTF prompt to get help writing a relative cell reference formula that returns your Net Worth in cell F2. The formula must consist of two cell references and a single operator.",
+              "points": 10
+            },
+            {
+              "title": "Take Home",
+              "description": "Locate cell C8. Then write an IF() function that calculates your Annual Take Home Pay based on your Annual Income in cell C6. This will be a nested function, meaning one function will be part of an ar...",
+              "points": 20
+            },
+            {
+              "title": "AI Help #1",
+              "description": "Use AI to learn how to write the formulas in cells C9 and F8 and F9. Use Prompt #003 or write a C/T/F Prompt. Include a screenshot or .XLSX version of your Google Sheet.",
+              "points": 20
+            },
+            {
+              "title": "AI Help #2",
+              "description": "Use AI to learn how to write the formulas in cell range F3:F5. Use Prompt #003 or write a C/T/F Prompt. Include a screenshot or .XLSX version of your Google Sheet.Cell F3:Start with 1 (representing 10...",
+              "points": 20
+            },
+            {
+              "title": "AI Advisor",
+              "description": "Use AI and Prompt #004 to act as a Financial Advisor. Select two financial calculations to add to cell range E6:F7. Each calculation must use at least one relative cell reference and one operator.",
+              "points": 20
+            }
+          ]
+        },
+        {
+          "name": "Reflections",
+          "description": "Reflection is where you step back and think about what you learned. These questions ask you to connect your research, your spreadsheet data, and your use of AI tools to your understanding of personal finance. Write honestly and specifically about your experience completing this project.Your reflections are checked for completion (word count) automatically. During final grading, your teacher will also evaluate the quality and depth of your responses using the criteria in the Teacher Graded section.",
+          "tasks_count": 3,
+          "tasks": [
+            {
+              "title": "Reflection #1",
+              "description": "Reflection #1 Question: Minimum word count of 50What did you learn about how your career choice and location affect your potential income and cost of living? Use at least one specific example from you...",
+              "points": 5
+            },
+            {
+              "title": "Reflection #2",
+              "description": "Reflection #2 Question: Minimum word count of 50What did you learn about analyzing your financial health beyond just looking at income or net worth? How do ratios like Real Ownership Ratio, Debt-to-In...",
+              "points": 5
+            },
+            {
+              "title": "Reflection #3",
+              "description": "Reflection #3 Question: Minimum word count of 50Describe one specific moment where AI helped you understand something you were stuck on. What did you ask, what did the AI suggest, and how did you deci...",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "name": "Teacher Graded",
+          "description": "This section contains tasks that will be evaluated by your teacher during final grading. AI will pre-score your work to provide preliminary feedback, but your teacher will review and finalize all scores. Focus on demonstrating thoughtful research, realistic data choices, and genuine reflection on your learning.",
+          "tasks_count": 3,
+          "tasks": [
+            {
+              "title": "Data Quality",
+              "description": "Your teacher will evaluate the quality and realism of your Assets and Liabilities entries. This evaluation considers whether your choices reflect thoughtful research about your Late 20s Vision and whe...",
+              "points": 25
+            },
+            {
+              "title": "Career Quality",
+              "description": "Your teacher will evaluate the depth and quality of your reflection on how career choice and location affect income and cost of living.",
+              "points": 25
+            },
+            {
+              "title": "Reflection Quality",
+              "description": "Your teacher will evaluate the depth and quality of your three reflections. Each reflection is assessed for genuine insight, specific examples, and evidence of thoughtful learning.",
+              "points": 40
+            }
+          ]
+        }
+      ],
+      "videos": [
+        {
+          "title": "Long Video #1",
+          "url": "https://www.youtube.com/embed/kxI78srw-FU"
+        }
+      ],
+      "source": "networth.json"
+    },
+    {
+      "project_name": "Cornell Notes: Essentialism",
+      "tagline": "Cornell Notes is a proven note-taking system that helps you organize information, identify key concepts, and reflect on your learning. This method div...",
+      "full_description": "Cornell Notes is a proven note-taking system that helps you organize information, identify key concepts, and reflect on your learning. This method divides your notes into three sections: Cues/Questions for key terms and study prompts, Notes for main ideas and details, and Summary for synthesis and reflection. You'll apply this system to the video \"Essentialism: Animated Book Summary\" by Greg McKeown, creating notes that demonstrate your comprehension of the seven principles of essentialism and how they apply to achieving goals more effectively. You can also use this NoteBookLM to gain understanding.Learning Objective:Web/Global IT: How can focusing on fewer, high-impact features lead to more successful web projects than trying to include everything?Finance: How can prioritizing essential financial goals and saying no to non-essential spending lead to greater financial success?",
+      "what_students_learn": [
+        "This information is required for your teacher, and for GradeFlow to evaluate your assignment within the context of the class, topic, and learning objective",
+        "Row 1: Begin with the first main idea or concept from your source",
+        "Row 2: Begin with the first main idea or concept from your source",
+        "Row 3: Begin with the first main idea or concept from your source",
+        "Your notes will be evaluated for completeness and alignment with the learning objective"
+      ],
+      "skills_gained": [
+        "AI",
+        "Cornell Notes",
+        "Essentialism",
+        "Note-taking",
+        "Productivity",
+        "Prompt",
+        "Reflection"
+      ],
+      "tools_and_platforms": [
+        "AI",
+        "Doc",
+        "Excel",
+        "GradeFlow",
+        "NotebookLM",
+        "Slides",
+        "YouTube"
+      ],
+      "number_of_tasks": 10,
+      "total_points": 150,
+      "sections": [
+        {
+          "name": "Project Setup",
+          "description": "Complete the technical requirements to set up your Cornell Notes document. This includes verifying your file structure, adding header information, and renaming your file correctly. These steps ensure GradeFlow can evaluate your work accurately and your teacher has the context needed to assess your notes.",
+          "tasks_count": 3,
+          "tasks": [
+            {
+              "title": "File Check",
+              "description": "This task makes sure your file contains the proper elements, and verifies you've know how to use the Evaluate button, task resources, and task hints. Watch the task video, and do not continue until yo...",
+              "points": 5
+            },
+            {
+              "title": "Header Section",
+              "description": "This information is required for your teacher, and for GradeFlow to evaluate your assignment within the context of the class, topic, and learning objective. Incorrect or incomplete information will ne...",
+              "points": 15
+            },
+            {
+              "title": "File Name",
+              "description": "Rename your file using this naming convention:Last, First | Assignment Name | PeriodExample:Benrud, Todd | Cornell Notes | Period #5",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "name": "NOTES Section",
+          "description": "Record information from the Essentialism video in an organized format. Each row represents one of the key principles from the video. In the Cues/Questions column, identify vocabulary related to productivity, priorities, and decision-making, and create questions that will help you study. In the Notes column, capture the main ideas, supporting examples (like Eric's story), and practical applications using your own words.",
+          "tasks_count": 3,
+          "tasks": [
+            {
+              "title": "Row #1 Notes",
+              "description": "Row 1: Begin with the first main idea or concept from your source. Capture the most important point introduced at the start of the audio, video, or material.Cues/Questions: Write key terms, vocabulary...",
+              "points": 10
+            },
+            {
+              "title": "Row #2 Notes",
+              "description": "Row 2: Begin with the first main idea or concept from your source. Capture the most important point introduced at the start of the audio, video, or material.Cues/Questions: Write key terms, vocabulary...",
+              "points": 10
+            },
+            {
+              "title": "Row #3 Notes",
+              "description": "Row 3: Begin with the first main idea or concept from your source. Capture the most important point introduced at the start of the audio, video, or material.Cues/Questions: Write key terms, vocabulary...",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "name": "SUMMARY Section",
+          "description": "Synthesize what you've learned by writing a brief summary that captures the main ideas from all seven principles. Connect essentialism concepts to your own life, goals, or decision-making, and identify questions that remain unanswered or areas you want to explore further.",
+          "tasks_count": 1,
+          "tasks": [
+            {
+              "title": "SUMMARY Writing",
+              "description": "GREEN Outlined area.In your own words, summarize the main idea in 2-3 sentences. Explain how this information connects to what you already know and identify at least once question you have. *GradeFlow...",
+              "points": 20
+            }
+          ]
+        },
+        {
+          "name": "Teacher Graded",
+          "description": "Your teacher will evaluate the overall quality of your Cornell Notes, including how well your notes align with the learning objective, the depth of your understanding of Essentialism principles, and the thoughtfulness of your questions and summary.",
+          "tasks_count": 3,
+          "tasks": [
+            {
+              "title": "General Review",
+              "description": "Your notes will be evaluated for completeness and alignment with the learning objective.The NOTES column should include key vocabulary (such as priorities, sunk cost fallacy, minimum viable product), ...",
+              "points": 25
+            },
+            {
+              "title": "NOTES Section Review",
+              "description": "Your notes will be evaluated for originality and depth. Notes should be written in your own words rather than copied from the video, demonstrating that you understand the material well enough to parap...",
+              "points": 25
+            },
+            {
+              "title": "SUMMARY Section Review",
+              "description": "Your summary will be evaluated for synthesis and reflection. The summary should capture the main ideas from all note rows in 2-3 complete sentences, synthesizing the seven principles rather than focus...",
+              "points": 25
+            }
+          ]
+        }
+      ],
+      "videos": [
+        {
+          "title": "Essentialism Video",
+          "url": "https://www.youtube.com/embed/n8DOYLQw4sU"
+        }
+      ],
+      "source": "cornellNotes.json"
+    },
+    {
+      "project_name": "Resume V2",
+      "tagline": "You will create a polished resume suitable for a high school that showcases your academic achievements, experiences, and skills. This resume will help...",
+      "full_description": "You will create a polished resume suitable for a high school that showcases your academic achievements, experiences, and skills. This resume will help you organize your qualifications into a coherent story for potential employers or internship coordinators. By the end of this project, you'll have a polished document that represents who you are and where you're headed professionally.",
+      "what_students_learn": [
+        "Watch the task video(s) for step-by-step instructions and common errors"
+      ],
+      "skills_gained": [
+        "AI",
+        "Communication",
+        "Excel",
+        "Leadership",
+        "Research",
+        "Resume",
+        "Teamwork"
+      ],
+      "tools_and_platforms": [
+        "AI",
+        "Doc",
+        "Excel",
+        "Google",
+        "GradeFlow",
+        "Slides",
+        "YouTube"
+      ],
+      "number_of_tasks": 18,
+      "total_points": 250,
+      "sections": [
+        {
+          "name": "File Setup",
+          "description": "Set up your resume structure by creating the main section headings and updating your file name. Focus on proper heading formatting and document organization.",
+          "tasks_count": 2,
+          "tasks": [
+            {
+              "title": "Headings",
+              "description": "Leave line #1 blank. Then insert five section headings in the following order. You must style as heading3 and capitalize the first letter. Watch the task video(s) for step-by-step instructions and com...",
+              "points": 5
+            },
+            {
+              "title": "File Name",
+              "description": "Rename your file using this naming convention:Last, First | Assignment Name | PeriodExample:Benrud, Todd | Resume | Period #5",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "name": "Contact Information",
+          "description": "Include the following information.Your full name.Your phone number.Your school email address (One associated with your GradeFlow account)Your city and state in the City, State format (Capitalized Abbreviation)EXAMPLE:<phone> | <email> | <location>(234) 567-8190 | email@address.com | San Diego, CA",
+          "tasks_count": 2,
+          "tasks": [
+            {
+              "title": "Your Name",
+              "description": "Add your full name to the first line of your Google Doc. Capitalize your First and Last name. The font must be 20 sizes or larger and bold.",
+              "points": 5
+            },
+            {
+              "title": "Contact Details",
+              "description": "Add you phone number, email address, and location. Separate each element with a delimiter like a pipe, slash, etc....Phone number must use the Common Display Format for North American, 3-3-4 split for...",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "name": "Summary Section",
+          "description": "Write a clear and concise summary statement that tells employers who you are, including your grade level, a standout trait, and your intended path or interest. Name one or two strengths or skills that match the role you want. Add one proof point, such as your GPA, a certification, a project, an award, or a measurable result. Keep it specific, include numbers when you can, tailor it to the role, and avoid buzzwords, fluff, and long lists. Aim for 1 to 2 sentences, roughly 20 - 30 words.EXAMPLES:Dependable junior seeking part-time retail role; 3.6 GPA; school store cashier handling $500 daily. Available evenings and weekends.STEM-focused senior seeking data internship; Python and Excel; built a survey dashboard used by 60 students that improved planning decisions.Motivated senior seeking peer tutor role; AP Calculus score 5; raised tutees’ quiz averages by 12 percent through targeted review.",
+          "tasks_count": 2,
+          "tasks": [
+            {
+              "title": "Insert Section: {{var:OBJECTIVE}}",
+              "description": "Insert a horizontal line and Insert a Section Break (continuous) before the \"{{var:OBJECTIVE}}\" heading3. Both must be styled as \"normal\". Watch the task video(s) for step-by-step instructions and com...",
+              "points": 5
+            },
+            {
+              "title": "Write Summary Section",
+              "description": "Write a clear and concise summary statement between the \"SUMMARY\" and \"EDUCATION\" headings. It must be between 10 and 25 words in length.",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "name": "Education Section",
+          "description": "Insert a Section Break (continous) before the \"EDUCATION\" heading. Then write a clear and concise objective statement that is between 10 and 25 words in length. Your objective statement must be between \"EDUCATION\" and \"EXPERIENCE\" headings.The name of your school (most recent first)Expected graduation date (month and year)GPA (if it's above 3.0)Relevant coursework (optional, but only include if it's related to the job you're applying for)As a high school student, education is likely your most important section. It shows your academic background and whether you’re a strong student.The name of your school (most recent first)Expected graduation date (month and year)GPA (if it's above 3.0)Relevant coursework (optional, but only include if it's related to the job you're applying for)",
+          "tasks_count": 2,
+          "tasks": [
+            {
+              "title": "Insert Section: {{var:EDUCATION}}",
+              "description": "Insert a horizontal line and Insert a Section Break (continuous) before the \"{{var:EDUCATION}}\" heading3. Both must be styled as \"normal\". Watch the task video(s) for step-by-step instructions and com...",
+              "points": 5
+            },
+            {
+              "title": "High School",
+              "description": "Add the following to your \"{{var:EDUCATION}}\" section. Your high school's full name.Location in the City, State formatYear attended in the four-digit year hyphen four-digit format2020-2024Two bullet p...",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "name": "Experience Section",
+          "description": "Employers want to know about the kind of work or activities you have experience with. Even if they are not directly related to the job you're applying for. It shows you have a responsibility and a work ethic.Jobs, internships, volunteer work, sports, clubs, etc... (most recent first). For each, include the company/organization name, your role, location, and dates. Add 2-3 bullet points for each role that explain your tasks and responsibilities.",
+          "tasks_count": 3,
+          "tasks": [
+            {
+              "title": "Insert Section: {{var:EXPERIENCE}}",
+              "description": "Insert a horizontal line and Insert a Section Break (continuous) before the \"{{var:EXPERIENCE}}\" heading3. Both must be styled as \"normal\". Watch the task video(s) for step-by-step instructions and co...",
+              "points": 5
+            },
+            {
+              "title": "Experience #1",
+              "description": "Add the following to your \"{{var:EXPERIENCE}}\" section.A role or position you had that provided you with some type of experience. After the role, include the word 'at' then include the name of the com...",
+              "points": 10
+            },
+            {
+              "title": "Experience #2",
+              "description": "Add a 2nd experience. A role or position you had that provided you with some type of experience.Location in the City, State formatYears of experience in the four-digit year hyphen four-digit formatEXA...",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "name": "Skills Section",
+          "description": "Create a list of 5 to 10 skills that match your target roles. Include both technical skills, such as Google Workspace or beginner coding, and workplace skills, such as communication, teamwork, leadership, or time management. Group similar skills so they are easy to scan, avoid repeating the same idea with different words, and keep capitalization consistent. Use Evaluate to verify coverage and readability.",
+          "tasks_count": 2,
+          "tasks": [
+            {
+              "title": "Insert Section: {{var:SKILLS}}",
+              "description": "Insert a horizontal line and Insert a Section Break (continuous) before the \"{{var:SKILLS}}\" heading3. Both must be styled as \"normal\". Watch the task video(s) for step-by-step instructions and common...",
+              "points": 5
+            },
+            {
+              "title": "Table",
+              "description": "Watch the task video(s) for step-by-step instructions and common errors.Insert a 1-row 2-column table below the \"{{var:SKILLS}}\" heading3.Add at least six skills, one bullet point per skill, three ski...",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "name": "Custom Section",
+          "description": "Create a short list of 10 to 20 skills that match your target roles. Include both technical skills, such as Google Workspace or beginner coding, and workplace skills, such as communication, teamwork, leadership, or time management. Group similar skills so they are easy to scan, avoid repeating the same idea with different words, and keep capitalization consistent. Use Evaluate to verify coverage and readability.",
+          "tasks_count": 2,
+          "tasks": [
+            {
+              "title": "Insert Section: Custom",
+              "description": "Insert a horizontal line and Insert a Section Break (continuous) before your custom heading3. Both must be styled as \"normal\". Watch the task video(s) for step-by-step instructions and common errors.",
+              "points": 5
+            },
+            {
+              "title": "Custom Section Content",
+              "description": "Watch the task video(s) for step-by-step instructions and common errors.Use AI and/or the internet to learn about what belongs in your custom section.Using only text and bullets, construct your custom...",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "name": "Teacher Grader",
+          "description": "Your teacher will evaluate your completed resume to ensure each section contains accurate, well-organized information that effectively presents your qualifications. Double-check each of the tasks below to ensure you submit high quality work.",
+          "tasks_count": 3,
+          "tasks": [
+            {
+              "title": "Summary and Formatting",
+              "description": "Review your Summary section. Verify it includes all required elements: your current grade level, one standout trait or strength, one or two relevant skills, and one concrete achievement with numbers (...",
+              "points": 50
+            },
+            {
+              "title": "Education and Experience",
+              "description": "Review your Summary section. Verify it includes all required elements: your current grade level, one standout trait or strength, one or two relevant skills, and one concrete achievement with numbers (...",
+              "points": 50
+            },
+            {
+              "title": "Skills",
+              "description": "Review your Skills section. Verify you have a properly formatted 1-row, 2-column table positioned directly below the \"Skills\" heading. Confirm the table includes at least six skills total with three s...",
+              "points": 50
+            }
+          ]
+        }
+      ],
+      "videos": [],
+      "source": "atarterresume.json"
+    },
+    {
+      "project_name": "50-30-20 Budget - Dev",
+      "tagline": "Are your students struggling to visualize real-world money management or dreading their next spreadsheet lesson? Turn financial literacy into a hands-...",
+      "full_description": "Are your students struggling to visualize real-world money management or dreading their next spreadsheet lesson? Turn financial literacy into a hands-on adventure with this interactive 50-30-20 Budget project built entirely in Google Sheets. It’s the perfect way to bridge the gap between essential life skills and digital competency in a format digital natives understand. This comprehensive resource guides students through 27 engaging activities designed to build a functioning monthly budget from scratch. Inside, you will find: Step-by-Step Project Setup: Students start by choosing a career, researching realistic salaries, and calculating tax/net income. Core Spreadsheet Skills: Practical tasks that teach writing formulas, using Sum functions, formatting data, and mastering absolute cell references. Budgeting Categories: Dedicated sections for Needs (Housing, Groceries), Wants (Entertainment), and Financials (Emergency Funds), applying the 50/30/20 rule. Visuals & Analysis: Students generate automatic Pie Charts to visualize spending and complete reflection activities to analyze their budget's realism. Stop spending your evenings creating complex practice sheets from scratch. This fully digital resource is designed for seamless implementation, engaging students with content that matters to their future while reinforcing technical standards. You get a high-impact, dual-purpose lesson that saves you time and empowers your classroom. Ready to teach financial independence? Purchase this ready-to-use Google Sheets resource today and transform how your students think about money and data!",
+      "what_students_learn": [],
+      "skills_gained": [
+        "AI",
+        "Budgeting",
+        "Financial literacy",
+        "Formulas",
+        "Google Sheets",
+        "Reflection",
+        "Research",
+        "Spreadsheet"
+      ],
+      "tools_and_platforms": [
+        "AI",
+        "Doc",
+        "Google",
+        "Google Sheets",
+        "GradeFlow",
+        "Spreadsheet"
+      ],
+      "number_of_tasks": 0,
+      "total_points": 0,
+      "sections": [],
+      "videos": [],
+      "source": "marketPlaceObject.json"
+    },
+    {
+      "project_name": "Absolute & Relative Location: FINAL",
+      "tagline": "In this project, you will use latitude and longitude with Google Maps to identify a country. Then you'll review the questions in the Google Doc templa...",
+      "full_description": "In this project, you will use latitude and longitude with Google Maps to identify a country. Then you'll review the questions in the Google Doc template before updating it. You'll learn how latitude and longitude coordinates pinpoint a country’s absolute location and how its neighbors and landmarks illustrate relative location. For each of ten coordinate pairs, you will:Find the country where the lines intersect and enter its name.List the countries or bodies of water in a specific direction (north, south, east, west, etc.).Identify and describe a famous physical or cultural place in the region within the target country, using at least two specific, verifiable details.Provide map evidence by pasting a Google Maps URL or inserting a map screenshot, as directed in each table.All of your answers should reflect the Five Themes of Geography. Do not alter any of the coordinate or question rows in the template.",
+      "what_students_learn": [
+        "Table#01: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5",
+        "Table#02: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5",
+        "Table#03: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5",
+        "Table#04: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5",
+        "Table#05: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5"
+      ],
+      "skills_gained": [
+        "AI",
+        "GIS",
+        "Geography",
+        "Latitude",
+        "Longitude"
+      ],
+      "tools_and_platforms": [
+        "AI",
+        "Doc",
+        "Google",
+        "Google Docs",
+        "Google Maps",
+        "YouTube"
+      ],
+      "number_of_tasks": 20,
+      "total_points": 350,
+      "sections": [
+        {
+          "name": "Absolute & Relative Locations",
+          "description": "You’ll start by plotting each site’s absolute location using its latitude and longitude coordinates. Next, you’ll describe its relative location by naming which countries or bodies of water lie to the north, south, east, west, and in the diagonal (NE, NW, SE, SW) directions. Then you’ll pick one physical feature (for example, a mountain range or a wetland ecosystem) or one cultural landmark (like a historic monument or major city) in that area, and support each choice with at least two clear, verifiable facts. Finally, you’ll embed a Google Maps URL or screenshot to prove your location work and sharpen your GIS and spatial-reasoning skills.For each task, you must do the following.Enter the correct country name.List neighboring countries or bodies of water in the direction specified.Describe a famous place in the region of the country, with two clear facts.Add the required map link or screenshot for that country.",
+          "tasks_count": 10,
+          "tasks": [
+            {
+              "title": "Table#01",
+              "description": "Table#01: Locate the Latitude and Longitude coordinates in Row 1 to find the absolute location in Google Maps. Next, enter the country name in Row 2, then answer the questions in Rows 3, 5, and 7 in t...",
+              "points": 15
+            },
+            {
+              "title": "Table#02",
+              "description": "Table#02: Locate the Latitude and Longitude coordinates in Row 1 to find the absolute location in Google Maps. Next, enter the country name in Row 2, then answer the questions in Rows 3, 5, and 7 in t...",
+              "points": 15
+            },
+            {
+              "title": "Table#03",
+              "description": "Table#03: Locate the Latitude and Longitude coordinates in Row 1 to find the absolute location in Google Maps. Next, enter the country name in Row 2, then answer the questions in Rows 3, 5, and 7 in t...",
+              "points": 15
+            },
+            {
+              "title": "Table#04",
+              "description": "Table#04: Locate the Latitude and Longitude coordinates in Row 1 to find the absolute location in Google Maps. Next, enter the country name in Row 2, then answer the questions in Rows 3, 5, and 7 in t...",
+              "points": 15
+            },
+            {
+              "title": "Table#05",
+              "description": "Table#05: Locate the Latitude and Longitude coordinates in Row 1 to find the absolute location in Google Maps. Next, enter the country name in Row 2, then answer the questions in Rows 3, 5, and 7 in t...",
+              "points": 15
+            },
+            {
+              "title": "Table#06",
+              "description": "Table#06: Locate the Latitude and Longitude coordinates in Row 1 to find the absolute location in Google Maps. Next, enter the country name in Row 2, then answer the questions in Rows 3, 5, and 7 in t...",
+              "points": 15
+            },
+            {
+              "title": "Table#07",
+              "description": "Table#07: Locate the Latitude and Longitude coordinates in Row 1 to find the absolute location in Google Maps. Next, enter the country name in Row 2, then answer the questions in Rows 3, 5, and 7 in t...",
+              "points": 15
+            },
+            {
+              "title": "Table#08",
+              "description": "Table#08: Locate the Latitude and Longitude coordinates in Row 1 to find the absolute location in Google Maps. Next, enter the country name in Row 2, then answer the questions in Rows 3, 5, and 7 in t...",
+              "points": 15
+            },
+            {
+              "title": "Table#09",
+              "description": "Table#09: Locate the Latitude and Longitude coordinates in Row 1 to find the absolute location in Google Maps. Next, enter the country name in Row 2, then answer the questions in Rows 3, 5, and 7 in t...",
+              "points": 15
+            },
+            {
+              "title": "Table#10",
+              "description": "Table#10: Locate the Latitude and Longitude coordinates in Row 1 to find the absolute location in Google Maps. Next, enter the country name in Row 2, then answer the questions in Rows 3, 5, and 7 in t...",
+              "points": 15
+            }
+          ]
+        },
+        {
+          "name": "Physical & Cultural Place: Teacher Graded",
+          "description": "Your teacher will evaluate the Physical/Human place descriptions you wrote in Row 6 and the image/URL you input into Row 8 of each table.Matches the country specified in Row 2.Directly answers the question in Row 5.Includes at least two specific, verifiable facts about the place.Description is well written, with no spelling or grammar errors.Image or URL matches the country in Row 2.These are Teacher-Graded tasks, so you will not receive scoring and feedback until after you submit your work to your teacher.",
+          "tasks_count": 10,
+          "tasks": [
+            {
+              "title": "T#1 Teacher Graded",
+              "description": "Table#01: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable fac...",
+              "points": 20
+            },
+            {
+              "title": "T#2 Teacher Graded",
+              "description": "Table#02: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable fac...",
+              "points": 20
+            },
+            {
+              "title": "T#3 Teacher Graded",
+              "description": "Table#03: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable fac...",
+              "points": 20
+            },
+            {
+              "title": "T#4 Teacher Graded",
+              "description": "Table#04: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable fac...",
+              "points": 20
+            },
+            {
+              "title": "T#5 Teacher Graded",
+              "description": "Table#05: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable fac...",
+              "points": 20
+            },
+            {
+              "title": "T#6 Teacher Graded",
+              "description": "Table#06: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable fac...",
+              "points": 20
+            },
+            {
+              "title": "T#7 Teacher Graded",
+              "description": "Table#07: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable fac...",
+              "points": 20
+            },
+            {
+              "title": "T#8 Teacher Graded",
+              "description": "Table#08: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable fac...",
+              "points": 20
+            },
+            {
+              "title": "T#9 Teacher Graded",
+              "description": "Table#09: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable fac...",
+              "points": 20
+            },
+            {
+              "title": "T#10 Teacher Graded",
+              "description": "Table#10: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5. Your description should include at least two specific, verifiable fac...",
+              "points": 20
+            }
+          ]
+        }
+      ],
+      "videos": [
+        {
+          "title": "Video",
+          "url": "https://www.youtube.com/embed/9RUew_S4bzU"
+        }
+      ],
+      "source": "directions.json"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "audience": "Who is this for? (e.g., High school students, College freshmen, Career changers)",
+  "duration": "How long does it take? (e.g., 4 hours, 1 week)",
+  "pitch": "One sentence - what problem does this solve?",
+  "outcome": "What will students create or achieve?",
+  "difficulty": "Beginner, Intermediate, or Advanced",
+  "prerequisites": "What should students know before starting?",
+  "certification": "Do they get a certificate?",
+  "pricing": "Price in USD (e.g., 29.99 or null for free)"
+}

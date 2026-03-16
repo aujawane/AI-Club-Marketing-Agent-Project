@@ -1,0 +1,10 @@
+{
+  "audience": "High school students (Grades 11-12)",
+  "duration": "5-7 hours",
+  "pitch": "Build a personal net worth calculator and understand real financial health metrics",
+  "outcome": "Functional Google Sheets calculator with assets, liabilities, and financial ratios",
+  "difficulty": "Beginner",
+  "prerequisites": "Basic Google Sheets formulas (SUM, basic math)",
+  "certification": "Yes - Certificate of Completion",
+  "pricing": null
+}
