@@ -52,6 +52,8 @@ export default function Home() {
   const [palette, setPalette]       = useState('')
   const [tone, setTone]             = useState('')
   const [imageStyle, setImageStyle] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null)
 
   const addTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && tagInput.trim()) {
@@ -59,6 +61,43 @@ export default function Home() {
       setTagInput('')
     }
   }
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const formData = {
+      title,
+      subject,
+      grade,
+      objectives,
+      duration,
+      tags,
+      palette,
+      tone,
+      imageStyle,
+    };
+
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus({ type: 'success', message: 'Course listing generated and saved!' });
+      } else {
+        setSubmitStatus({ type: 'error', message: 'Failed to save course listing.' });
+      }
+    } catch (error) {
+      setSubmitStatus({ type: 'error', message: 'An error occurred while submitting.' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
 //   const steps = [
 //   { label: 'COURSE\nDETAILS', active: true },
@@ -533,22 +572,24 @@ const steps = [
 
         {/* ── Generate button ── */}
        <button
+        onClick={handleSubmit}
+        disabled={isSubmitting}
         style={{
           width: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           gap: '12px',
-          backgroundColor: '#7c3aed',
+          backgroundColor: isSubmitting ? '#4c1d95' : '#7c3aed',
           border: 'none',
           borderRadius: '20px',
           padding: '22px 0',
-          cursor: 'pointer',
+          cursor: isSubmitting ? 'not-allowed' : 'pointer',
           transition: 'all 0.2s',
           boxShadow: '0 4px 32px rgba(124,58,237,0.4)',
         }}
-        onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#6d28d9')}
-        onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#7c3aed')}
+        onMouseEnter={e => { if(!isSubmitting) e.currentTarget.style.backgroundColor = '#6d28d9'}}
+        onMouseLeave={e => { if(!isSubmitting) e.currentTarget.style.backgroundColor = '#7c3aed'}}
       >
         <span style={{ fontSize: '20px', color: 'white' }}>✦</span>
         <span style={{
@@ -558,9 +599,24 @@ const steps = [
           color: 'white',
           letterSpacing: '0.3px',
         }}>
-          Generate My Course Listing
+          {isSubmitting ? 'Generating...' : 'Generate My Course Listing'}
         </span>
       </button>
+
+      {submitStatus && (
+        <div style={{
+          marginTop: '20px',
+          padding: '16px',
+          borderRadius: '12px',
+          backgroundColor: submitStatus.type === 'success' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+          border: `1px solid ${submitStatus.type === 'success' ? '#10b981' : '#ef4444'}`,
+          color: submitStatus.type === 'success' ? '#10b981' : '#ef4444',
+          textAlign: 'center',
+          fontFamily: 'DM Sans, sans-serif',
+        }}>
+          {submitStatus.message}
+        </div>
+      )}
       <div style={{ height: '150px' }} />
 
       </div>
