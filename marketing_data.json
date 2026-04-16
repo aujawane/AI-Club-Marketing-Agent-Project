@@ -1,5 +1,5 @@
 {
-  "export_date": "2026-04-15T19:27:13.436775",
+  "export_date": "2026-04-15T19:37:27.908561",
   "total_projects": 6,
   "projects": [
     {
@@ -148,19 +148,19 @@
       ],
       "source": "populationPyramid.json",
       "metadata": {
-        "audience": "High school students (Grades 9-12)",
+        "audience": "High school students (ages 14-18)",
         "duration": "4-6 hours",
         "pitch": "Learn to read population pyramids and predict a country's future using real demographic data",
-        "outcome": "Create infographics analyzing population data for countries worldwide",
+        "outcome": "Create infographics analyzing population trends for 11 different countries",
         "difficulty": "Intermediate",
-        "prerequisites": "Basic math skills, Google Slides familiarity",
+        "prerequisites": "Basic spreadsheet skills",
         "certification": "Yes - Certificate of Completion",
         "pricing": null
       }
     },
     {
       "project_name": "Net Worth Calculator: Basic (Template)",
-      "tagline": "Build a personal net worth calculator and understand real financial health metrics",
+      "tagline": "Build a personal net worth calculator that banks actually use",
       "full_description": "What are you actually worth? Net worth is one of the most important numbers in personal finance because it tells you the full picture of your financial health by combining everything you own with everything you owe. In this project, you will build a personal net worth calculator in Google Sheets that transforms raw financial data into meaningful insights about wealth and financial stability.You will start by entering career and income information, then catalog your assets (what you own) and liabilities (what you owe). From there, you will write formulas that calculate key financial metrics including net worth, ownership ratios, and debt-to-income ratios. These calculations are the same ones used by banks when deciding whether to approve loans and by financial advisors when helping clients plan for the future.By the end of this project, you will have a functional financial tool and a deeper understanding of how wealth is measured. More importantly, you will practice the kind of analytical thinking that helps people make informed decisions about money throughout their lives.",
       "what_students_learn": [
         "Watch the task video(s)",
@@ -319,19 +319,19 @@
       ],
       "source": "networth.json",
       "metadata": {
-        "audience": "High school students (Grades 11-12)",
+        "audience": "High school students (ages 15-18)",
         "duration": "5-7 hours",
-        "pitch": "Build a personal net worth calculator and understand real financial health metrics",
-        "outcome": "Functional Google Sheets calculator with assets, liabilities, and financial ratios",
-        "difficulty": "Beginner",
-        "prerequisites": "Basic Google Sheets formulas (SUM, basic math)",
+        "pitch": "Build a personal net worth calculator that banks actually use",
+        "outcome": "Functional Google Sheets calculator with formulas for assets, liabilities, and financial ratios",
+        "difficulty": "Beginner to Intermediate",
+        "prerequisites": "Basic Google Sheets knowledge",
         "certification": "Yes - Certificate of Completion",
         "pricing": null
       }
     },
     {
       "project_name": "Cornell Notes: Essentialism",
-      "tagline": "Master the Cornell Notes system to improve note-taking and study skills",
+      "tagline": "Master the note-taking system used by top executives and students worldwide",
       "full_description": "Cornell Notes is a proven note-taking system that helps you organize information, identify key concepts, and reflect on your learning. This method divides your notes into three sections: Cues/Questions for key terms and study prompts, Notes for main ideas and details, and Summary for synthesis and reflection. You'll apply this system to the video \"Essentialism: Animated Book Summary\" by Greg McKeown, creating notes that demonstrate your comprehension of the seven principles of essentialism and how they apply to achieving goals more effectively. You can also use this NoteBookLM to gain understanding.Learning Objective:Web/Global IT: How can focusing on fewer, high-impact features lead to more successful web projects than trying to include everything?Finance: How can prioritizing essential financial goals and saying no to non-essential spending lead to greater financial success?",
       "what_students_learn": [
         "This information is required for your teacher, and for GradeFlow to evaluate your assignment within the context of the class, topic, and learning objective",
@@ -448,10 +448,10 @@
       ],
       "source": "cornellNotes.json",
       "metadata": {
-        "audience": "High school students (all grades)",
+        "audience": "High school students (ages 14-18)",
         "duration": "2-3 hours",
-        "pitch": "Master the Cornell Notes system to improve note-taking and study skills",
-        "outcome": "Completed Cornell Notes document with cues, notes, and summary",
+        "pitch": "Master the note-taking system used by top executives and students worldwide",
+        "outcome": "Complete Cornell Notes on Essentialism with summary and reflection",
         "difficulty": "Beginner",
         "prerequisites": "None",
         "certification": "Yes - Certificate of Completion",
@@ -460,7 +460,7 @@
     },
     {
       "project_name": "Resume V2",
-      "tagline": "Create a professional resume that stands out to college admissions and employers",
+      "tagline": "Create a resume that stands out to college admissions and employers",
       "full_description": "You will create a polished resume suitable for a high school that showcases your academic achievements, experiences, and skills. This resume will help you organize your qualifications into a coherent story for potential employers or internship coordinators. By the end of this project, you'll have a polished document that represents who you are and where you're headed professionally.",
       "what_students_learn": [
         "Watch the task video(s) for step-by-step instructions and common errors"
@@ -638,17 +638,17 @@
       "metadata": {
         "audience": "High school juniors and seniors",
         "duration": "3-4 hours",
-        "pitch": "Create a professional resume that stands out to college admissions and employers",
-        "outcome": "Polished resume ready for college applications and job applications",
+        "pitch": "Create a resume that stands out to college admissions and employers",
+        "outcome": "Professional resume with summary, education, experience, skills, and custom section",
         "difficulty": "Beginner",
-        "prerequisites": "Basic Google Docs knowledge",
+        "prerequisites": "None",
         "certification": "Yes - Certificate of Completion",
         "pricing": null
       }
     },
     {
       "project_name": "50-30-20 Budget - Dev",
-      "tagline": "Master the 50-30-20 budgeting rule using Google Sheets to manage real-world finances",
+      "tagline": "Master the 50-30-20 budgeting rule with a hands-on Google Sheets project",
       "full_description": "Are your students struggling to visualize real-world money management or dreading their next spreadsheet lesson? Turn financial literacy into a hands-on adventure with this interactive 50-30-20 Budget project built entirely in Google Sheets. It’s the perfect way to bridge the gap between essential life skills and digital competency in a format digital natives understand. This comprehensive resource guides students through 27 engaging activities designed to build a functioning monthly budget from scratch. Inside, you will find: Step-by-Step Project Setup: Students start by choosing a career, researching realistic salaries, and calculating tax/net income. Core Spreadsheet Skills: Practical tasks that teach writing formulas, using Sum functions, formatting data, and mastering absolute cell references. Budgeting Categories: Dedicated sections for Needs (Housing, Groceries), Wants (Entertainment), and Financials (Emergency Funds), applying the 50/30/20 rule. Visuals & Analysis: Students generate automatic Pie Charts to visualize spending and complete reflection activities to analyze their budget's realism. Stop spending your evenings creating complex practice sheets from scratch. This fully digital resource is designed for seamless implementation, engaging students with content that matters to their future while reinforcing technical standards. You get a high-impact, dual-purpose lesson that saves you time and empowers your classroom. Ready to teach financial independence? Purchase this ready-to-use Google Sheets resource today and transform how your students think about money and data!",
       "what_students_learn": [],
       "skills_gained": [
@@ -675,19 +675,19 @@
       "videos": [],
       "source": "marketPlaceObject.json",
       "metadata": {
-        "audience": "Middle and high school students",
+        "audience": "High school students (ages 14-18)",
         "duration": "6-8 hours",
-        "pitch": "Master the 50-30-20 budgeting rule using Google Sheets to manage real-world finances",
-        "outcome": "Complete monthly budget spreadsheet with needs, wants, and savings categories",
-        "difficulty": "Intermediate",
-        "prerequisites": "Basic Google Sheets knowledge",
+        "pitch": "Master the 50-30-20 budgeting rule with a hands-on Google Sheets project",
+        "outcome": "Complete budget spreadsheet with 27 activities covering needs, wants, and savings",
+        "difficulty": "Beginner",
+        "prerequisites": "Basic spreadsheet skills",
         "certification": "Yes - Certificate of Completion",
         "pricing": null
       }
     },
     {
       "project_name": "Absolute & Relative Location: FINAL",
-      "tagline": "Use latitude and longitude to identify countries and understand absolute vs relative location",
+      "tagline": "Use latitude and longitude like a GPS to find countries around the world",
       "full_description": "In this project, you will use latitude and longitude with Google Maps to identify a country. Then you'll review the questions in the Google Doc template before updating it. You'll learn how latitude and longitude coordinates pinpoint a country’s absolute location and how its neighbors and landmarks illustrate relative location. For each of ten coordinate pairs, you will:Find the country where the lines intersect and enter its name.List the countries or bodies of water in a specific direction (north, south, east, west, etc.).Identify and describe a famous physical or cultural place in the region within the target country, using at least two specific, verifiable details.Provide map evidence by pasting a Google Maps URL or inserting a map screenshot, as directed in each table.All of your answers should reflect the Five Themes of Geography. Do not alter any of the coordinate or question rows in the template.",
       "what_students_learn": [
         "Table#01: Ensure that the place you describe is located in the country listed in Row 2 and directly answers the question in Row 5",
@@ -837,10 +837,10 @@
       ],
       "source": "directions.json",
       "metadata": {
-        "audience": "Middle and high school students",
+        "audience": "Middle school students (ages 11-14)",
         "duration": "3-5 hours",
-        "pitch": "Use latitude and longitude to identify countries and understand absolute vs relative location",
-        "outcome": "Completed geographic location worksheet with map evidence",
+        "pitch": "Use latitude and longitude like a GPS to find countries around the world",
+        "outcome": "Completed geography workbook with 10 coordinate challenges",
         "difficulty": "Beginner",
         "prerequisites": "None",
         "certification": "Yes - Certificate of Completion",

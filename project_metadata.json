@@ -1,6 +1,7 @@
 {
   "projects": {
     "populationPyramid.json": {
+      "title": "Population Pyramids: Full",
       "audience": "High school students (ages 14-18)",
       "duration": "4-6 hours",
       "pitch": "Learn to read population pyramids and predict a country's future using real demographic data",
@@ -9,6 +10,7 @@
       "prerequisites": "Basic spreadsheet skills"
     },
     "networth.json": {
+      "title": "Net Worth Calculator: Basic (Template)",
       "audience": "High school students (ages 15-18)",
       "duration": "5-7 hours",
       "pitch": "Build a personal net worth calculator that banks actually use",
@@ -17,6 +19,7 @@
       "prerequisites": "Basic Google Sheets knowledge"
     },
     "cornellNotes.json": {
+      "title": "Cornell Notes: Essentialism",
       "audience": "High school students (ages 14-18)",
       "duration": "2-3 hours",
       "pitch": "Master the note-taking system used by top executives and students worldwide",
@@ -25,6 +28,7 @@
       "prerequisites": "None"
     },
     "atarterresume.json": {
+      "title": "Resume V2",
       "audience": "High school juniors and seniors",
       "duration": "3-4 hours",
       "pitch": "Create a resume that stands out to college admissions and employers",
@@ -33,6 +37,7 @@
       "prerequisites": "None"
     },
     "marketPlaceObject.json": {
+      "title": "50-30-20 Budget - Dev",
       "audience": "High school students (ages 14-18)",
       "duration": "6-8 hours",
       "pitch": "Master the 50-30-20 budgeting rule with a hands-on Google Sheets project",
@@ -41,6 +46,7 @@
       "prerequisites": "Basic spreadsheet skills"
     },
     "directions.json": {
+      "title": "Absolute & Relative Location: FINAL",
       "audience": "Middle school students (ages 11-14)",
       "duration": "3-5 hours",
       "pitch": "Use latitude and longitude like a GPS to find countries around the world",

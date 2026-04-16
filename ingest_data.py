@@ -72,6 +72,18 @@ class DataIngestor:
     def __init__(self, json_folder: str):
         self.json_folder = Path(json_folder)
         self.projects: List[Project] = []
+        self.project_metadata = self._load_central_metadata()
+
+    def _load_central_metadata(self) -> dict:
+        """Load the central project_metadata.json file."""
+        metadata_path = self.json_folder.parent / "project_metadata.json"
+        if metadata_path.exists():
+            try:
+                with open(metadata_path, 'r', encoding='utf-8') as f:
+                    return json.load(f).get('projects', {})
+            except Exception as e:
+                print(f"Warning: Could not load project_metadata.json: {e}")
+        return {}
 
     def load_json_file(self, filepath: Path) -> Optional[dict]:
         """Load a JSON file and return its contents."""
@@ -408,25 +420,35 @@ class DataIngestor:
 
     def enrich_with_metadata(self, project: Project) -> dict:
         """Enrich project data with metadata if available."""
+        # Try to get metadata from individual file or central project_metadata.json
         metadata = self.load_metadata(project)
+        central_meta = self.project_metadata.get(project.source_file, {})
+        
+        # Merge them, central_meta takes precedence for shared fields
+        combined_metadata = {**metadata, **central_meta}
+        
         project_dict = self.to_marketing_dict(project)
 
+        # Update project name if a title is specified in metadata
+        if combined_metadata.get('title'):
+            project_dict['project_name'] = combined_metadata['title']
+
         # Add metadata fields (only if they have values)
-        if metadata:
+        if combined_metadata:
             project_dict['metadata'] = {
-                'audience': metadata.get('audience'),
-                'duration': metadata.get('duration'),
-                'pitch': metadata.get('pitch'),
-                'outcome': metadata.get('outcome'),
-                'difficulty': metadata.get('difficulty'),
-                'prerequisites': metadata.get('prerequisites'),
-                'certification': metadata.get('certification'),
-                'pricing': metadata.get('pricing')
+                'audience': combined_metadata.get('audience'),
+                'duration': combined_metadata.get('duration'),
+                'pitch': combined_metadata.get('pitch'),
+                'outcome': combined_metadata.get('outcome'),
+                'difficulty': combined_metadata.get('difficulty'),
+                'prerequisites': combined_metadata.get('prerequisites'),
+                'certification': combined_metadata.get('certification'),
+                'pricing': combined_metadata.get('pricing')
             }
 
             # Update tagline with pitch if available
-            if metadata.get('pitch'):
-                project_dict['tagline'] = metadata['pitch']
+            if combined_metadata.get('pitch'):
+                project_dict['tagline'] = combined_metadata['pitch']
 
         return project_dict
 

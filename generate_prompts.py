@@ -39,29 +39,35 @@ def find_matching_project(marketing_data: Dict, submission: Dict) -> Optional[Di
 
 def generate_image_prompt(project: Dict, submission: Optional[Dict] = None) -> str:
     """
-    Generate an image generation prompt from project data and form submission.
+    Generate a highly visual image generation prompt for APIs like Nano Banana.
+    Optimized for wide banners.
     """
     title = submission.get('title') if submission and submission.get('title') else project.get('project_name', '')
-    tagline = project.get('tagline', '')
     
     # Use submission data if available
-    style = submission.get('imageStyle', 'modern educational') if submission else "modern educational"
+    style = submission.get('imageStyle', 'illustrated') if submission else "illustrated"
     palette = submission.get('palette', 'neutral') if submission else "neutral"
     
-    skills = submission.get('tags', []) if submission and submission.get('tags') else project.get('skills_gained', [])
-    tools = project.get('tools_and_platforms', [])
+    # Mapping styles to more descriptive visual keywords
+    style_modifiers = {
+        'illustrated': "stylized digital illustration, clean vector lines, modern flat design",
+        'photoreal': "high-resolution photography, cinematic lighting, shallow depth of field, 8k",
+        'watercolor': "dreamy watercolor painting, soft edges, artistic bleeding colors, hand-painted texture",
+        'geometric': "abstract geometric composition, isometric perspective, sharp edges, mathematical symmetry"
+    }
+    
+    visual_style = style_modifiers.get(style, "modern educational aesthetic")
 
     prompt_parts = [
-        f"Educational project: {title}",
-        f"Topic: {tagline}",
-        f"Skills taught: {', '.join(skills[:5])}",
-        f"Tools used: {', '.join(tools[:5])}",
-        f"Style: {style}",
-        f"Color Palette: {palette}",
-        "Composition: clean design, professional, visually engaging"
+        f"A wide cinematic banner with a {visual_style} representing '{title}'.",
+        f"Theme: educational excellence and creativity.",
+        f"Color Palette: dominated by {palette} tones.",
+        "Elements: organized workspace, symbolic educational icons, bright and airy atmosphere.",
+        "Atmosphere: inspiring, professional, and high-quality.",
+        "Composition: wide angle, panoramic view, high contrast, masterpiece, 4k resolution."
     ]
 
-    return "\n".join(prompt_parts)
+    return " ".join(prompt_parts)
 
 
 def generate_social_media_post(project: Dict, platform: str = "instagram", submission: Optional[Dict] = None) -> str:
@@ -155,6 +161,43 @@ We're excited to introduce our latest educational project: **{title}**
     return email
 
 
+def save_prompts_to_json(title: str, outputs: Dict[str, str], filepath: str = "generated_prompts.json"):
+    """Save the generated prompts to a JSON file."""
+    output_path = Path(filepath)
+    
+    # Load existing data if file exists
+    data = []
+    if output_path.exists():
+        try:
+            with open(output_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+        except Exception:
+            data = []
+
+    # Create new entry
+    entry = {
+        "title": title,
+        "timestamp": Path("marketing_data.json").stat().st_mtime if Path("marketing_data.json").exists() else 0, # Placeholder or use datetime
+        "generated_at": str(Path("marketing_data.json").stat().st_mtime), # Using a timestamp would be better
+        "prompts": outputs
+    }
+    
+    # We'll use a simpler format as requested: title and prompt field for each
+    new_entries = []
+    for prompt_type, content in outputs.items():
+        new_entries.append({
+            "title": f"{title} ({prompt_type})",
+            "prompt": content
+        })
+
+    data.extend(new_entries)
+
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    
+    print(f"\n✓ Saved {len(outputs)} prompts to {filepath}")
+
+
 def main():
     """Main function to demonstrate usage."""
     # Load the data
@@ -195,6 +238,14 @@ def main():
     print("MARKETING PROMPT GENERATOR (WITH FORM INTEGRATION)")
     print("=" * 60)
 
+    # Collect outputs
+    title = submission.get('title') if submission and submission.get('title') else project.get('project_name', '')
+    
+    image_prompt = generate_image_prompt(project, submission)
+    insta_post = generate_social_media_post(project, "instagram", submission)
+    linkedin_post = generate_social_media_post(project, "linkedin", submission)
+    email_blast = generate_email_blast(project, submission)
+
     # Demo: Generate prompts
     print("\n" + "=" * 60)
     print("GENERATED OUTPUTS")
@@ -203,21 +254,30 @@ def main():
     # Image prompt
     print("\n📷 IMAGE GENERATION PROMPT:")
     print("-" * 40)
-    print(generate_image_prompt(project, submission))
+    print(image_prompt)
 
     # Social media posts
     print("\n📱 INSTAGRAM POST:")
     print("-" * 40)
-    print(generate_social_media_post(project, "instagram", submission))
+    print(insta_post)
 
     print("\n💼 LINKEDIN POST:")
     print("-" * 40)
-    print(generate_social_media_post(project, "linkedin", submission))
+    print(linkedin_post)
 
     # Email
     print("\n📧 EMAIL BLAST:")
     print("-" * 40)
-    print(generate_email_blast(project, submission))
+    print(email_blast)
+
+    # Save to JSON
+    outputs = {
+        "Image Prompt": image_prompt,
+        "Instagram Post": insta_post,
+        "LinkedIn Post": linkedin_post,
+        "Email Blast": email_blast
+    }
+    save_prompts_to_json(title, outputs)
 
 
 if __name__ == "__main__":
