@@ -6,8 +6,108 @@ Takes the marketing data and generates prompts suitable for image generation API
 
 import json
 import sys
+import os
+import ssl
+from urllib import request, error
 from pathlib import Path
 from typing import Dict, List, Optional
+
+
+def get_api_key():
+    """Get the Gemini API key from environment variable or .env file."""
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key and os.path.exists(".env"):
+        try:
+            with open(".env", "r") as f:
+                for line in f:
+                    if line.startswith("GEMINI_API_KEY="):
+                        api_key = line.split("=")[1].strip().strip("'").strip('"')
+                        break
+        except Exception:
+            pass
+    return api_key
+
+
+def call_gemini_text(prompt: str, model: str = "gemini-flash-latest") -> Optional[str]:
+    """Call the Gemini API for text generation."""
+    api_key = get_api_key()
+    if not api_key:
+        return None
+
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+    
+    payload = {
+        "contents": [
+            {
+                "parts": [
+                    {"text": prompt}
+                ]
+            }
+        ]
+    }
+    
+    data = json.dumps(payload).encode('utf-8')
+    req = request.Request(url, data=data, headers={'Content-Type': 'application/json'})
+    context = ssl._create_unverified_context()
+    
+    try:
+        with request.urlopen(req, context=context) as response:
+            result = json.loads(response.read().decode('utf-8'))
+            try:
+                return result['candidates'][0]['content']['parts'][0]['text']
+            except (KeyError, IndexError):
+                print(f"❌ Gemini Error: Unexpected response structure: {json.dumps(result)}")
+                return None
+    except error.HTTPError as e:
+        print(f"❌ Gemini API HTTP Error {e.code}: {e.read().decode('utf-8')}")
+    except Exception as e:
+        print(f"❌ Gemini API Error: {str(e)}")
+    return None
+
+
+def generate_ai_image_prompt(project: Dict, submission: Optional[Dict] = None) -> str:
+    """
+    Use Gemini to generate a highly visual and creative image generation prompt.
+    """
+    title = submission.get('title') if submission and submission.get('title') else project.get('project_name', '')
+    tagline = project.get('tagline', '')
+    description = project.get('full_description', '')
+    skills = ", ".join(project.get('skills_gained', []))
+    
+    style = submission.get('imageStyle', 'illustrated') if submission else "illustrated"
+    palette = submission.get('palette', 'neutral') if submission else "neutral"
+
+    llm_prompt = f"""
+    Act as a professional Creative Director for an educational platform. 
+    I need a highly detailed visual prompt for an image generation AI (like Midjourney or Stable Diffusion).
+    
+    PROJECT INFO:
+    - Title: {title}
+    - Tagline: {tagline}
+    - Core Skills: {skills}
+    - Brief: {description[:500]}...
+    
+    REQUIREMENTS:
+    - Style: {style}
+    - Color Palette: {palette}
+    - Format: Wide cinematic banner (16:9)
+    - Tone: Inspiring, modern, and educational
+    - Content: Create a symbolic metaphor or a high-quality scene that represents the learning outcome. 
+    - Constraints: NO TEXT in the image. Do not use words like "text", "typography", or "labels".
+    
+    OUTPUT:
+    Provide only the visual prompt text, starting with the style and composition.
+    """
+    
+    print(f"🤖 Consulting AI for a better visual prompt for '{title}'...")
+    ai_prompt = call_gemini_text(llm_prompt)
+    
+    if ai_prompt:
+        return ai_prompt.strip()
+    
+    # Fallback to the original method if AI fails
+    print("⚠ AI Prompt generation failed, falling back to template.")
+    return generate_image_prompt(project, submission)
 
 
 def load_marketing_data(filepath: str = "marketing_data.json") -> Dict:
@@ -238,46 +338,31 @@ def main():
     print("MARKETING PROMPT GENERATOR (WITH FORM INTEGRATION)")
     print("=" * 60)
 
-    # Collect outputs
-    title = submission.get('title') if submission and submission.get('title') else project.get('project_name', '')
+    # Process all projects if no submission provided
+    projects_to_process = [project] if submission else data.get('projects', [])
     
-    image_prompt = generate_image_prompt(project, submission)
-    insta_post = generate_social_media_post(project, "instagram", submission)
-    linkedin_post = generate_social_media_post(project, "linkedin", submission)
-    email_blast = generate_email_blast(project, submission)
+    for proj in projects_to_process:
+        print(f"\n--- Processing Project: {proj['project_name']} ---")
+        
+        # Collect outputs
+        title = submission.get('title') if (submission and proj == project) else proj['project_name']
+        
+        # Pass the submission context if we're processing the matched project
+        current_submission = submission if (submission and proj == project) else None
+        
+        image_prompt = generate_ai_image_prompt(proj, current_submission)
+        insta_post = generate_social_media_post(proj, "instagram", current_submission)
+        linkedin_post = generate_social_media_post(proj, "linkedin", current_submission)
+        email_blast = generate_email_blast(proj, current_submission)
 
-    # Demo: Generate prompts
-    print("\n" + "=" * 60)
-    print("GENERATED OUTPUTS")
-    print("=" * 60)
-
-    # Image prompt
-    print("\n📷 IMAGE GENERATION PROMPT:")
-    print("-" * 40)
-    print(image_prompt)
-
-    # Social media posts
-    print("\n📱 INSTAGRAM POST:")
-    print("-" * 40)
-    print(insta_post)
-
-    print("\n💼 LINKEDIN POST:")
-    print("-" * 40)
-    print(linkedin_post)
-
-    # Email
-    print("\n📧 EMAIL BLAST:")
-    print("-" * 40)
-    print(email_blast)
-
-    # Save to JSON
-    outputs = {
-        "Image Prompt": image_prompt,
-        "Instagram Post": insta_post,
-        "LinkedIn Post": linkedin_post,
-        "Email Blast": email_blast
-    }
-    save_prompts_to_json(title, outputs)
+        # Save to JSON
+        outputs = {
+            "Image Prompt": image_prompt,
+            "Instagram Post": insta_post,
+            "LinkedIn Post": linkedin_post,
+            "Email Blast": email_blast
+        }
+        save_prompts_to_json(title, outputs)
 
 
 if __name__ == "__main__":
