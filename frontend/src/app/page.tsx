@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import PalettePicker from './components/PalettePicker'
+import BannerGenerator from './components/BannerGenerator'
 
 const SUBJECTS = [
   'Mathematics', 'English Language Arts', 'Science',
@@ -44,12 +46,13 @@ const IMAGE_STYLES = [
 export default function Home() {
   const [subject, setSubject]       = useState('')
   const [title, setTitle]       = useState('')
+  const [custom, setCustom]       = useState('')
   const [grade, setGrade]           = useState('')
   const [objectives, setObjectives] = useState('')
   const [duration, setDuration]     = useState('')
+  const [palette, setPalette] = useState(["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"]);
   const [tags, setTags]             = useState<string[]>([])
   const [tagInput, setTagInput]     = useState('')
-  const [palette, setPalette]       = useState('')
   const [tone, setTone]             = useState('')
   const [imageStyle, setImageStyle] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -105,12 +108,13 @@ export default function Home() {
 //   { label: 'PREVIEW',         active: false },
 //   { label: 'PUBLISH',         active: false },
 // ]
+const defaultPalette = ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"];
 
 const steps = [
   { label: 'COURSE\nDETAILS', active: !!subject && !!grade },
-  { label: 'STYLE',           active: !!palette },
-  { label: 'TONE',            active: !!tone },
-  { label: 'IMAGE',           active: !!imageStyle },
+  { label: 'STYLE', active: palette.some((c, i) => c !== defaultPalette[i]) },
+  { label: 'TONE', active: !!tone },
+  { label: 'IMAGE', active: !!imageStyle },
 ]
   const removeTag = (t: string) => setTags(tags.filter(x => x !== t))
 
@@ -124,9 +128,9 @@ const steps = [
           style={{ fontFamily: 'Sora, sans-serif' }}>
           Create your
         </h1>
-        <h1 className="text-[52px] font-extrabold leading-[1] tracking-tight italic gradient-text mb-8"
+        <h1 className="text-[52px] font-extrabold leading-[1.3] tracking-tight italic gradient-text mb-8"
           style={{ fontFamily: 'Sora, sans-serif' }}>
-          course listing
+          Project listing
         </h1>
 
         <p className="text-[15px] leading-[1.7] text-white/40 font-light mb-14 max-w-[480px]">
@@ -324,6 +328,22 @@ const steps = [
             />
           </div>
           </Field>
+          <Field label="CUSTOMIZATION REQUESTS (Optional)">
+            <textarea
+              value={custom}
+              onChange={e => setCustom(e.target.value)}
+              placeholder="Describe any specific customization requests... e.g. 'Make the title orange and add an animal in the corner'"
+              style={{
+                width: '100%',
+                background: 'transparent',
+                border: 'none',
+                outline: 'none',
+                color: '#9ca3af',
+                fontSize: '15px',
+                fontFamily: 'DM Sans, sans-serif',
+                fontWeight: 300,
+              }} />
+          </Field>
         </div>
         <br></br>
         <br></br>
@@ -332,7 +352,8 @@ const steps = [
         <SectionTitle>STYLE PREFERENCES</SectionTitle>
 
         {/* Color Palette */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '40px' }}>
+        <PalettePicker palette={palette} onChange={setPalette} />
+        {/* <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '40px' }}>
         {COLOR_PALETTES.map(p => (
           <button
             key={p.id}
@@ -349,10 +370,10 @@ const steps = [
               backgroundColor: palette === p.id ? '#1c1f3a' : '#1a1f35',
               cursor: 'pointer',
               transition: 'all 0.2s',
-            }}
-          >
+            }} */}
+        {/* > */}
             {/* arrow in corner */}
-            {palette === p.id && (
+            {/* {palette === p.id && (
               <svg
                   style={{ position: 'absolute', top: '12px', right: '14px' }}
                   width="16" height="16" viewBox="0 0 16 16" fill="none"
@@ -365,9 +386,9 @@ const steps = [
                     strokeLinejoin="miter"
                     fill="none"
                   />
-                </svg>)}
+                </svg>)} */}
                 {/* colored circles */}
-            <div style={{ display: 'flex'}}>
+            {/* <div style={{ display: 'flex'}}>
               {p.colors.map((c, i) => (
                 <div key={i} style={{ 
                   width: '40px',
@@ -378,9 +399,9 @@ const steps = [
                   border: '2px solid #1a1f35',
                 }} />
               ))}
-            </div>
+            </div> */}
             {/* title */}
-            <span style={{
+            {/* <span style={{
               color: '#9ca3af',
               fontSize: '13px',
               fontFamily: 'DM Sans, sans-serif',
@@ -390,7 +411,7 @@ const steps = [
           </button>
         ))}
       </div>
-      <br></br>
+      <br></br> */}
 
         {/* Description Tone */}
         <SectionTitle>DESCRIPTION TONE</SectionTitle>
@@ -571,7 +592,7 @@ const steps = [
         </div>
 
         {/* ── Generate button ── */}
-       <button
+       {/* <button
         onClick={handleSubmit}
         disabled={isSubmitting}
         style={{
@@ -618,8 +639,23 @@ const steps = [
         </div>
       )}
       <div style={{ height: '150px' }} />
-
+ */}
       </div>
+      <BannerGenerator
+        title={title}
+        subject={subject}
+        custom={custom}
+        grade={grade}
+        objectives={objectives}
+        duration={duration}
+        palette={palette}
+        tags={tags}
+        tone={tone}
+        imageStyle={imageStyle}
+      />
+      <br></br>
+      <br></br>
+      <br></br>
     </main>
   )
 }
