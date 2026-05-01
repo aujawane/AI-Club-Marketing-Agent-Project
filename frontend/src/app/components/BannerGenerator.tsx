@@ -18,11 +18,14 @@ interface BannerGeneratorProps {
 export default function BannerGenerator({ title, subject, custom, grade, objectives, duration, palette, tags, tone, imageStyle }: BannerGeneratorProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [bannerImage, setBannerImage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleGenerate = async (): Promise<void> => {
     setLoading(true);
     setError(null);
+    setSuccessMessage(null);
+    setBannerImage(null);
 
     try {
       const res = await fetch("/api/submit", {
@@ -33,7 +36,11 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Generation failed");
-      setBannerImage(data.image);
+      
+      setSuccessMessage(data.message);
+      if (data.image) {
+        setBannerImage(data.image);
+      }
     } catch (err: any) {
       setError(err instanceof Error ? err.message : "An unknown error occurred");
     } finally {
@@ -77,6 +84,21 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
         </button>
       </div>
 
+      {successMessage && (
+        <div style={{
+          marginTop: '20px',
+          padding: '16px',
+          borderRadius: '12px',
+          backgroundColor: 'rgba(16, 185, 129, 0.1)',
+          border: '1px solid #10b981',
+          color: '#10b981',
+          textAlign: 'center',
+          fontFamily: 'DM Sans, sans-serif',
+        }}>
+          {successMessage}
+        </div>
+      )}
+
       {error && (
         <div style={{
           marginTop: '20px',
@@ -109,61 +131,93 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
           <div
             onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
             style={{
-              background: "#fff",
-              borderRadius: "12px",
+              background: "#1a1f35",
+              borderRadius: "24px",
               padding: "24px",
               maxWidth: "90vw",
               maxHeight: "90vh",
               display: "flex",
               flexDirection: "column",
-              gap: "16px",
+              gap: "20px",
               alignItems: "center",
               position: "relative",
+              border: "1px solid rgba(255,255,255,0.1)",
+              boxShadow: "0 20px 50px rgba(0,0,0,0.5)",
             }}
           >
             <button
               onClick={() => setBannerImage(null)}
               style={{
                 position: "absolute",
-                top: "-14px",
-                left: "-14px",
-                background: "#fff",
-                border: "2px solid #888",
+                top: "16px",
+                right: "16px",
+                background: "rgba(255,255,255,0.1)",
+                border: "none",
                 borderRadius: "50%",
-                width: "28px",
-                height: "28px",
+                width: "32px",
+                height: "32px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: "14px",
+                fontSize: "18px",
                 cursor: "pointer",
-                color: "#888",
-                lineHeight: 1,
+                color: "#fff",
               }}
             >
               ✕
             </button>
+            <h3 style={{ 
+              fontFamily: 'Sora, sans-serif', 
+              color: 'white', 
+              margin: 0,
+              fontSize: '20px',
+              fontWeight: 600 
+            }}>
+              Your Course Banner
+            </h3>
             <img
               src={bannerImage}
               alt="Generated Banner"
-              style={{ maxWidth: "100%", maxHeight: "70vh", borderRadius: "8px" }}
+              style={{ maxWidth: "100%", maxHeight: "60vh", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.1)" }}
             />
-            <a
-            
-              href={bannerImage}
-              download="banner.jpg"
-              style={{
-                padding: "10px 20px",
-                background: "#7c3aed",
-                color: "#fff",
-                borderRadius: "8px",
-                textDecoration: "none",
-                fontFamily: "Sora, sans-serif",
-                fontWeight: 600,
-              }}
-            >
-              Download
-            </a>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', alignItems: 'center' }}>
+              <a
+                href={bannerImage}
+                download={`${title.replace(/[^a-z0-9]/gi, '_')}_banner.jpg`}
+                style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  padding: "16px 0",
+                  background: "linear-gradient(90deg, #7c3aed, #4f46e5)",
+                  color: "#fff",
+                  borderRadius: "14px",
+                  textDecoration: "none",
+                  fontFamily: "Sora, sans-serif",
+                  fontWeight: 700,
+                  fontSize: '16px',
+                  boxShadow: '0 8px 20px rgba(124,58,237,0.3)',
+                  transition: 'transform 0.2s',
+                }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.02)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                Download High-Res Banner
+              </a>
+              <button
+                onClick={() => setBannerImage(null)}
+                style={{
+                  background: "transparent",
+                  color: "rgba(255,255,255,0.5)",
+                  border: "none",
+                  fontFamily: "Sora, sans-serif",
+                  fontSize: '14px',
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                }}
+              >
+                Dismiss
+              </button>
+            </div>
           </div>
         </div>
       )}

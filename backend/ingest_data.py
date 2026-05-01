@@ -497,7 +497,7 @@ def main():
     """Main function to run the ingestion script."""
     # Set up paths
     script_dir = Path(__file__).parent
-    json_folder = script_dir / "JSON_files"
+    json_folder = script_dir / "data" / "JSON_files"
 
     print("Starting data ingestion...")
     print(f"Reading from: {json_folder}\n")

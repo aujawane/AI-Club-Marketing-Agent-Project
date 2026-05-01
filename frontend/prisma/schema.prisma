@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id          String       @id @default(uuid())
+  title       String
+  slug        String       @unique
+  content     Json         // Stores sections, objectives, etc.
+  metadata    Json?        // Stores audience, duration, difficulty, etc.
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  submissions Submission[]
+}
+
+model Submission {
+  id              String            @id @default(uuid())
+  projectId       String?
+  project         Project?          @relation(fields: [projectId], references: [id])
+  title           String
+  formData        Json              // Stores palette, tone, grade, duration, tags
+  createdAt       DateTime          @default(now())
+  marketingAssets MarketingAsset[]
+}
+
+model MarketingAsset {
+  id            String     @id @default(uuid())
+  submissionId  String
+  submission    Submission @relation(fields: [submissionId], references: [id])
+  assetType     String     // 'image_prompt', 'instagram', 'linkedin', 'email'
+  content       String     @db.Text
+  imageUrl      String?    // Path to the banner image
+  imageData     Bytes?     // Raw image data
+  createdAt     DateTime   @default(now())
+}
