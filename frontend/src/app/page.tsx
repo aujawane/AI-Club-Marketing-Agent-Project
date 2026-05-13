@@ -1,8 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import PalettePicker from './components/PalettePicker'
 import BannerGenerator from './components/BannerGenerator'
+
 
 const SUBJECTS = [
   'Mathematics', 'English Language Arts', 'Science',
@@ -50,13 +52,17 @@ export default function Home() {
   const [grade, setGrade]           = useState('')
   const [objectives, setObjectives] = useState('')
   const [duration, setDuration]     = useState('')
-  const [palette, setPalette] = useState(["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"]);
+  const [palette, setPalette] = useState('');
   const [tags, setTags]             = useState<string[]>([])
   const [tagInput, setTagInput]     = useState('')
   const [tone, setTone]             = useState('')
   const [imageStyle, setImageStyle] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null)
+  
+
+  const swatchRef = useRef<HTMLDivElement | null>(null)
+const popoverRef = useRef<HTMLDivElement | null>(null)
+const rafRef = useRef<number | null>(null)
+const mousePos = useRef({ x: 0, y: 0 })
 
   const addTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && tagInput.trim()) {
@@ -65,59 +71,73 @@ export default function Home() {
     }
   }
 
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
-    setSubmitStatus(null);
+const [activeEdit, setActiveEdit] = useState<{ paletteId: string; colorIdx: number } | null>(null)
+const [customColors, setCustomColors] = useState<Record<string, Record<number, string>>>({})
 
-    const formData = {
-      title,
-      subject,
-      grade,
-      objectives,
-      duration,
-      tags,
-      palette,
-      tone,
-      imageStyle,
-    };
+function getSwatchColor(paletteId: string, idx: number) {
+  return customColors[paletteId]?.[idx] 
+    ?? COLOR_PALETTES.find(p => p.id === paletteId)!.colors[idx]
+}
 
-    try {
-      const response = await fetch('/api/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+function setSwatchColor(hex: string) {
+  if (!activeEdit) return
+  const { paletteId, colorIdx } = activeEdit
+  setCustomColors(prev => ({
+    ...prev,
+    [paletteId]: { ...prev[paletteId], [colorIdx]: hex }
+  }))
+}
 
-      if (response.ok) {
-        setSubmitStatus({ type: 'success', message: 'Course listing generated and saved!' });
-      } else {
-        setSubmitStatus({ type: 'error', message: 'Failed to save course listing.' });
-      }
-    } catch (error) {
-      setSubmitStatus({ type: 'error', message: 'An error occurred while submitting.' });
-    } finally {
-      setIsSubmitting(false);
+function isOverElement(el: HTMLElement | null, x: number, y: number) {
+  if (!el) return false
+  const r = el.getBoundingClientRect()
+  return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom
+}
+
+function startWatchingMouse() {
+  if (rafRef.current) return
+  const check = () => {
+    const { x, y } = mousePos.current
+    const overSwatch = isOverElement(swatchRef.current, x, y)
+    const overPopover = isOverElement(popoverRef.current, x, y)
+    if (!overSwatch && !overPopover) {
+      setActiveEdit(null)
+      rafRef.current = null
+    } else {
+      rafRef.current = requestAnimationFrame(check)
     }
-  };
+  }
+  rafRef.current = requestAnimationFrame(check)
+}
 
-//   const steps = [
-//   { label: 'COURSE\nDETAILS', active: true },
-//   { label: 'STYLE',           active: false },
-//   { label: 'PREVIEW',         active: false },
-//   { label: 'PUBLISH',         active: false },
-// ]
-const defaultPalette = ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"];
+function resetSwatch() {
+  if (!activeEdit) return
+  const { paletteId, colorIdx } = activeEdit
+  setCustomColors(prev => {
+    const next = { ...prev, [paletteId]: { ...prev[paletteId] } }
+    delete next[paletteId][colorIdx]
+    return next
+  })
+}
+
+useEffect(() => {
+  const track = (e: MouseEvent) => { mousePos.current = { x: e.clientX, y: e.clientY } }
+  window.addEventListener('mousemove', track)
+  return () => window.removeEventListener('mousemove', track)
+}, [])
+
 
 const steps = [
-  { label: 'COURSE\nDETAILS', active: !!subject && !!grade },
-  { label: 'STYLE', active: palette.some((c, i) => c !== defaultPalette[i]) },
+  { label: 'PROJECT\nDETAILS', active: !!subject && !!grade },
+  { label: 'STYLE', active: !!palette },
   { label: 'TONE', active: !!tone },
   { label: 'IMAGE', active: !!imageStyle },
 ]
   const removeTag = (t: string) => setTags(tags.filter(x => x !== t))
 
+  const resolvedPalette = palette
+  ? COLOR_PALETTES.find(p => p.id === palette)!.colors.map((c, i) => getSwatchColor(palette, i))
+  : []
   return (
     <main className="min-h-screen bg-[#0d1129] px-6 pt-14 pb-24">
       <div className="w-full max-w-[600px] mx-auto">
@@ -166,12 +186,12 @@ const steps = [
           ))}
         </div>
 
-        {/* ── SECTION: Course Details ── */}    
-        <SectionTitle>COURSE DETAILS</SectionTitle>
+        {/* ── SECTION: Project Details ── */}    
+        <SectionTitle>PROJECT DETAILS</SectionTitle>
 
         <div className="flex flex-col gap-4 mb-12">
 
-          <Field label="COURSE TITLE">
+          <Field label="PROJECT TITLE">
             <textarea
               value={title}
               onChange={e => setTitle(e.target.value)}
@@ -244,7 +264,7 @@ const steps = [
             <textarea
               value={objectives}
               onChange={e => setObjectives(e.target.value)}
-              placeholder="What will students be able to do by the end of this course? List 2-4 outcomes"
+              placeholder="What will students be able to do by the end of this project? List 2-4 outcomes"
               style={{
                 width: '100%',
                 background: 'transparent',
@@ -257,7 +277,7 @@ const steps = [
               }} />
           </Field>
 
-          <Field label="COURSE DURATION">
+          <Field label="PROJECT DURATION">
             <textarea
               value={duration}
               onChange={e => setDuration(e.target.value)}
@@ -352,66 +372,150 @@ const steps = [
         <SectionTitle>STYLE PREFERENCES</SectionTitle>
 
         {/* Color Palette */}
-        <PalettePicker palette={palette} onChange={setPalette} />
-        {/* <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '40px' }}>
-        {COLOR_PALETTES.map(p => (
-          <button
-            key={p.id}
-            onClick={() => setPalette(p.id)}
-            style={{
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '16px',
-              padding: '24px 16px 20px',
-              borderRadius: '20px',
-              border: palette === p.id ? '1px solid #8b5cf6' : '1px solid rgba(255,255,255,0.07)',
-              backgroundColor: palette === p.id ? '#1c1f3a' : '#1a1f35',
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-            }} */}
-        {/* > */}
-            {/* arrow in corner */}
-            {/* {palette === p.id && (
-              <svg
-                  style={{ position: 'absolute', top: '12px', right: '14px' }}
-                  width="16" height="16" viewBox="0 0 16 16" fill="none"
-                >
-                  <polyline
-                    points="2,8 6,13 14,3"
-                    stroke="#a78bfa"
-                    strokeWidth="2"
-                    strokeLinecap="square"
-                    strokeLinejoin="miter"
-                    fill="none"
-                  />
-                </svg>)} */}
-                {/* colored circles */}
-            {/* <div style={{ display: 'flex'}}>
-              {p.colors.map((c, i) => (
-                <div key={i} style={{ 
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  backgroundColor: c,
-                  marginLeft: i === 0 ? '0' : '-16px',
-                  border: '2px solid #1a1f35',
-                }} />
-              ))}
-            </div> */}
-            {/* title */}
-            {/* <span style={{
-              color: '#9ca3af',
-              fontSize: '13px',
-              fontFamily: 'DM Sans, sans-serif',
-            }}>
-              {p.label}
-            </span>
-          </button>
-        ))}
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '40px' }}>
+  {COLOR_PALETTES.map(p => (
+    <button
+      key={p.id}
+      onClick={() => { setPalette(p.id); setActiveEdit(null) }}
+      style={{
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '16px',
+        padding: '24px 16px 20px',
+        borderRadius: '20px',
+        border: palette === p.id ? '1px solid #8b5cf6' : '1px solid rgba(255,255,255,0.07)',
+        backgroundColor: palette === p.id ? '#1c1f3a' : '#1a1f35',
+        cursor: 'pointer',
+        transition: 'all 0.2s',
+      }}
+    >
+      {palette === p.id && (
+        <svg style={{ position: 'absolute', top: '12px', right: '14px' }}
+          width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <polyline points="2,8 6,13 14,3" stroke="#a78bfa"
+            strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" fill="none" />
+        </svg>
+      )}
+
+      <div style={{ display: 'flex' }}>
+        {p.colors.map((_, i) => {
+          const color = getSwatchColor(p.id, i)
+          const isModified = color !== p.colors[i]
+          return (
+            <div
+              key={i}
+              onMouseEnter={(e) => {
+                e.stopPropagation()
+                swatchRef.current = e.currentTarget as HTMLDivElement
+                setActiveEdit({ paletteId: p.id, colorIdx: i })
+                startWatchingMouse()
+              }}
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: color,
+                marginLeft: i === 0 ? '0' : '-16px',
+                border: activeEdit?.paletteId === p.id && activeEdit?.colorIdx === i
+                  ? '3px solid #fff'
+                  : '2px solid #1a1f35',
+                position: 'relative',
+                zIndex: activeEdit?.paletteId === p.id && activeEdit?.colorIdx === i ? 10 : i,
+                transition: 'transform 0.1s, border 0.1s',
+                transform: activeEdit?.paletteId === p.id && activeEdit?.colorIdx === i
+                  ? 'scale(1.15)'
+                  : 'scale(1)',
+                outline: isModified ? '2px solid #8b5cf6' : 'none',
+                outlineOffset: '2px',
+                cursor: 'pointer',
+              }}
+            />
+          )
+        })}
       </div>
-      <br></br> */}
+
+      <span style={{ color: '#9ca3af', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
+        {p.label}
+      </span>
+    </button>
+  ))}
+</div>
+
+{/* Portal popover — rendered at body level */}
+{activeEdit && swatchRef.current && createPortal(
+  <div
+    ref={popoverRef}
+    style={{
+      position: 'fixed',
+      top: (() => {
+        const r = swatchRef.current!.getBoundingClientRect()
+        return r.bottom + 10
+      })(),
+      left: (() => {
+        const r = swatchRef.current!.getBoundingClientRect()
+        return Math.min(Math.max(r.left - 70, 8), window.innerWidth - 220)
+      })(),
+      zIndex: 9999,
+      backgroundColor: '#1a1f35',
+      border: '1px solid rgba(255,255,255,0.15)',
+      borderRadius: '14px',
+      padding: '14px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '10px',
+      minWidth: '190px',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+    }}
+  >
+    <span style={{
+      fontSize: '10px', letterSpacing: '1.5px', textTransform: 'uppercase' as const,
+      color: '#6b7280', fontFamily: 'Sora, sans-serif',
+    }}>
+      Adjust color
+    </span>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <input
+        type="color"
+        value={getSwatchColor(activeEdit.paletteId, activeEdit.colorIdx)}
+        onChange={e => setSwatchColor(e.target.value)}
+        style={{
+          width: '36px', height: '36px', borderRadius: '50%',
+          border: 'none', cursor: 'pointer', background: 'none', padding: 0,
+        }}
+      />
+      <input
+        type="text"
+        value={getSwatchColor(activeEdit.paletteId, activeEdit.colorIdx)}
+        onChange={e => {
+          const val = e.target.value.startsWith('#') ? e.target.value : '#' + e.target.value
+          if (/^#[0-9a-fA-F]{6}$/.test(val)) setSwatchColor(val)
+        }}
+        style={{
+          flex: 1, background: 'rgba(255,255,255,0.05)',
+          border: '1px solid rgba(255,255,255,0.1)',
+          borderRadius: '8px', padding: '6px 10px',
+          color: '#fff', fontFamily: 'monospace',
+          fontSize: '13px', outline: 'none',
+        }}
+      />
+    </div>
+    <button
+      onClick={(e) => { e.stopPropagation(); resetSwatch() }}
+      style={{
+        background: 'none', border: '1px solid rgba(255,255,255,0.1)',
+        borderRadius: '8px', padding: '6px 10px', color: '#9ca3af',
+        fontSize: '12px', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
+        textAlign: 'left' as const,
+      }}
+    >
+      ↺ Reset to default
+    </button>
+  </div>,
+  document.body
+)}
+      <br></br> 
 
         {/* Description Tone */}
         <SectionTitle>DESCRIPTION TONE</SectionTitle>
@@ -641,6 +745,8 @@ const steps = [
       <div style={{ height: '150px' }} />
  */}
       </div>
+
+
       <BannerGenerator
         title={title}
         subject={subject}
@@ -648,7 +754,7 @@ const steps = [
         grade={grade}
         objectives={objectives}
         duration={duration}
-        palette={palette}
+        palette={resolvedPalette}
         tags={tags}
         tone={tone}
         imageStyle={imageStyle}
