@@ -10,7 +10,7 @@ DB_PARAMS = {
     "database": "marketing_agent",
     "user": "user",
     "password": "password",
-    "port": "5433"
+    "port": "5434"
 }
 
 def migrate_projects():

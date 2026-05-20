@@ -21,19 +21,15 @@ export async function POST(request: Request) {
 
     const submissionId = submission.id;
 
-    // ── 2. RUN PYTHON SCRIPTS (DB DRIVEN) ─────
-
-    // Script 1: Generate prompts using the DB ID
+    // ── 2. RUN UNIFIED PROCESSING SCRIPT ─────
+    // This script handles:
+    // a. Data extraction (if JSON was uploaded)
+    // b. Prompt generation
+    // c. Image generation
     await execAsync(
-      `python3 ${SCRIPTS_DIR}/generate_prompts.py ${submissionId}`,
+      `python3 ${SCRIPTS_DIR}/process_submission.py ${submissionId}`,
       { cwd: SCRIPTS_DIR }
     );
-
-    // Script 2: Generate images using the DB ID
-    const safeTitleShell = data.title.replace(/"/g, '\\"');
-    await execAsync(`python3 ${SCRIPTS_DIR}/generate_images_free.py "${safeTitleShell}" ${submissionId}`, {
-      cwd: SCRIPTS_DIR,
-    });
 
     // ── 3. Fetch the generated image from DB ───
     const asset = await prisma.marketingAsset.findFirst({

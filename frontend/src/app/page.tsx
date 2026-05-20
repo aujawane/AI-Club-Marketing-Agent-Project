@@ -5,6 +5,14 @@ import { createPortal } from 'react-dom'
 import PalettePicker from './components/PalettePicker'
 import BannerGenerator from './components/BannerGenerator'
 
+const PRIMARY = '#089669'
+const PRIMARY_DARK = '#067a56'
+const PRIMARY_SOFT = '#ecfdf5'
+const TEXT = '#10201a'
+const MUTED = '#647067'
+const BORDER = '#d8e3dd'
+const SURFACE = '#ffffff'
+const SURFACE_SOFT = '#f6faf8'
 
 const SUBJECTS = [
   'Mathematics', 'English Language Arts', 'Science',
@@ -57,7 +65,38 @@ export default function Home() {
   const [tagInput, setTagInput]     = useState('')
   const [tone, setTone]             = useState('')
   const [imageStyle, setImageStyle] = useState('')
-  
+  const [uploadedJson, setUploadedJson] = useState<any>(null)
+  const [uploadedFileName, setUploadedFileName] = useState('')
+  const [isDraggingProjectData, setIsDraggingProjectData] = useState(false)
+
+  const importProjectFile = (file?: File) => {
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const json = JSON.parse(event.target?.result as string);
+        setUploadedJson(json);
+        setUploadedFileName(file.name);
+        
+        // Auto-fill basic fields for visual feedback
+        if (json.title) setTitle(json.title);
+        else if (json.description?.name) setTitle(json.description.name);
+        
+        if (json.tags && Array.isArray(json.tags)) setTags(json.tags);
+        
+      } catch (err) {
+        console.error("Error parsing JSON:", err);
+        alert("Invalid JSON file");
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    importProjectFile(e.target.files?.[0]);
+    e.target.value = '';
+  };
 
   const swatchRef = useRef<HTMLDivElement | null>(null)
 const popoverRef = useRef<HTMLDivElement | null>(null)
@@ -88,18 +127,18 @@ function setSwatchColor(hex: string) {
   }))
 }
 
-function isOverElement(el: HTMLElement | null, x: number, y: number) {
+function isOverElement(el: HTMLElement | null, x: number, y: number, padding = 0) {
   if (!el) return false
   const r = el.getBoundingClientRect()
-  return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom
+  return x >= r.left - padding && x <= r.right + padding && y >= r.top - padding && y <= r.bottom + padding
 }
 
 function startWatchingMouse() {
   if (rafRef.current) return
   const check = () => {
     const { x, y } = mousePos.current
-    const overSwatch = isOverElement(swatchRef.current, x, y)
-    const overPopover = isOverElement(popoverRef.current, x, y)
+    const overSwatch = isOverElement(swatchRef.current, x, y, 18)
+    const overPopover = isOverElement(popoverRef.current, x, y, 18)
     if (!overSwatch && !overPopover) {
       setActiveEdit(null)
       rafRef.current = null
@@ -128,7 +167,7 @@ useEffect(() => {
 
 
 const steps = [
-  { label: 'PROJECT\nDETAILS', active: !!subject && !!grade },
+  { label: 'PROJECT\nDETAILS', active: (!!subject && !!grade) || !!uploadedJson },
   { label: 'STYLE', active: !!palette },
   { label: 'TONE', active: !!tone },
   { label: 'IMAGE', active: !!imageStyle },
@@ -138,26 +177,268 @@ const steps = [
   const resolvedPalette = palette
   ? COLOR_PALETTES.find(p => p.id === palette)!.colors.map((c, i) => getSwatchColor(palette, i))
   : []
+
+  const uploadedProjectTitle = uploadedJson?.title || uploadedJson?.description?.name || 'Project data loaded'
+  const uploadedTagCount = Array.isArray(uploadedJson?.tags) ? uploadedJson.tags.length : tags.length
+
   return (
-    <main className="min-h-screen bg-[#0d1129] px-6 pt-14 pb-24">
-      <div className="w-full max-w-[600px] mx-auto">
+    <main className="min-h-screen px-6 pt-14 pb-24" style={{ backgroundColor: '#ffffff', color: TEXT }}>
+      <div className="w-full max-w-[680px] mx-auto">
 
         {/* ── Heading ── */}
         <div><br></br><br></br></div>
-        <h1 className="text-[52px] font-extrabold leading-[0.02] tracking-tight text-white"
-          style={{ fontFamily: 'Sora, sans-serif' }}>
+        <h1
+          style={{
+            margin: 0,
+            fontFamily: 'Sora, sans-serif',
+            fontSize: '52px',
+            fontWeight: 800,
+            lineHeight: 0.95,
+            letterSpacing: '-0.03em',
+            color: TEXT,
+          }}
+        >
           Create your
         </h1>
-        <h1 className="text-[52px] font-extrabold leading-[1.3] tracking-tight italic gradient-text mb-8"
-          style={{ fontFamily: 'Sora, sans-serif' }}>
+        <h1
+          style={{
+            margin: '0 0 28px',
+            fontFamily: 'Sora, sans-serif',
+            fontSize: '52px',
+            fontWeight: 800,
+            lineHeight: 1.08,
+            letterSpacing: '-0.03em',
+            color: PRIMARY,
+          }}
+        >
           Project listing
         </h1>
 
-        <p className="text-[15px] leading-[1.7] text-white/40 font-light mb-14 max-w-[480px]">
-          Fill in the details below, and our AI agent handles the rest.
+        <p style={{
+          maxWidth: '520px',
+          margin: '0 0 56px',
+          color: MUTED,
+          fontSize: '15px',
+          lineHeight: 1.7,
+          fontWeight: 400,
+        }}>
+          Fill in the details below, or upload a project JSON file.
           <br />Your unique listing will be live in under 60 seconds.
           
         </p>
+
+        {/* ── SECTION: Import JSON ── */}
+        <SectionTitle>IMPORT PROJECT DATA</SectionTitle>
+        <div
+          style={{
+            position: 'relative',
+            overflow: 'hidden',
+            borderRadius: '24px',
+            border: uploadedJson
+              ? `1px solid ${PRIMARY}`
+              : isDraggingProjectData
+                ? `1px solid ${PRIMARY}`
+                : `1px solid ${BORDER}`,
+            backgroundColor: uploadedJson || isDraggingProjectData ? PRIMARY_SOFT : SURFACE,
+            boxShadow: uploadedJson
+              ? '0 20px 50px rgba(8,150,105,0.14)'
+              : isDraggingProjectData
+                ? '0 20px 50px rgba(8,150,105,0.12)'
+                : '0 14px 40px rgba(16,32,26,0.08)',
+            marginBottom: '56px',
+            transition: 'all 0.3s ease',
+          }}
+          onDragOver={(e) => {
+            e.preventDefault()
+            setIsDraggingProjectData(true)
+          }}
+          onDragLeave={() => setIsDraggingProjectData(false)}
+          onDrop={(e) => {
+            e.preventDefault()
+            setIsDraggingProjectData(false)
+            importProjectFile(e.dataTransfer.files?.[0])
+          }}
+        >
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            pointerEvents: 'none',
+            backgroundColor: uploadedJson || isDraggingProjectData ? 'rgba(8,150,105,0.04)' : '#ffffff',
+          }} />
+          <div style={{ position: 'relative', padding: '24px' }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '20px',
+            }}>
+              <div style={{
+                width: '76px',
+                height: '76px',
+                borderRadius: '18px',
+                border: `1px solid ${uploadedJson ? PRIMARY : BORDER}`,
+                backgroundColor: uploadedJson ? PRIMARY : PRIMARY_SOFT,
+                color: uploadedJson ? '#ffffff' : PRIMARY,
+                boxShadow: uploadedJson ? '0 12px 28px rgba(8,150,105,0.22)' : 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                transition: 'all 0.3s ease',
+              }}>
+                {uploadedJson ? (
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                ) : (
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z" />
+                    <path d="M14 2v5h5" />
+                    <path d="M12 18v-7" />
+                    <path d="m9 14 3-3 3 3" />
+                  </svg>
+                )}
+              </div>
+
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                  <span style={{
+                    borderRadius: '999px',
+                    border: `1px solid rgba(8,150,105,0.25)`,
+                    backgroundColor: PRIMARY_SOFT,
+                    color: PRIMARY_DARK,
+                    padding: '4px 12px',
+                    fontSize: '10px',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.18em',
+                    fontFamily: 'Sora, sans-serif',
+                  }}>
+                    {uploadedJson ? 'Ready to generate' : 'JSON import'}
+                  </span>
+                  {uploadedFileName && (
+                    <span style={{
+                      maxWidth: '220px',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                      borderRadius: '999px',
+                      border: `1px solid ${BORDER}`,
+                      backgroundColor: '#ffffff',
+                      color: MUTED,
+                      padding: '4px 12px',
+                      fontSize: '11px',
+                      fontWeight: 500,
+                    }}>
+                      {uploadedFileName}
+                    </span>
+                  )}
+                </div>
+
+                <p style={{
+                  margin: '0 0 8px',
+                  color: TEXT,
+                  fontFamily: 'Sora, sans-serif',
+                  fontSize: '22px',
+                  fontWeight: 700,
+                  letterSpacing: '-0.01em',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}>
+                  {uploadedJson ? uploadedProjectTitle : isDraggingProjectData ? 'Release to import project data' : 'Upload project data'}
+                </p>
+                <p style={{
+                  maxWidth: '390px',
+                  margin: 0,
+                  color: MUTED,
+                  fontSize: '14px',
+                  lineHeight: '24px',
+                }}>
+                  {uploadedJson
+                    ? 'Project fields were parsed and added to the form.'
+                    : 'Drag in a project JSON file or browse from your computer.'}
+                </p>
+              </div>
+
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'stretch',
+                gap: '8px',
+                flexShrink: 0,
+              }}>
+                <input id="project-json-upload" type="file" style={{ display: 'none' }} accept=".json,application/json" onChange={handleFileUpload} />
+                <label
+                  htmlFor="project-json-upload"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minHeight: '46px',
+                    borderRadius: '14px',
+                    border: `1px solid ${PRIMARY}`,
+                    backgroundColor: PRIMARY,
+                    color: '#ffffff',
+                    padding: '0 16px',
+                    fontSize: '13px',
+                    fontWeight: 700,
+                    fontFamily: 'Sora, sans-serif',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  {uploadedJson ? 'Replace file' : 'Browse file'}
+                </label>
+                {uploadedJson && (
+                  <button
+                    onClick={() => { setUploadedJson(null); setUploadedFileName('') }}
+                    style={{
+                      width: '46px',
+                      height: '46px',
+                      borderRadius: '14px',
+                      border: `1px solid ${BORDER}`,
+                      backgroundColor: '#ffffff',
+                      color: MUTED,
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                    title="Remove file"
+                    aria-label="Remove uploaded project data"
+                  >
+                    <span style={{ fontSize: '18px', lineHeight: 1 }}>×</span>
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {uploadedJson && (
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '8px',
+                borderTop: `1px solid ${BORDER}`,
+                paddingTop: '16px',
+                marginTop: '20px',
+              }}>
+                <div style={{ borderRadius: '14px', border: `1px solid ${BORDER}`, backgroundColor: '#ffffff', padding: '8px 12px' }}>
+                  <p style={{ margin: 0, fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: MUTED }}>Title</p>
+                  <p style={{ margin: '4px 0 0', fontSize: '13px', fontWeight: 600, color: TEXT, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{uploadedProjectTitle}</p>
+                </div>
+                <div style={{ borderRadius: '14px', border: `1px solid ${BORDER}`, backgroundColor: '#ffffff', padding: '8px 12px' }}>
+                  <p style={{ margin: 0, fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: MUTED }}>Tags</p>
+                  <p style={{ margin: '4px 0 0', fontSize: '13px', fontWeight: 600, color: TEXT }}>{uploadedTagCount || 0}</p>
+                </div>
+                <div style={{ borderRadius: '14px', border: `1px solid ${BORDER}`, backgroundColor: '#ffffff', padding: '8px 12px' }}>
+                  <p style={{ margin: 0, fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: MUTED }}>Status</p>
+                  <p style={{ margin: '4px 0 0', fontSize: '13px', fontWeight: 600, color: PRIMARY }}>Parsed</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
         <br></br>
         <br></br>
         {/* ── Step indicator ── */}
@@ -169,7 +450,7 @@ const steps = [
                 height: '12px',
                 borderRadius: '50%',
                 flexShrink: 0,
-                backgroundColor: s.active ? '#8b5cf6' : '#6b7280',
+                backgroundColor: s.active ? PRIMARY : '#cbd5d1',
               }} />
               <span style={{
                 fontFamily: 'Sora, sans-serif',
@@ -178,7 +459,7 @@ const steps = [
                 letterSpacing: '1.5px',
                 textTransform: 'uppercase' as const,
                 whiteSpace: 'pre-line' as const,
-                color: s.active ? '#a78bfa' : '#9ca3af',
+                color: s.active ? PRIMARY : MUTED,
               }}>
                 {s.label}
               </span>
@@ -201,7 +482,7 @@ const steps = [
                 background: 'transparent',
                 border: 'none',
                 outline: 'none',
-                color: '#9ca3af',
+                color: TEXT,
                 fontSize: '15px',
                 fontFamily: 'DM Sans, sans-serif',
                 fontWeight: 300,
@@ -218,7 +499,7 @@ const steps = [
                     background: 'transparent',
                     border: 'none',
                     outline: 'none',
-                    color: '#FFFFFF',
+                    color: TEXT,
                     fontSize: '15px',
                     fontFamily: 'DM Sans, sans-serif',
                     fontWeight: 300,
@@ -230,7 +511,7 @@ const steps = [
                   <option value="" disabled>Select subject</option>
                   {SUBJECTS.map(s => <option key={s}>{s}</option>)}
                 </select>
-                <span style={{ position: 'absolute', right: '0px', color: '#9ca3af', pointerEvents: 'none', fontSize: '12px' }}>▼</span>
+                <span style={{ position: 'absolute', right: '0px', color: MUTED, pointerEvents: 'none', fontSize: '12px' }}>▼</span>
               </div>
           </Field>
 
@@ -244,7 +525,7 @@ const steps = [
                     background: 'transparent',
                     border: 'none',
                     outline: 'none',
-                    color: '#FFFFFF',
+                    color: TEXT,
                     fontSize: '15px',
                     fontFamily: 'DM Sans, sans-serif',
                     fontWeight: 300,
@@ -256,7 +537,7 @@ const steps = [
                   <option value="" disabled>Select grade</option>
                   {GRADE_LEVELS.map(s => <option key={s}>{s}</option>)}
                 </select>
-                <span style={{ position: 'absolute', right: '0px', color: '#9ca3af', pointerEvents: 'none', fontSize: '12px' }}>▼</span>
+                <span style={{ position: 'absolute', right: '0px', color: MUTED, pointerEvents: 'none', fontSize: '12px' }}>▼</span>
               </div>
           </Field>
 
@@ -270,7 +551,7 @@ const steps = [
                 background: 'transparent',
                 border: 'none',
                 outline: 'none',
-                color: '#9ca3af',
+                color: TEXT,
                 fontSize: '15px',
                 fontFamily: 'DM Sans, sans-serif',
                 fontWeight: 300,
@@ -287,7 +568,7 @@ const steps = [
                 background: 'transparent',
                 border: 'none',
                 outline: 'none',
-                color: '#9ca3af',
+                color: TEXT,
                 fontSize: '15px',
                 fontFamily: 'DM Sans, sans-serif',
                 fontWeight: 300,
@@ -302,9 +583,9 @@ const steps = [
                 gap: '8px',
                 padding: '5px 14px',
                 borderRadius: '999px',
-                border: '1px solid rgba(139,92,246,0.5)',
-                backgroundColor: 'rgba(139,92,246,0.12)',
-                color: '#a78bfa',
+                border: '1px solid rgba(8,150,105,0.3)',
+                backgroundColor: PRIMARY_SOFT,
+                color: PRIMARY,
                 fontSize: '13px',
                 fontFamily: 'DM Sans, sans-serif',
               }}>
@@ -315,7 +596,7 @@ const steps = [
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: '#a78bfa',
+                    color: PRIMARY,
                     cursor: 'pointer',
                     padding: '0',
                     fontSize: '15px',
@@ -339,7 +620,7 @@ const steps = [
                 background: 'transparent',
                 border: 'none',
                 outline: 'none',
-                color: '#9ca3af',
+                color: TEXT,
                 fontSize: '14px',
                 fontFamily: 'DM Sans, sans-serif',
                 fontWeight: 300,
@@ -358,7 +639,7 @@ const steps = [
                 background: 'transparent',
                 border: 'none',
                 outline: 'none',
-                color: '#9ca3af',
+                color: TEXT,
                 fontSize: '15px',
                 fontFamily: 'DM Sans, sans-serif',
                 fontWeight: 300,
@@ -385,8 +666,9 @@ const steps = [
         gap: '16px',
         padding: '24px 16px 20px',
         borderRadius: '20px',
-        border: palette === p.id ? '1px solid #8b5cf6' : '1px solid rgba(255,255,255,0.07)',
-        backgroundColor: palette === p.id ? '#1c1f3a' : '#1a1f35',
+        border: palette === p.id ? `1px solid ${PRIMARY}` : `1px solid ${BORDER}`,
+        backgroundColor: palette === p.id ? PRIMARY_SOFT : SURFACE,
+        boxShadow: palette === p.id ? '0 12px 30px rgba(8,150,105,0.12)' : '0 8px 22px rgba(16,32,26,0.05)',
         cursor: 'pointer',
         transition: 'all 0.2s',
       }}
@@ -394,7 +676,7 @@ const steps = [
       {palette === p.id && (
         <svg style={{ position: 'absolute', top: '12px', right: '14px' }}
           width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <polyline points="2,8 6,13 14,3" stroke="#a78bfa"
+          <polyline points="2,8 6,13 14,3" stroke={PRIMARY}
             strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" fill="none" />
         </svg>
       )}
@@ -419,15 +701,15 @@ const steps = [
                 backgroundColor: color,
                 marginLeft: i === 0 ? '0' : '-16px',
                 border: activeEdit?.paletteId === p.id && activeEdit?.colorIdx === i
-                  ? '3px solid #fff'
-                  : '2px solid #1a1f35',
+                  ? `3px solid ${PRIMARY}`
+                  : '2px solid #ffffff',
                 position: 'relative',
                 zIndex: activeEdit?.paletteId === p.id && activeEdit?.colorIdx === i ? 10 : i,
                 transition: 'transform 0.1s, border 0.1s',
                 transform: activeEdit?.paletteId === p.id && activeEdit?.colorIdx === i
                   ? 'scale(1.15)'
                   : 'scale(1)',
-                outline: isModified ? '2px solid #8b5cf6' : 'none',
+                outline: isModified ? `2px solid ${PRIMARY}` : 'none',
                 outlineOffset: '2px',
                 cursor: 'pointer',
               }}
@@ -436,7 +718,7 @@ const steps = [
         })}
       </div>
 
-      <span style={{ color: '#9ca3af', fontSize: '13px', fontFamily: 'DM Sans, sans-serif' }}>
+      <span style={{ color: TEXT, fontSize: '13px', fontFamily: 'DM Sans, sans-serif', fontWeight: 600 }}>
         {p.label}
       </span>
     </button>
@@ -458,20 +740,20 @@ const steps = [
         return Math.min(Math.max(r.left - 70, 8), window.innerWidth - 220)
       })(),
       zIndex: 9999,
-      backgroundColor: '#1a1f35',
-      border: '1px solid rgba(255,255,255,0.15)',
+      backgroundColor: SURFACE,
+      border: `1px solid ${BORDER}`,
       borderRadius: '14px',
       padding: '14px',
       display: 'flex',
       flexDirection: 'column',
       gap: '10px',
       minWidth: '190px',
-      boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+      boxShadow: '0 16px 40px rgba(16,32,26,0.14)',
     }}
   >
     <span style={{
       fontSize: '10px', letterSpacing: '1.5px', textTransform: 'uppercase' as const,
-      color: '#6b7280', fontFamily: 'Sora, sans-serif',
+      color: MUTED, fontFamily: 'Sora, sans-serif',
     }}>
       Adjust color
     </span>
@@ -493,10 +775,10 @@ const steps = [
           if (/^#[0-9a-fA-F]{6}$/.test(val)) setSwatchColor(val)
         }}
         style={{
-          flex: 1, background: 'rgba(255,255,255,0.05)',
-          border: '1px solid rgba(255,255,255,0.1)',
+          flex: 1, background: SURFACE_SOFT,
+          border: `1px solid ${BORDER}`,
           borderRadius: '8px', padding: '6px 10px',
-          color: '#fff', fontFamily: 'monospace',
+          color: TEXT, fontFamily: 'monospace',
           fontSize: '13px', outline: 'none',
         }}
       />
@@ -504,8 +786,8 @@ const steps = [
     <button
       onClick={(e) => { e.stopPropagation(); resetSwatch() }}
       style={{
-        background: 'none', border: '1px solid rgba(255,255,255,0.1)',
-        borderRadius: '8px', padding: '6px 10px', color: '#9ca3af',
+        background: SURFACE_SOFT, border: `1px solid ${BORDER}`,
+        borderRadius: '8px', padding: '6px 10px', color: MUTED,
         fontSize: '12px', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
         textAlign: 'left' as const,
       }}
@@ -534,8 +816,9 @@ const steps = [
                 justifyContent: 'space-between',
                 padding: '24px 20px',
                 borderRadius: '20px',
-                border: tone === t.id ? '1px solid #07bdfa' : '1px solid rgba(255,255,255,0.07)',
-                backgroundColor: tone === t.id ? '#0a1f2e' : '#1a1f35',
+                border: tone === t.id ? `1px solid ${PRIMARY}` : `1px solid ${BORDER}`,
+                backgroundColor: tone === t.id ? PRIMARY_SOFT : SURFACE,
+                boxShadow: tone === t.id ? '0 12px 30px rgba(8,150,105,0.12)' : '0 8px 22px rgba(16,32,26,0.05)',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
                 textAlign: 'left',
@@ -549,7 +832,7 @@ const steps = [
                 >
                   <polyline
                     points="2,8 6,13 14,3"
-                    stroke="#07bdfa"
+                    stroke={PRIMARY}
                     strokeWidth="2"
                     strokeLinecap="square"
                     strokeLinejoin="miter"
@@ -563,7 +846,7 @@ const steps = [
                   fontFamily: 'Sora, sans-serif',
                   fontSize: '16px',
                   fontWeight: 700,
-                  color: '#ffffff',
+                  color: TEXT,
                 }}>
                   {t.label}
                 </span>
@@ -572,7 +855,7 @@ const steps = [
                   fontFamily: 'DM Sans, sans-serif',
                   fontSize: '12px',
                   fontWeight: 300,
-                  color: '#6b7280',
+                  color: MUTED,
                   lineHeight: '1.4',
                 }}>
                   {t.desc}
@@ -601,8 +884,9 @@ const steps = [
                 flexDirection: 'column',
                 alignItems: 'center',
                 borderRadius: '24px',
-                border: imageStyle === s.id ? '1px solid #07bdfa' : '1px solid rgba(255,255,255,0.07)',
-                backgroundColor: '#1a1f35',
+                border: imageStyle === s.id ? `1px solid ${PRIMARY}` : `1px solid ${BORDER}`,
+                backgroundColor: SURFACE,
+                boxShadow: imageStyle === s.id ? '0 12px 30px rgba(8,150,105,0.12)' : '0 8px 22px rgba(16,32,26,0.05)',
                 cursor: 'pointer',
                 overflow: 'hidden',
                 transition: 'all 0.2s',
@@ -616,7 +900,7 @@ const steps = [
                 >
                   <polyline
                     points="2,8 6,13 14,3"
-                    stroke="#07bdfa"
+                    stroke={PRIMARY}
                     strokeWidth="2"
                     strokeLinecap="square"
                     strokeLinejoin="miter"
@@ -645,7 +929,7 @@ const steps = [
                 fontFamily: 'Sora, sans-serif',
                 fontSize: '15px',
                 fontWeight: 600,
-                color: '#ffffff',
+                color: TEXT,
               }}>
                 {s.label}
               </div>
@@ -654,12 +938,12 @@ const steps = [
         </div>
 
         {/* ── Divider ── */}
-        <div style={{ height: '1px', backgroundColor: '#7d7c7c', margin: '50px 0'}} />
+        <div style={{ height: '1px', backgroundColor: BORDER, margin: '50px 0'}} />
 
         {/* ── AI info box ── */}
         <div style={{
-          backgroundColor: '#1a1f35',
-          border: '1px solid rgba(255,255,255,0.2)',
+          backgroundColor: PRIMARY_SOFT,
+          border: `1px solid ${BORDER}`,
           borderRadius: '20px',
           padding: '24px',
           marginBottom: '20px',
@@ -672,7 +956,8 @@ const steps = [
             width: '40px',
             height: '40px',
             borderRadius: '30%',
-            backgroundColor: '#1e1040',
+            backgroundColor: PRIMARY,
+            color: '#ffffff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -684,66 +969,16 @@ const steps = [
           <p style={{
             fontFamily: 'DM Sans, sans-serif',
             fontSize: '14px',
-            color: 'rgba(255,255,255,0.7)',
+            color: MUTED,
             lineHeight: '1.6',
             margin: 0,
           }}>
-            <span style={{ color: '#ffffff', fontWeight: 700 }}>The AI agent takes it from here.</span>{' '}
+            <span style={{ color: TEXT, fontWeight: 700 }}>The AI agent takes it from here.</span>{' '}
             Once you submit, your course image, polished title, and description will be generated
             simultaneously. You'll preview everything before anything goes live.
           </p>
           
         </div>
-
-        {/* ── Generate button ── */}
-       {/* <button
-        onClick={handleSubmit}
-        disabled={isSubmitting}
-        style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '12px',
-          backgroundColor: isSubmitting ? '#4c1d95' : '#7c3aed',
-          border: 'none',
-          borderRadius: '20px',
-          padding: '22px 0',
-          cursor: isSubmitting ? 'not-allowed' : 'pointer',
-          transition: 'all 0.2s',
-          boxShadow: '0 4px 32px rgba(124,58,237,0.4)',
-        }}
-        onMouseEnter={e => { if(!isSubmitting) e.currentTarget.style.backgroundColor = '#6d28d9'}}
-        onMouseLeave={e => { if(!isSubmitting) e.currentTarget.style.backgroundColor = '#7c3aed'}}
-      >
-        <span style={{ fontSize: '20px', color: 'white' }}>✦</span>
-        <span style={{
-          fontFamily: 'Sora, sans-serif',
-          fontSize: '18px',
-          fontWeight: 700,
-          color: 'white',
-          letterSpacing: '0.3px',
-        }}>
-          {isSubmitting ? 'Generating...' : 'Generate My Course Listing'}
-        </span>
-      </button>
-
-      {submitStatus && (
-        <div style={{
-          marginTop: '20px',
-          padding: '16px',
-          borderRadius: '12px',
-          backgroundColor: submitStatus.type === 'success' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
-          border: `1px solid ${submitStatus.type === 'success' ? '#10b981' : '#ef4444'}`,
-          color: submitStatus.type === 'success' ? '#10b981' : '#ef4444',
-          textAlign: 'center',
-          fontFamily: 'DM Sans, sans-serif',
-        }}>
-          {submitStatus.message}
-        </div>
-      )}
-      <div style={{ height: '150px' }} />
- */}
       </div>
 
 
@@ -758,7 +993,9 @@ const steps = [
         tags={tags}
         tone={tone}
         imageStyle={imageStyle}
+        uploadedJson={uploadedJson}
       />
+
       <br></br>
       <br></br>
       <br></br>
@@ -775,12 +1012,12 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
         fontWeight: 600,
         letterSpacing: '2px',
         textTransform: 'uppercase' as const,
-        color: '#9ca3af',
+        color: PRIMARY,
         whiteSpace: 'nowrap' as const,
       }}>
         {children}
       </span>
-      <div style={{ flex: 1, height: '2px', backgroundColor: 'rgba(255,255,255,0.08)' }} />
+      <div style={{ flex: 1, height: '2px', backgroundColor: BORDER }} />
     </div>
   )
 }
@@ -788,11 +1025,12 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div style={{
-      backgroundColor: '#1a1f35',
-      border: '1px solid rgba(255,255,255,0.08)',
+      backgroundColor: SURFACE,
+      border: `1px solid ${BORDER}`,
       borderRadius: '16px',
       padding: '16px 24px 20px',
       marginBottom: '12px',
+      boxShadow: '0 8px 22px rgba(16,32,26,0.05)',
     }}>
       <label style={{
         display: 'block',
@@ -801,7 +1039,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
         fontWeight: 600,
         letterSpacing: '2px',
         textTransform: 'uppercase' as const,
-        color: '#6b7280',
+        color: MUTED,
         marginBottom: '10px',
       }}>
         {label}

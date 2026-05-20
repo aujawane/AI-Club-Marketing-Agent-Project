@@ -262,17 +262,14 @@ class DataIngestor:
 
         return has_title or has_sections or has_resources
 
-    def ingest_file(self, filepath: Path) -> Optional[Project]:
-        """Ingest a single JSON file and return a Project object."""
-        data = self.load_json_file(filepath)
-
+    def ingest_data(self, data: dict, source_name: str = "uploaded_file") -> Optional[Project]:
+        """Ingest project data from a dictionary and return a Project object."""
         if data is None:
-            print(f"  Skipping (empty/invalid): {filepath.name}")
             return None
 
         # Skip non-project files (options files, etc.)
         if not self.is_valid_project(data):
-            print(f"  Skipping (not a project file): {filepath.name}")
+            print(f"  Skipping (not a project file): {source_name}")
             return None
 
         try:
@@ -327,14 +324,19 @@ class DataIngestor:
                 skills_taught=skills_taught,
                 learning_objectives=learning_objectives,
                 tools_used=tools_used,
-                source_file=filepath.name
+                source_file=source_name
             )
 
             return project
 
         except Exception as e:
-            print(f"  Error processing {filepath.name}: {e}")
+            print(f"  Error processing {source_name}: {e}")
             return None
+
+    def ingest_file(self, filepath: Path) -> Optional[Project]:
+        """Ingest a single JSON file and return a Project object."""
+        data = self.load_json_file(filepath)
+        return self.ingest_data(data, filepath.name)
 
     def ingest_all(self) -> List[Project]:
         """Ingest all JSON files in the folder."""

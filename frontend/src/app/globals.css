@@ -4,17 +4,46 @@
 
 @layer base {
   body {
-    background-color: #0d1129;
-    color: white;
+    background-color: #ffffff;
+    color: #10201a;
     font-family: 'DM Sans', sans-serif;
+  }
+
+  button,
+  label[for="project-json-upload"],
+  a[download] {
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  button:not(:disabled):hover,
+  label[for="project-json-upload"]:hover,
+  a[download]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px rgba(8, 150, 105, 0.16) !important;
+  }
+
+  button:not(:disabled):active,
+  label[for="project-json-upload"]:active,
+  a[download]:active {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(8, 150, 105, 0.14) !important;
+  }
+
+  button:focus-visible,
+  label[for="project-json-upload"]:focus-visible,
+  a[download]:focus-visible {
+    outline: 3px solid rgba(8, 150, 105, 0.25);
+    outline-offset: 3px;
   }
 }
 
 @layer utilities {
   .gradient-text {
-    background: linear-gradient(90deg, #a78bfa, #22d3ee);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #089669;
   }
 }

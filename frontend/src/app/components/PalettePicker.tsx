@@ -8,6 +8,9 @@ interface PalettePickerProps {
 }
 
 const LABELS = ["PRIMARY COLOR", "SECONDARY COLOR", "OTHER COLOR", "OTHER COLOR"];
+const TEXT = "#10201a";
+const MUTED = "#647067";
+const BORDER = "#d8e3dd";
 
 export default function PalettePicker({ palette, onChange }: PalettePickerProps) {
   // Use local state for inputs to allow typing partial hex codes without breaking the UI
@@ -53,11 +56,12 @@ export default function PalettePicker({ palette, onChange }: PalettePickerProps)
           display: "flex", 
           flexDirection: "column", 
           gap: "12px",
-          backgroundColor: '#1a1f35',
-          border: '1px solid rgba(255,255,255,0.08)',
-          borderRadius: '20px',
+          backgroundColor: '#ffffff',
+          border: `1px solid ${BORDER}`,
+          borderRadius: '16px',
           padding: '20px 24px',
           transition: 'all 0.2s ease',
+          boxShadow: '0 8px 22px rgba(16,32,26,0.05)',
         }}>
           <span style={{ 
             fontFamily: 'Sora, sans-serif',
@@ -65,7 +69,7 @@ export default function PalettePicker({ palette, onChange }: PalettePickerProps)
             fontWeight: 600,
             letterSpacing: '2px',
             textTransform: 'uppercase',
-            color: '#6b7280',
+            color: MUTED,
           }}>
             {LABELS[i]}
           </span>
@@ -76,7 +80,7 @@ export default function PalettePicker({ palette, onChange }: PalettePickerProps)
               height: "44px",
               borderRadius: "12px",
               background: /^#[0-9A-Fa-f]{6}$/.test(color) ? color : "#000000",
-              border: "2px solid rgba(255,255,255,0.1)",
+              border: `2px solid ${BORDER}`,
               cursor: "pointer",
               position: "relative",
               overflow: "hidden",
@@ -108,7 +112,7 @@ export default function PalettePicker({ palette, onChange }: PalettePickerProps)
                 background: "transparent",
                 border: "none",
                 outline: "none",
-                color: "#FFFFFF",
+                color: TEXT,
                 fontSize: "16px",
                 fontFamily: "monospace",
                 fontWeight: 500,

@@ -2,6 +2,13 @@
 
 import React, { useState } from "react";
 
+const PRIMARY = "#089669";
+const PRIMARY_DARK = "#067a56";
+const PRIMARY_SOFT = "#ecfdf5";
+const TEXT = "#10201a";
+const MUTED = "#647067";
+const BORDER = "#d8e3dd";
+
 interface BannerGeneratorProps {
   title: string;
   subject: string;
@@ -13,9 +20,10 @@ interface BannerGeneratorProps {
   tags: string[];
   tone: string;
   imageStyle: string;
+  uploadedJson?: any;
 }
 
-export default function BannerGenerator({ title, subject, custom, grade, objectives, duration, palette, tags, tone, imageStyle }: BannerGeneratorProps) {
+export default function BannerGenerator({ title, subject, custom, grade, objectives, duration, palette, tags, tone, imageStyle, uploadedJson }: BannerGeneratorProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [bannerImage, setBannerImage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -31,7 +39,7 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
       const res = await fetch("/api/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ subject, grade, objectives, duration, tags, palette, tone, imageStyle, custom, title }),
+        body: JSON.stringify({ subject, grade, objectives, duration, tags, palette, tone, imageStyle, custom, title, uploadedJson }),
       });
 
       const data = await res.json();
@@ -55,21 +63,21 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
           onClick={handleGenerate}
           disabled={loading}
           style={{
-            width: '600px',
+            width: 'min(680px, calc(100vw - 48px))',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             gap: '12px',
-            backgroundColor: loading ? '#4c1d95' : '#7c3aed',
+            backgroundColor: loading ? PRIMARY_DARK : PRIMARY,
             border: 'none',
-            borderRadius: '20px',
+            borderRadius: '16px',
             padding: '22px 0',
             cursor: loading ? 'not-allowed' : 'pointer',
             transition: 'all 0.2s',
-            boxShadow: '0 4px 32px rgba(124,58,237,0.4)',
+            boxShadow: '0 14px 34px rgba(8,150,105,0.22)',
           }}
-          onMouseEnter={e => { if (!loading) e.currentTarget.style.backgroundColor = '#6d28d9'; }}
-          onMouseLeave={e => { if (!loading) e.currentTarget.style.backgroundColor = '#7c3aed'; }}
+          onMouseEnter={e => { if (!loading) e.currentTarget.style.backgroundColor = PRIMARY_DARK; }}
+          onMouseLeave={e => { if (!loading) e.currentTarget.style.backgroundColor = PRIMARY; }}
         >
           <span style={{ fontSize: '20px', color: 'white' }}>✦</span>
           <span style={{
@@ -89,9 +97,9 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
           marginTop: '20px',
           padding: '16px',
           borderRadius: '12px',
-          backgroundColor: 'rgba(16, 185, 129, 0.1)',
-          border: '1px solid #10b981',
-          color: '#10b981',
+          backgroundColor: PRIMARY_SOFT,
+          border: `1px solid ${PRIMARY}`,
+          color: PRIMARY_DARK,
           textAlign: 'center',
           fontFamily: 'DM Sans, sans-serif',
         }}>
@@ -131,8 +139,8 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
           <div
             onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
             style={{
-              background: "#1a1f35",
-              borderRadius: "24px",
+              background: "#ffffff",
+              borderRadius: "20px",
               padding: "24px",
               maxWidth: "90vw",
               maxHeight: "90vh",
@@ -141,8 +149,8 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
               gap: "20px",
               alignItems: "center",
               position: "relative",
-              border: "1px solid rgba(255,255,255,0.1)",
-              boxShadow: "0 20px 50px rgba(0,0,0,0.5)",
+              border: `1px solid ${BORDER}`,
+              boxShadow: "0 24px 70px rgba(16,32,26,0.2)",
             }}
           >
             <button
@@ -151,8 +159,8 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
                 position: "absolute",
                 top: "16px",
                 right: "16px",
-                background: "rgba(255,255,255,0.1)",
-                border: "none",
+                background: PRIMARY_SOFT,
+                border: `1px solid ${BORDER}`,
                 borderRadius: "50%",
                 width: "32px",
                 height: "32px",
@@ -161,14 +169,14 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
                 justifyContent: "center",
                 fontSize: "18px",
                 cursor: "pointer",
-                color: "#fff",
+                color: PRIMARY,
               }}
             >
               ✕
             </button>
             <h3 style={{ 
               fontFamily: 'Sora, sans-serif', 
-              color: 'white', 
+              color: TEXT, 
               margin: 0,
               fontSize: '20px',
               fontWeight: 600 
@@ -178,7 +186,7 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
             <img
               src={bannerImage}
               alt="Generated Banner"
-              style={{ maxWidth: "100%", maxHeight: "60vh", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.1)" }}
+              style={{ maxWidth: "100%", maxHeight: "60vh", borderRadius: "12px", border: `1px solid ${BORDER}` }}
             />
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', alignItems: 'center' }}>
               <a
@@ -188,14 +196,14 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
                   width: '100%',
                   textAlign: 'center',
                   padding: "16px 0",
-                  background: "linear-gradient(90deg, #7c3aed, #4f46e5)",
+                  backgroundColor: PRIMARY,
                   color: "#fff",
                   borderRadius: "14px",
                   textDecoration: "none",
                   fontFamily: "Sora, sans-serif",
                   fontWeight: 700,
                   fontSize: '16px',
-                  boxShadow: '0 8px 20px rgba(124,58,237,0.3)',
+                  boxShadow: '0 12px 28px rgba(8,150,105,0.22)',
                   transition: 'transform 0.2s',
                 }}
                 onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.02)'}
@@ -207,7 +215,7 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
                 onClick={() => setBannerImage(null)}
                 style={{
                   background: "transparent",
-                  color: "rgba(255,255,255,0.5)",
+                  color: MUTED,
                   border: "none",
                   fontFamily: "Sora, sans-serif",
                   fontSize: '14px',
