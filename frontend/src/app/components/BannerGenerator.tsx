@@ -43,7 +43,7 @@ export default function BannerGenerator({ title, subject, custom, grade, objecti
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Generation failed");
+      if (!res.ok) throw new Error(data.details || data.error || "Generation failed");
       
       setSuccessMessage(data.message);
       if (data.image) {
