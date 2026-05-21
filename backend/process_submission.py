@@ -44,6 +44,17 @@ def update_submission_in_db(submission_id, title, form_data):
     except Exception as e:
         print(f"❌ DB Update Error: {e}")
 
+def run_script(args):
+    result = subprocess.run(args, text=True, capture_output=True)
+    if result.stdout:
+        print(result.stdout)
+    if result.stderr:
+        print(result.stderr, file=sys.stderr)
+    if result.returncode != 0:
+        script_name = Path(args[1]).name if len(args) > 1 else args[0]
+        print(f"❌ {script_name} failed with exit code {result.returncode}", file=sys.stderr)
+        sys.exit(result.returncode)
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: python3 process_submission.py <submission_id>")
@@ -79,11 +90,11 @@ def main():
     script_dir = Path(__file__).parent
     
     print("🤖 Triggering prompt generation...")
-    subprocess.run(["python3", str(script_dir / "generate_prompts.py"), submission_id], check=True)
+    run_script(["python3", str(script_dir / "generate_prompts.py"), submission_id])
     
-    print("🎨 Triggering image generation...")
+    print("🎨 Triggering OpenAI image generation...")
     title = form_data.get('title', 'Project')
-    subprocess.run(["python3", str(script_dir / "generate_images_free.py"), title, submission_id], check=True)
+    run_script(["python3", str(script_dir / "generate_images_openai.py"), title, submission_id])
 
     print("✨ Submission processing complete!")
 

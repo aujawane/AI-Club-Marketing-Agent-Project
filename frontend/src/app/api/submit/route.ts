@@ -26,10 +26,24 @@ export async function POST(request: Request) {
     // a. Data extraction (if JSON was uploaded)
     // b. Prompt generation
     // c. Image generation
-    await execAsync(
-      `python3 ${SCRIPTS_DIR}/process_submission.py ${submissionId}`,
-      { cwd: SCRIPTS_DIR }
-    );
+    try {
+      await execAsync(
+        `python3 ${SCRIPTS_DIR}/process_submission.py ${submissionId}`,
+        { cwd: SCRIPTS_DIR }
+      );
+    } catch (scriptError: any) {
+      console.error('Python processing failed:', scriptError.stdout, scriptError.stderr);
+      const details = [scriptError.stdout, scriptError.stderr, scriptError.message]
+        .filter(Boolean)
+        .join('\n');
+      return NextResponse.json(
+        {
+          error: 'Banner generation failed during backend processing',
+          details,
+        },
+        { status: 500 }
+      );
+    }
 
     // ── 3. Fetch the generated image from DB ───
     const asset = await prisma.marketingAsset.findFirst({

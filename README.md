@@ -36,7 +36,14 @@ pip3 install psycopg2-binary Pillow
 Create a `.env` file in the `backend/` directory to enable AI features:
 ```env
 GEMINI_API_KEY=your_gemini_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_PROMPT_MODEL=gpt-4o-mini
+OPENAI_IMAGE_MODEL=gpt-image-1
+OPENAI_IMAGE_QUALITY=medium
+GEMINI_IMAGE_MODEL=gemini-2.5-flash-image
 ```
+
+`OPENAI_API_KEY` is used by `backend/generate_prompts.py` to run a prompt-writing agent that improves image prompts before banner generation. `backend/generate_images_openai.py` tries OpenAI image generation first, then falls back to Gemini image generation with `GEMINI_API_KEY` if the OpenAI project does not have image-model access.
 
 ### 4. Frontend Setup
 Navigate to the `frontend` directory, install dependencies, and configure the environment:
