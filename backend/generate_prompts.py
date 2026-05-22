@@ -195,7 +195,6 @@ def save_prompt_to_db(submission_id, asset_type, content):
 def generate_image_prompt(submission: Dict) -> str:
     title = submission.get('title', 'Education')
     subject = submission.get('subject', 'Education').lower()
-    objectives = submission.get('objectives', '')
     palette = submission.get('palette', [])
     style = submission.get('imageStyle', 'illustrated')
 
@@ -217,23 +216,25 @@ def generate_image_prompt(submission: Dict) -> str:
     }
     visual_style = style_modifiers.get(style, "clean modern aesthetic")
 
+    # Important: Instruct the AI to leave space for text
     return (
-        f"A professional wide cinematic banner (16:9) for '{title}'. "
+        f"A professional wide cinematic banner background (16:9) for a course about '{subject}'. "
         f"Style: {visual_style}. Metaphor: {visual_metaphor}. "
-        f"Colors: {', '.join(palette) if palette else 'modern colors'}. "
-        f"Composition: Clean center, elements at edges. 4k, ultra-detailed, no text."
+        f"Colors: {', '.join(palette) if palette else 'modern professional colors'}. "
+        f"Composition: Minimalist and clean. Keep the LEFT HALF of the image very simple, empty, or blurred for text panel placement. "
+        f"Push most visual detail strictly to the right side. "
+        "CRITICAL: DO NOT include any text, letters, characters, logos, or typography in the image. The image must be purely visual artwork."
     )
 
 def build_gemini_prompt_agent_request(submission: Dict, base_prompt: str) -> str:
     return (
-        "Act as a senior creative director and image prompt architect. "
-        "Rewrite the baseline into one high-quality image-generation prompt for a 16:9 educational banner. "
+        "Act as a senior creative director. Rewrite the baseline into one high-quality image-generation prompt for a 16:9 educational banner background. "
         "Return only the final prompt text, no markdown. "
-        "The generated image must contain no readable text, logos, watermarks, or UI screenshots. "
-        "Keep the center clean for later title overlay, with subject-relevant visual detail at the edges. "
-        "Respect selected style and colors.\n\n"
-        f"Submission data:\n{json.dumps(submission, indent=2, ensure_ascii=False)}\n\n"
-        f"Baseline prompt:\n{base_prompt}"
+        "CRITICAL CONSTRAINT: The generated image MUST contain NO readable text, NO single letters, NO characters, NO logos, NO watermarks, and NO UI screenshots. "
+        "IMPORTANT: The composition MUST have a large 'safe zone' on the LEFT side for a text panel. "
+        "Ensure the left 40% of the image is simple, clean, or low-contrast, while the visual metaphors are concentrated on the right. "
+        f"Respect selected style ({submission.get('imageStyle')}) and colors ({submission.get('palette')}).\n\n"
+        f"Baseline prompt: {base_prompt}"
     )
 
 def generate_ai_enhanced_prompt(submission: Dict) -> str:
@@ -252,6 +253,29 @@ def generate_ai_enhanced_prompt(submission: Dict) -> str:
     print("⚠️ No prompt agent API key available; using template prompt")
     return base_prompt
 
+def generate_marketing_description(submission: Dict) -> str:
+    """Generate a tone-aware marketing description for the banner."""
+    title = submission.get('title', 'Education')
+    subject = submission.get('subject', 'Education')
+    tone = submission.get('tone', 'professional')
+    objectives = submission.get('objectives', '')
+
+    llm_prompt = (
+        f"Act as a professional copywriter. Write a tiny marketing description (max 15 words) "
+        f"for a course titled '{title}' about {subject}. "
+        f"The tone should be {tone}. "
+        f"Here are the learning objectives for context: {objectives}. "
+        "The description should be one single punchy sentence that highlights the main value. "
+        "Return ONLY the description text, no quotes, no labels."
+    )
+    
+    polished_desc = call_gemini_text(llm_prompt)
+    if polished_desc:
+        return polished_desc.strip().strip('"')
+    
+    # Fallback if LLM fails
+    return f"Master {subject} with our {tone} {title} course."
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: python3 generate_prompts.py <submission_id>")
@@ -266,9 +290,13 @@ def main():
 
     print(f"🤖 Processing submission: {submission.get('title')}")
     
+    # 1. Generate Image Prompt
     image_prompt = generate_ai_enhanced_prompt(submission)
-
     save_prompt_to_db(submission_id, "image_prompt", image_prompt)
+
+    # 2. Generate Marketing Description
+    marketing_desc = generate_marketing_description(submission)
+    save_prompt_to_db(submission_id, "marketing_description", marketing_desc)
 
 if __name__ == "__main__":
     main()

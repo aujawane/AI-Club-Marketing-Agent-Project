@@ -69,8 +69,6 @@ Start the development server:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
-
 ## Troubleshooting
 
 - **Database Connection**: Ensure Docker is running. If you change the database port in `docker-compose.yml`, update the `DATABASE_URL` and the `DB_PARAMS` in the Python scripts in `backend/`.

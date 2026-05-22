@@ -14,6 +14,7 @@ from PIL import Image, ImageOps
 from generate_images_free import (
     get_prompt_from_db,
     get_submission_data,
+    compose_banner,
     overlay_text,
     save_image_to_db,
 )
@@ -219,6 +220,22 @@ def fit_to_banner(image_bytes: bytes, width: int = 1280, height: int = 720) -> b
     return output.getvalue()
 
 
+def get_marketing_description_from_db(submission_id):
+    """Fetch the AI-polished description for the banner."""
+    try:
+        from generate_images_free import DB_PARAMS
+        import psycopg2
+        conn = psycopg2.connect(**DB_PARAMS)
+        cur = conn.cursor()
+        cur.execute("SELECT content FROM \"MarketingAsset\" WHERE \"submissionId\" = %s AND \"assetType\" = 'marketing_description' LIMIT 1", (submission_id,))
+        result = cur.fetchone()
+        cur.close()
+        conn.close()
+        return result[0] if result else None
+    except Exception as e:
+        print(f"❌ DB Error: {e}")
+        return None
+
 def main():
     if len(sys.argv) < 3:
         print("Usage: python3 generate_images_openai.py <title> <submission_id>")
@@ -234,7 +251,13 @@ def main():
 
     sub_data = get_submission_data(submission_id)
     duration = sub_data.get("duration")
-    tagline = sub_data.get("objectives", "")[:100]
+    
+    # NEW: Try to get the AI-polished description first
+    ai_description = get_marketing_description_from_db(submission_id)
+    tagline = ai_description if ai_description else sub_data.get("objectives", "")[:200]
+    
+    style_id = sub_data.get("imageStyle", "illustrated")
+    palette = sub_data.get("palette", [])
 
     background_bytes = generate_openai_image(prompt)
     if not background_bytes:
@@ -246,7 +269,14 @@ def main():
         sys.exit(1)
 
     banner_background = fit_to_banner(background_bytes)
-    final_image = overlay_text(banner_background, display_title, tagline, duration)
+    final_image = compose_banner(
+        banner_background, 
+        display_title, 
+        description=tagline, 
+        duration=duration,
+        style_id=style_id,
+        palette=palette
+    )
     save_image_to_db(submission_id, final_image)
 
 
