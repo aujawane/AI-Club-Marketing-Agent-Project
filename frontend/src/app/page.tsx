@@ -116,6 +116,121 @@ const IMAGE_STYLES = [
   { id: "geometric", label: "Geometric", emoji: "💠", bg: "#feffc9" },
 ];
 
+type ProjectSummary = {
+  title: string;
+  audience: string;
+  duration: string;
+  difficulty: string;
+  pitch: string;
+  outcome: string;
+  prerequisites: string;
+  certification: string;
+  pricing: string;
+  sectionCount: number;
+  objectiveCount: number;
+  totalPoints: number;
+  learningObjectives: string[];
+  skills: string[];
+  tools: string[];
+};
+
+function cleanText(value: unknown): string {
+  if (typeof value !== "string") return "";
+  return value
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function asStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value.filter((item): item is string => typeof item === "string" && item.trim().length > 0);
+}
+
+function pushUnique(items: string[], value: unknown) {
+  const text = cleanText(value);
+  if (text && !items.includes(text)) items.push(text);
+}
+
+function getProjectSummary(json: any): ProjectSummary {
+  const description = json?.description;
+  const sections = Array.isArray(json?.sections) ? json.sections : [];
+  const resources = Array.isArray(json?.resources) ? json.resources : [];
+  const objectives = sections.flatMap((section: any) =>
+    Array.isArray(section?.objectives) ? section.objectives : [],
+  );
+
+  const learningObjectives = Array.from(new Set([
+    ...asStringArray(json?.learning_objectives),
+    ...asStringArray(json?.what_students_learn),
+    ...asStringArray(json?.skills_gained),
+  ]));
+
+  for (const objective of objectives) {
+    if (learningObjectives.length >= 5) break;
+    const title = cleanText(objective?.title);
+    if (title && !learningObjectives.includes(title)) {
+      learningObjectives.push(title);
+    }
+  }
+
+  const skills = Array.from(new Set([
+    ...asStringArray(json?.skills_taught),
+    ...asStringArray(json?.skills_gained),
+  ]));
+
+  const tools = Array.from(new Set([
+    ...asStringArray(json?.tools_used),
+    ...asStringArray(json?.tools_and_platforms),
+  ]));
+
+  const totalPoints = objectives.reduce(
+    (sum: number, objective: any) =>
+      sum + (typeof objective?.points === "number" ? objective.points : 0),
+    0,
+  );
+
+  const pricing =
+    json?.pricing == null || json?.pricing === ""
+      ? ""
+      : typeof json.pricing === "number"
+        ? `$${json.pricing.toFixed(2)}`
+        : String(json.pricing);
+
+  return {
+    title:
+      cleanText(json?.title) ||
+      cleanText(description?.name) ||
+      cleanText(json?.project_name) ||
+      "Project data loaded",
+    audience: cleanText(json?.audience),
+    duration: cleanText(json?.duration),
+    difficulty: cleanText(json?.difficulty),
+    pitch: cleanText(json?.pitch) || cleanText(json?.tagline),
+    outcome: cleanText(json?.outcome),
+    prerequisites: cleanText(json?.prerequisites),
+    certification: cleanText(json?.certification),
+    pricing,
+    sectionCount: sections.length,
+    objectiveCount: objectives.length,
+    totalPoints,
+    learningObjectives: learningObjectives.slice(0, 5),
+    skills: skills.slice(0, 6),
+    tools: tools.length
+      ? tools.slice(0, 6)
+      : resources
+          .filter((resource: any) => resource?.kind)
+          .map((resource: any) => cleanText(resource.kind))
+          .filter(Boolean)
+          .slice(0, 4),
+  };
+}
+
 export default function Home() {
   const [subject, setSubject] = useState("");
   const [title, setTitle] = useState("");
@@ -147,6 +262,29 @@ export default function Home() {
         else if (json.description?.name) setTitle(json.description.name);
 
         if (json.tags && Array.isArray(json.tags)) setTags(json.tags);
+
+        const summary = getProjectSummary(json);
+        if (summary.audience) setGrade(summary.audience);
+        if (summary.duration) setDuration(summary.duration);
+        
+        // Populate Subject if it matches one of our options
+        if (json.subject) {
+          const matchedSubject = SUBJECTS.find(s => s.toLowerCase() === json.subject.toLowerCase());
+          if (matchedSubject) setSubject(matchedSubject);
+        }
+
+        if (summary.learningObjectives.length) {
+          setObjectives(summary.learningObjectives.join("\n"));
+        } else if (summary.outcome) {
+          setObjectives(summary.outcome);
+        } else if (summary.pitch) {
+          setObjectives(summary.pitch);
+        }
+
+        // Set default tone if not already set
+        if (!tone) setTone("professional");
+        if (!imageStyle) setImageStyle("illustrated");
+        if (!palette) setPalette("neutral");
       } catch (err) {
         console.error("Error parsing JSON:", err);
         alert("Invalid JSON file");
@@ -167,7 +305,10 @@ export default function Home() {
 
   const addTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && tagInput.trim()) {
-      setTags([...tags, tagInput.trim()]);
+      const newTag = tagInput.trim();
+      if (!tags.includes(newTag)) {
+        setTags([...tags, newTag]);
+      }
       setTagInput("");
     }
   };
@@ -270,6 +411,35 @@ export default function Home() {
   const uploadedTagCount = Array.isArray(uploadedJson?.tags)
     ? uploadedJson.tags.length
     : tags.length;
+  const uploadedSummary = uploadedJson ? getProjectSummary(uploadedJson) : null;
+  const metadataTiles =
+    uploadedSummary
+      ? [
+          { label: "Duration", value: uploadedSummary.duration },
+          { label: "Audience", value: uploadedSummary.audience },
+          { label: "Difficulty", value: uploadedSummary.difficulty },
+          {
+            label: "Tasks",
+            value: uploadedSummary.objectiveCount
+              ? `${uploadedSummary.objectiveCount} objectives`
+              : "",
+          },
+          {
+            label: "Sections",
+            value: uploadedSummary.sectionCount
+              ? `${uploadedSummary.sectionCount} sections`
+              : "",
+          },
+          {
+            label: "Points",
+            value: uploadedSummary.totalPoints
+              ? `${uploadedSummary.totalPoints} points`
+              : "",
+          },
+          { label: "Certification", value: uploadedSummary.certification },
+          { label: "Price", value: uploadedSummary.pricing || "Free" },
+        ].filter((tile) => tile.value)
+      : [];
 
   return (
     <main
@@ -623,9 +793,6 @@ export default function Home() {
             {uploadedJson && (
               <div
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: "8px",
                   borderTop: `1px solid ${BORDER}`,
                   paddingTop: "16px",
                   marginTop: "20px",
@@ -633,100 +800,142 @@ export default function Home() {
               >
                 <div
                   style={{
-                    borderRadius: "14px",
-                    border: `1px solid ${BORDER}`,
-                    backgroundColor: "#ffffff",
-                    padding: "8px 12px",
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(132px, 1fr))",
+                    gap: "8px",
+                    marginBottom:
+                      uploadedSummary &&
+                      (uploadedSummary.pitch ||
+                        uploadedSummary.outcome ||
+                        uploadedSummary.learningObjectives.length ||
+                        uploadedSummary.skills.length ||
+                        uploadedSummary.tools.length)
+                        ? "14px"
+                        : 0,
                   }}
                 >
-                  <p
-                    style={{
-                      margin: 0,
-                      fontSize: "10px",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.16em",
-                      color: MUTED,
-                    }}
-                  >
-                    Title
-                  </p>
-                  <p
-                    style={{
-                      margin: "4px 0 0",
-                      fontSize: "13px",
-                      fontWeight: 600,
-                      color: TEXT,
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {uploadedProjectTitle}
-                  </p>
+                  <MetadataTile label="Title" value={uploadedProjectTitle} />
+                  <MetadataTile label="Tags" value={`${uploadedTagCount || 0}`} />
+                  <MetadataTile label="Status" value="Parsed" accent />
+                  {metadataTiles.map((tile) => (
+                    <MetadataTile
+                      key={tile.label}
+                      label={tile.label}
+                      value={tile.value}
+                    />
+                  ))}
                 </div>
-                <div
-                  style={{
-                    borderRadius: "14px",
-                    border: `1px solid ${BORDER}`,
-                    backgroundColor: "#ffffff",
-                    padding: "8px 12px",
-                  }}
-                >
-                  <p
+
+                {uploadedSummary?.pitch && (
+                  <div
                     style={{
-                      margin: 0,
-                      fontSize: "10px",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.16em",
-                      color: MUTED,
+                      borderRadius: "14px",
+                      border: `1px solid ${BORDER}`,
+                      backgroundColor: "#ffffff",
+                      padding: "12px 14px",
+                      marginBottom: "8px",
                     }}
                   >
-                    Tags
-                  </p>
-                  <p
+                    <MetadataLabel>Pitch</MetadataLabel>
+                    <MetadataText>{uploadedSummary.pitch}</MetadataText>
+                  </div>
+                )}
+
+                {uploadedSummary?.outcome && (
+                  <div
                     style={{
-                      margin: "4px 0 0",
-                      fontSize: "13px",
-                      fontWeight: 600,
-                      color: TEXT,
+                      borderRadius: "14px",
+                      border: `1px solid ${BORDER}`,
+                      backgroundColor: "#ffffff",
+                      padding: "12px 14px",
+                      marginBottom: "8px",
                     }}
                   >
-                    {uploadedTagCount || 0}
-                  </p>
-                </div>
-                <div
-                  style={{
-                    borderRadius: "14px",
-                    border: `1px solid ${BORDER}`,
-                    backgroundColor: "#ffffff",
-                    padding: "8px 12px",
-                  }}
-                >
-                  <p
+                    <MetadataLabel>Students will create</MetadataLabel>
+                    <MetadataText>{uploadedSummary.outcome}</MetadataText>
+                  </div>
+                )}
+
+                {(uploadedSummary?.learningObjectives.length ?? 0) > 0 && (
+                  <div
                     style={{
-                      margin: 0,
-                      fontSize: "10px",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.16em",
-                      color: MUTED,
+                      borderRadius: "14px",
+                      border: `1px solid ${BORDER}`,
+                      backgroundColor: "#ffffff",
+                      padding: "12px 14px",
+                      marginBottom: "8px",
                     }}
                   >
-                    Status
-                  </p>
-                  <p
-                    style={{
-                      margin: "4px 0 0",
-                      fontSize: "13px",
-                      fontWeight: 600,
-                      color: PRIMARY,
-                    }}
-                  >
-                    Parsed
-                  </p>
-                </div>
+                    <MetadataLabel>Stuff you'll learn</MetadataLabel>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "7px",
+                        marginTop: "8px",
+                      }}
+                    >
+                      {uploadedSummary?.learningObjectives.map((item) => (
+                        <div
+                          key={item}
+                          style={{
+                            display: "grid",
+                            gridTemplateColumns: "8px 1fr",
+                            gap: "9px",
+                            alignItems: "start",
+                          }}
+                        >
+                          <span
+                            style={{
+                              width: "6px",
+                              height: "6px",
+                              borderRadius: "50%",
+                              backgroundColor: PRIMARY,
+                              marginTop: "7px",
+                            }}
+                          />
+                          <MetadataText>{item}</MetadataText>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {uploadedSummary &&
+                  (uploadedSummary.skills.length > 0 ||
+                    uploadedSummary.tools.length > 0 ||
+                    uploadedSummary.prerequisites) && (
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "10px",
+                        borderRadius: "14px",
+                        border: `1px solid ${BORDER}`,
+                        backgroundColor: "#ffffff",
+                        padding: "12px 14px",
+                      }}
+                    >
+                      {uploadedSummary.prerequisites && (
+                        <div>
+                          <MetadataLabel>Prerequisites</MetadataLabel>
+                          <MetadataText>{uploadedSummary.prerequisites}</MetadataText>
+                        </div>
+                      )}
+                      {uploadedSummary.skills.length > 0 && (
+                        <MetadataChipRow
+                          label="Skills"
+                          items={uploadedSummary.skills}
+                        />
+                      )}
+                      {uploadedSummary.tools.length > 0 && (
+                        <MetadataChipRow
+                          label="Tools"
+                          items={uploadedSummary.tools}
+                        />
+                      )}
+                    </div>
+                  )}
               </div>
             )}
           </div>
@@ -893,9 +1102,9 @@ export default function Home() {
                 gap: "10px",
               }}
             >
-              {tags.map((t) => (
+              {tags.map((t, idx) => (
                 <span
-                  key={t}
+                  key={`${t}-${idx}`}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -1524,6 +1733,117 @@ function Field({
         {label}
       </label>
       {children}
+    </div>
+  );
+}
+
+function MetadataTile({
+  label,
+  value,
+  accent = false,
+}: {
+  label: string;
+  value: string;
+  accent?: boolean;
+}) {
+  return (
+    <div
+      style={{
+        borderRadius: "14px",
+        border: `1px solid ${BORDER}`,
+        backgroundColor: "#ffffff",
+        padding: "8px 12px",
+        minWidth: 0,
+      }}
+    >
+      <MetadataLabel>{label}</MetadataLabel>
+      <p
+        style={{
+          margin: "4px 0 0",
+          fontSize: "13px",
+          fontWeight: 600,
+          color: accent ? PRIMARY : TEXT,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+        }}
+        title={value}
+      >
+        {value}
+      </p>
+    </div>
+  );
+}
+
+function MetadataLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p
+      style={{
+        margin: 0,
+        fontSize: "10px",
+        fontWeight: 700,
+        textTransform: "uppercase" as const,
+        letterSpacing: "0.16em",
+        color: MUTED,
+      }}
+    >
+      {children}
+    </p>
+  );
+}
+
+function MetadataText({ children }: { children: React.ReactNode }) {
+  return (
+    <p
+      style={{
+        margin: 0,
+        fontSize: "13px",
+        fontWeight: 500,
+        color: TEXT,
+        lineHeight: "20px",
+      }}
+    >
+      {children}
+    </p>
+  );
+}
+
+function MetadataChipRow({
+  label,
+  items,
+}: {
+  label: string;
+  items: string[];
+}) {
+  return (
+    <div>
+      <MetadataLabel>{label}</MetadataLabel>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "6px",
+          marginTop: "8px",
+        }}
+      >
+        {items.map((item, idx) => (
+          <span
+            key={`${item}-${idx}`}
+            style={{
+              borderRadius: "999px",
+              border: "1px solid rgba(8,150,105,0.24)",
+              backgroundColor: PRIMARY_SOFT,
+              color: PRIMARY_DARK,
+              padding: "4px 9px",
+              fontSize: "12px",
+              fontWeight: 600,
+              lineHeight: 1.2,
+            }}
+          >
+            {item}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }

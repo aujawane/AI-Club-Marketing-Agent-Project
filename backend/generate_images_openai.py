@@ -17,6 +17,7 @@ from generate_images_free import (
     compose_banner,
     overlay_text,
     save_image_to_db,
+    get_banner_card_copy_from_db,
 )
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -255,6 +256,7 @@ def main():
     # NEW: Try to get the AI-polished description first
     ai_description = get_marketing_description_from_db(submission_id)
     tagline = ai_description if ai_description else sub_data.get("objectives", "")[:200]
+    banner_card_copy = get_banner_card_copy_from_db(submission_id)
     
     style_id = sub_data.get("imageStyle", "illustrated")
     palette = sub_data.get("palette", [])
@@ -275,7 +277,9 @@ def main():
         description=tagline, 
         duration=duration,
         style_id=style_id,
-        palette=palette
+        palette=palette,
+        submission=sub_data,
+        banner_copy=banner_card_copy
     )
     save_image_to_db(submission_id, final_image)
 

@@ -5,9 +5,10 @@ import os
 import ssl
 import psycopg2
 import uuid
+import re
 from urllib import request, error
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 # Database connection parameters
 DB_PARAMS = {
@@ -63,6 +64,15 @@ def get_openai_prompt_models():
     fallbacks = ["gpt-4o-mini", "gpt-4.1-mini", "gpt-4o"]
     return list(dict.fromkeys([primary, *fallbacks]))
 
+TONE_GUIDELINES = {
+    "professional": "Direct, authoritative, and results-oriented. Use words like 'mastery', 'efficient', 'outcome', and 'proven'. Avoid exclamation marks.",
+    "inspiring": "Visionary, uplifting, and ambitious. Use words like 'transform', 'unlock', 'potential', and 'future'. Use evocative and empowering language.",
+    "friendly": "Warm, approachable, and encouraging. Use words like 'together', 'step-by-step', 'let\'s', and 'fun'. Use a conversational and welcoming style.",
+    "academic": "Rigorous, scholarly, and precise. Use words like 'analyze', 'framework', 'synthesis', and 'comprehensive'. Focus on depth and methodology.",
+    "playful": "Engaging, high-energy, and fun. Use words like 'adventure', 'mission', 'awesome', and 'level-up'. Feel free to use exclamation marks and punchy, active verbs.",
+    "creative": "Exploratory, imaginative, and expressive. Use words like 'discover', 'design', 'shape', and 'possibility'. Focus on the journey and unique expression."
+}
+
 def call_gemini_text(prompt: str, model: str = "gemini-flash-latest") -> Optional[str]:
     api_key = get_gemini_api_key()
     if not api_key: return None
@@ -98,6 +108,9 @@ def call_openai_prompt_agent(submission: Dict, base_prompt: str) -> Optional[str
     if not api_key:
         return None
 
+    tone = submission.get("tone", "professional")
+    tone_desc = TONE_GUIDELINES.get(tone, TONE_GUIDELINES["professional"])
+
     instructions = (
         "You are a senior creative director and image prompt architect for an education marketplace. "
         "Write one excellent image-generation prompt for a course/project banner. "
@@ -107,6 +120,7 @@ def call_openai_prompt_agent(submission: Dict, base_prompt: str) -> Optional[str
         "Make the prompt visually specific, concrete, and production-ready: include subject-relevant metaphors, "
         "composition, lighting, depth, color palette, style, and quality details. "
         "Keep the center readable/open for later text overlay and push most visual detail toward the edges. "
+        f"The visual tone should feel {tone}: {tone_desc}. "
         "Avoid generic phrases unless they clarify composition or quality."
     )
 
@@ -258,12 +272,13 @@ def generate_marketing_description(submission: Dict) -> str:
     title = submission.get('title', 'Education')
     subject = submission.get('subject', 'Education')
     tone = submission.get('tone', 'professional')
+    tone_desc = TONE_GUIDELINES.get(tone, TONE_GUIDELINES["professional"])
     objectives = submission.get('objectives', '')
 
     llm_prompt = (
         f"Act as a professional copywriter. Write a tiny marketing description (max 15 words) "
         f"for a course titled '{title}' about {subject}. "
-        f"The tone should be {tone}. "
+        f"The tone should be {tone}: {tone_desc}. "
         f"Here are the learning objectives for context: {objectives}. "
         "The description should be one single punchy sentence that highlights the main value. "
         "Return ONLY the description text, no quotes, no labels."
@@ -275,6 +290,205 @@ def generate_marketing_description(submission: Dict) -> str:
     
     # Fallback if LLM fails
     return f"Master {subject} with our {tone} {title} course."
+
+def clean_text(value: Any) -> str:
+    if not isinstance(value, str):
+        return ""
+    text = re.sub(r"<[^>]*>", " ", value)
+    replacements = {
+        "&nbsp;": " ",
+        "&amp;": "&",
+        "&lt;": "<",
+        "&gt;": ">",
+        "&quot;": '"',
+    }
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    return re.sub(r"\s+", " ", text).strip()
+
+def string_list(value: Any) -> List[str]:
+    if not isinstance(value, list):
+        return []
+    return [clean_text(item) for item in value if clean_text(item)]
+
+def extract_banner_copy_source(submission: Dict) -> Dict:
+    uploaded = submission.get("uploadedJson") if isinstance(submission.get("uploadedJson"), dict) else {}
+    sections = uploaded.get("sections") if isinstance(uploaded.get("sections"), list) else []
+    objectives = []
+    for section in sections:
+        if isinstance(section, dict) and isinstance(section.get("objectives"), list):
+            objectives.extend(section["objectives"])
+
+    objective_titles = [
+        clean_text(objective.get("title"))
+        for objective in objectives
+        if isinstance(objective, dict) and clean_text(objective.get("title"))
+    ]
+    objective_descriptions = [
+        clean_text(objective.get("description"))
+        for objective in objectives[:6]
+        if isinstance(objective, dict) and clean_text(objective.get("description"))
+    ]
+    form_objectives = [
+        clean_text(line)
+        for line in str(submission.get("objectives") or "").splitlines()
+        if clean_text(line)
+    ]
+    skills = (
+        string_list(uploaded.get("skills_taught"))
+        + string_list(uploaded.get("skills_gained"))
+        + string_list(submission.get("tags"))
+    )
+
+    total_points = sum(
+        objective.get("points", 0)
+        for objective in objectives
+        if isinstance(objective, dict) and isinstance(objective.get("points"), int)
+    )
+
+    return {
+        "title": submission.get("title") or uploaded.get("title"),
+        "subject": submission.get("subject"),
+        "tone": submission.get("tone", "professional"),
+        "audience": submission.get("grade") or uploaded.get("audience"),
+        "duration": submission.get("duration") or uploaded.get("duration"),
+        "difficulty": uploaded.get("difficulty"),
+        "activity_count": len(objectives),
+        "total_points": total_points,
+        "raw_learning_objectives": (
+            string_list(uploaded.get("learning_objectives"))
+            + string_list(uploaded.get("what_students_learn"))
+            + form_objectives
+            + objective_titles[:8]
+        ),
+        "raw_objective_details": objective_descriptions,
+        "raw_outcome": uploaded.get("outcome") or uploaded.get("pitch"),
+        "raw_skills": list(dict.fromkeys(skills))[:10],
+    }
+
+def extract_json_object(text: str) -> Optional[Dict]:
+    text = text.strip()
+    if text.startswith("```"):
+        text = re.sub(r"^```(?:json)?", "", text).strip()
+        text = re.sub(r"```$", "", text).strip()
+
+    try:
+        result = json.loads(text)
+        return result if isinstance(result, dict) else None
+    except json.JSONDecodeError:
+        pass
+
+    match = re.search(r"\{.*\}", text, flags=re.S)
+    if not match:
+        return None
+    try:
+        result = json.loads(match.group(0))
+        return result if isinstance(result, dict) else None
+    except json.JSONDecodeError:
+        return None
+
+def call_openai_banner_copy_agent(source: Dict) -> Optional[Dict]:
+    api_key = get_openai_api_key()
+    if not api_key:
+        return None
+
+    tone = source.get("tone", "professional")
+    tone_desc = TONE_GUIDELINES.get(tone, TONE_GUIDELINES["professional"])
+
+    instructions = (
+        "You are a concise education marketplace copywriter. Rewrite raw course/project JSON into polished banner-card copy. "
+        "Do not copy phrases straight from the JSON. Do not preserve awkward task labels verbatim. "
+        f"Use the requested tone ({tone}: {tone_desc}), make learning objectives appealing, specific, and student-facing, "
+        "and keep every field short enough for a 16:9 banner card. Return strict JSON only."
+    )
+    user_prompt = (
+        f"Raw source data:\n{json.dumps(source, indent=2, ensure_ascii=False)}\n\n"
+        "Return this exact JSON shape:\n"
+        "{\n"
+        '  "format": "short marketable format line, e.g. Hands-on project • 13 guided activities",\n'
+        '  "learn_heading": "short heading tailored to tone",\n'
+        '  "learning_items": ["3 to 4 rewritten learning objectives, each 3-8 words"],\n'
+        '  "outcome_heading": "short heading tailored to tone",\n'
+        '  "outcome": "rewritten final result, 8-14 words",\n'
+        '  "focus_areas": ["up to 5 polished focus areas, 1-3 words each"]\n'
+        "}\n\n"
+        "Rules:\n"
+        "- Do NOT use text straight from the JSON file.\n"
+        "- Rewrite, simplify, and market the learning objectives.\n"
+        "- Avoid classroom admin wording like file setup, rename, completion, points, task, objective.\n"
+        "- Make the format line more useful than a raw task count.\n"
+        "- Match the description tone exactly."
+    )
+
+    context = ssl._create_unverified_context()
+    for model in get_openai_prompt_models():
+        payload = {
+            "model": model,
+            "instructions": instructions,
+            "input": user_prompt,
+            "text": {"format": {"type": "json_object"}},
+        }
+        data = json.dumps(payload).encode("utf-8")
+        req = request.Request(
+            "https://api.openai.com/v1/responses",
+            data=data,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {api_key}",
+            },
+        )
+        try:
+            with request.urlopen(req, context=context, timeout=45) as response:
+                result = json.loads(response.read().decode("utf-8"))
+                text = extract_response_text(result)
+                parsed = extract_json_object(text or "")
+                if parsed:
+                    print(f"✅ OpenAI banner card copy used model {model}")
+                    return parsed
+        except error.HTTPError as e:
+            err_msg = e.read().decode("utf-8")
+            print(f"❌ OpenAI banner copy error for {model} ({e.code}): {err_msg}")
+            if e.code not in (400, 403, 404):
+                break
+        except Exception as e:
+            print(f"❌ OpenAI banner copy error for {model}: {str(e)}")
+            break
+
+    return None
+
+def call_gemini_banner_copy_agent(source: Dict) -> Optional[Dict]:
+    tone = source.get("tone", "professional")
+    tone_desc = TONE_GUIDELINES.get(tone, TONE_GUIDELINES["professional"])
+    
+    prompt = (
+        "Act as a concise education marketplace copywriter. Rewrite raw project JSON into polished banner-card copy. "
+        "Do not copy phrases straight from the JSON. "
+        f"Match the requested tone ({tone}: {tone_desc}). Return strict JSON only with keys: "
+        "format, learn_heading, learning_items, outcome_heading, outcome, focus_areas. "
+        "Learning items must be rewritten, appealing, student-facing, and 3-8 words each. "
+        "Format must be marketable, not just a raw count.\n\n"
+        f"Raw source data:\n{json.dumps(source, indent=2, ensure_ascii=False)}"
+    )
+    response = call_gemini_text(prompt)
+    if not response:
+        return None
+    parsed = extract_json_object(response)
+    if parsed:
+        print("✅ Gemini banner card copy fallback succeeded")
+    return parsed
+
+def generate_banner_card_copy(submission: Dict) -> str:
+    source = extract_banner_copy_source(submission)
+
+    copy = call_openai_banner_copy_agent(source)
+    if not copy:
+        copy = call_gemini_banner_copy_agent(source)
+
+    if not copy:
+        print("⚠️ No banner copy agent available; using compositor fallback")
+        return "{}"
+
+    return json.dumps(copy, ensure_ascii=False)
 
 def main():
     if len(sys.argv) < 2:
@@ -297,6 +511,10 @@ def main():
     # 2. Generate Marketing Description
     marketing_desc = generate_marketing_description(submission)
     save_prompt_to_db(submission_id, "marketing_description", marketing_desc)
+
+    # 3. Generate rewritten banner-card metadata copy
+    banner_card_copy = generate_banner_card_copy(submission)
+    save_prompt_to_db(submission_id, "banner_card_copy", banner_card_copy)
 
 if __name__ == "__main__":
     main()

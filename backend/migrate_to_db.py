@@ -19,7 +19,7 @@ def migrate_projects():
         cur = conn.cursor()
         print("Connected to PostgreSQL")
 
-        json_folder = Path("JSON_files")
+        json_folder = Path("data/JSON_files")
         
         # Get all project files (not metadata files)
         project_files = [f for f in json_folder.glob("*.json") 

@@ -44,6 +44,50 @@ def update_submission_in_db(submission_id, title, form_data):
     except Exception as e:
         print(f"❌ DB Update Error: {e}")
 
+def clean_title(value):
+    return " ".join(str(value or "").lower().split())
+
+def find_matching_metadata(uploaded_json, json_folder):
+    """Find sibling *_metadata.json for an uploaded project by matching title."""
+    uploaded_title = uploaded_json.get("title")
+    if not uploaded_title and isinstance(uploaded_json.get("description"), dict):
+        uploaded_title = uploaded_json.get("description", {}).get("name")
+
+    normalized_uploaded_title = clean_title(uploaded_title)
+    if not normalized_uploaded_title:
+        return {}
+
+    for project_path in Path(json_folder).glob("*.json"):
+        if project_path.name.endswith("_metadata.json") or project_path.name.startswith("_"):
+            continue
+
+        try:
+            with open(project_path, "r", encoding="utf-8") as f:
+                project_data = json.load(f)
+        except Exception:
+            continue
+
+        candidate_title = project_data.get("title")
+        if not candidate_title and isinstance(project_data.get("description"), dict):
+            candidate_title = project_data.get("description", {}).get("name")
+
+        if clean_title(candidate_title) != normalized_uploaded_title:
+            continue
+
+        metadata_path = project_path.with_name(f"{project_path.stem}_metadata.json")
+        if not metadata_path.exists():
+            return {}
+
+        try:
+            with open(metadata_path, "r", encoding="utf-8") as f:
+                print(f"✅ Matched metadata file: {metadata_path.name}")
+                return json.load(f)
+        except Exception as e:
+            print(f"⚠️ Could not load matched metadata {metadata_path.name}: {e}")
+            return {}
+
+    return {}
+
 def run_script(args):
     result = subprocess.run(args, text=True, capture_output=True)
     if result.stdout:
@@ -75,14 +119,43 @@ def main():
         project = ingestor.ingest_data(uploaded_json)
         
         if project:
-            # Update form_data with extracted values
-            form_data['title'] = project.title
-            form_data['objectives'] = "\n".join(project.learning_objectives)
-            form_data['tags'] = project.tags
-            # We don't overwrite manual style choices (tone, imageStyle, palette)
+            metadata = find_matching_metadata(
+                uploaded_json,
+                Path(__file__).parent / "data" / "JSON_files"
+            )
+            # ONLY fill if missing or empty in form_data
+            # This ensures that if the user EDITed the form, we keep their edits.
             
-            # Update DB
-            update_submission_in_db(submission_id, project.title, form_data)
+            # Metadata merge
+            if metadata:
+                uploaded_json.update({k: v for k, v in metadata.items() if v is not None})
+                form_data['uploadedJson'] = uploaded_json
+                if not form_data.get('duration'):
+                    form_data['duration'] = metadata.get('duration', '')
+                if not form_data.get('grade'):
+                    form_data['grade'] = metadata.get('audience', '')
+
+            # Form fields
+            if not form_data.get('title'):
+                form_data['title'] = project.title
+                print(f"  - Populated missing title: {project.title}")
+
+            if not form_data.get('objectives'):
+                if project.learning_objectives:
+                    form_data['objectives'] = "\n".join(project.learning_objectives)
+                elif metadata.get('outcome'):
+                    form_data['objectives'] = metadata['outcome']
+                elif metadata.get('pitch'):
+                    form_data['objectives'] = metadata['pitch']
+                print("  - Populated missing objectives")
+
+            if not form_data.get('tags') or len(form_data.get('tags', [])) == 0:
+                if project.tags:
+                    form_data['tags'] = project.tags
+                    print(f"  - Populated missing tags: {project.tags}")
+            
+            # Update DB with final form_data (prioritizing manual edits)
+            update_submission_in_db(submission_id, form_data.get('title', project.title), form_data)
         else:
             print("⚠️ Could not extract project data from JSON")
 
